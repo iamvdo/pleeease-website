@@ -176,14 +176,14 @@ block content
 
     ##Options
 
-    These are the default options for now:
+    These are the default options for now (all `true`):
 
     * `autoprefixer`: `true`
     * `minifier`: `true`
     * `mqpacker`: `true`
-    * `polyfills`:
+    * `fallbacks`:
       * `variables`: `true`
-      * `rem`: `false`
+      * `rem`: `true`
 
     All options can be disabled with `false` keyword or modified using each postprocessor options.
 
@@ -215,18 +215,18 @@ block content
 
     Add support for [MQ Packer](https://github.com/hail2u/node-css-mqpacker) that pack same CSS media query rules into one media query rule. There are no options.
 
-    ###polyfills.variables
+    ###fallbacks.variables
 
     Add support for a "not so bad" [CSS variables polyfill](https://github.com/iamvdo/postcss-vars). There are no options.
 
-    ###polyfills.rem
+    ###fallbacks.rem
 
     Add support for [pixrem](https://github.com/iamvdo/node-pixrem) that generates pixel fallbacks for rem units. Add options as an array:
 
     ```javascript
     // set options
     var options = {
-      polyfills: {
+      fallbacks: {
         rem: ['16px', {replace: true}]
       }
     }
@@ -235,7 +235,7 @@ block content
     ```javascript
     // .pleeeaserc file
     {
-      "polyfills": {
+      "fallbacks": {
         "rem": ["16px", {"replace": true}]
       }
     }
@@ -247,7 +247,7 @@ block content
 
     ##More
 
-    More postprocess tasks are coming, mainly polyfills (eg. CSS filters, pseudo-classes/pseudo-elements, rgba/hsla functions, etc.).
+    More postprocess tasks are coming, mainly fallbacks (eg. CSS filters, pseudo-classes/pseudo-elements, rgba/hsla functions, etc.).
 
     ##Licence
 

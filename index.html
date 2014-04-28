@@ -121,14 +121,14 @@ $ pleeease compile <span class="token operator" >*</span><span class="token punc
 <h3 id="with-gulp-grunt">With Gulp, Grunt</h3>
 <p>Please, <a href="https://github.com/iamvdo/pleeease/pulls">be my guest</a> if you want to use pleeease with gulp or grunt, or any other task runner.</p>
 <h2 id="options">Options</h2>
-<p>These are the default options for now:</p>
+<p>These are the default options for now (all <code>true</code>):</p>
 <ul>
 <li><code>autoprefixer</code>: <code>true</code></li>
 <li><code>minifier</code>: <code>true</code></li>
 <li><code>mqpacker</code>: <code>true</code></li>
-<li><code>polyfills</code>:<ul>
+<li><code>fallbacks</code>:<ul>
 <li><code>variables</code>: <code>true</code></li>
-<li><code>rem</code>: <code>false</code></li>
+<li><code>rem</code>: <code>true</code></li>
 </ul>
 </li>
 </ul>
@@ -150,20 +150,20 @@ $ pleeease compile <span class="token operator" >*</span><span class="token punc
 <p>Add support for <a href="https://github.com/hail2u/node-csswring">CSS Wring</a>, a CSS minifier. There are no options.</p>
 <h3 id="mqpacker">mqpacker</h3>
 <p>Add support for <a href="https://github.com/hail2u/node-css-mqpacker">MQ Packer</a> that pack same CSS media query rules into one media query rule. There are no options.</p>
-<h3 id="polyfills-variables">polyfills.variables</h3>
+<h3 id="fallbacks-variables">fallbacks.variables</h3>
 <p>Add support for a &quot;not so bad&quot; <a href="https://github.com/iamvdo/postcss-vars">CSS variables polyfill</a>. There are no options.</p>
-<h3 id="polyfills-rem">polyfills.rem</h3>
+<h3 id="fallbacks-rem">fallbacks.rem</h3>
 <p>Add support for <a href="https://github.com/iamvdo/node-pixrem">pixrem</a> that generates pixel fallbacks for rem units. Add options as an array:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// set options
 </span><span class="token keyword" >var</span> options <span class="token operator" >=</span> <span class="token punctuation" >{</span>
-  polyfills<span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
+  fallbacks<span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
     rem<span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >'16px'</span><span class="token punctuation" >,</span> <span class="token punctuation" >{</span>replace<span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >}</span><span class="token punctuation" >]</span>
   <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file
 </span><span class="token punctuation" >{</span>
-  <span class="token string" >"polyfills"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
+  <span class="token string" >"fallbacks"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
     <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"16px"</span><span class="token punctuation" >,</span> <span class="token punctuation" >{</span><span class="token string" >"replace"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >}</span><span class="token punctuation" >]</span>
   <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
@@ -171,7 +171,7 @@ $ pleeease compile <span class="token operator" >*</span><span class="token punc
 <p>See <a href="https://github.com/iamvdo/node-pixrem#parameters">available options for pixrem</a>.</p>
 <p>For now, this uses a fork from <a href="https://github.com/robwierzbowski/node-pixrem">pixrem</a> until the <a href="https://github.com/robwierzbowski/node-pixrem/pull/10">PR will be accepted or not</a>.</p>
 <h2 id="more">More</h2>
-<p>More postprocess tasks are coming, mainly polyfills (eg. CSS filters, pseudo-classes/pseudo-elements, rgba/hsla functions, etc.).</p>
+<p>More postprocess tasks are coming, mainly fallbacks (eg. CSS filters, pseudo-classes/pseudo-elements, rgba/hsla functions, etc.).</p>
 <h2 id="licence">Licence</h2>
 <p>MIT</p>
 <footer><p>Postprocess with <a href="/">Pleeease</a> by <a href="http://iamvdo.me">@iamvdo</a></p></footer></article></section></body></html>
