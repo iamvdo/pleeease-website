@@ -1,1 +1,177 @@
-Pleeease
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><title>Pleeease &middot; Postprocess CSS with ease</title><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Damion&amp;text=Pplease"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway"><link rel="stylesheet" href="app.min.css"><link rel="icon" href="images/favicon.png"><script>document.createElement('header');
+document.createElement('section');
+document.createElement('article');
+document.createElement('footer');
+</script></head><body><header><h1 class="title">pleeease</h1><p class="subtitle">Postprocess CSS with ease</p></header><section class="readme"><div class="buttons"><a href="https://github.com/iamvdo/pleeease/zipball/master" class="button button--download">Download .zip</a><a href="https://github.com/iamvdo/pleeease/tarball/master" class="button button--download">Download .tar.gz</a><a href="https://github.com/iamvdo/pleeease/" class="button">View on GitHub</a></div><article><p>Pleeease is the best toolchain for your CSS. Just write DRY, future-proof CSS and pleeease do the job for you.</p>
+<p>For now, it adds prefixes, variables and <code>rem</code> unit support, packs same media-query in one <code>@media</code> rule and minify it.</p>
+<p>Pleeease is based on <a href="https://github.com/ai/postcss">PostCSS</a> postprocessor.</p>
+<div class="doge">
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Such prefixes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wow variables</p>
+<p>&nbsp;&nbsp;&nbsp;Very CSS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</div>
+
+<h2 id="example">Example</h2>
+<p>You write <code>foo.css</code>:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >:root </span><span class="token punctuation" >{</span>
+  <span class="token property" >--color-primary</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
+  <span class="token property" >--color-secondary</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+<span class="token selector" >.elem </span><span class="token punctuation" >{</span>
+  <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span>
+  <span class="token property" >color</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> var(--color-primary)<span class="token punctuation" >;</span>
+  <span class="token property" >width</span><span class="token punctuation" >:</span> calc(100% - 50px)<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+<span class="token atrule" >@media screen and (min-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
+  <span class="token selector" >.elem </span><span class="token punctuation" >{</span>
+    <span class="token property" >color</span><span class="token punctuation" >:</span> var(--color-secondary)
+  <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+<span class="token atrule" >@media screen and (min-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
+  <span class="token selector" >.classe </span><span class="token punctuation" >{</span>
+    <span class="token property" >background</span><span class="token punctuation" >:</span> linear-gradient(green, blue)<span class="token punctuation" >;</span>
+  <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>You get <code>bar.css</code> (with all options set to <code>true</code>, except minifier)</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >:root </span><span class="token punctuation" >{</span>
+  <span class="token property" >--color-primary</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
+  <span class="token property" >--color-secondary</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+<span class="token selector" >.elem </span><span class="token punctuation" >{</span>
+  <span class="token property" >font-size</span><span class="token punctuation" >:</span> 32px<span class="token punctuation" >;</span>
+  <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span>
+  <span class="token property" >color</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
+  <span class="token property" >width</span><span class="token punctuation" >:</span> -webkit-calc(100% - 50px)<span class="token punctuation" >;</span>
+  <span class="token property" >width</span><span class="token punctuation" >:</span> calc(100% - 50px)<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+<span class="token atrule" >@media screen and (min-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
+  <span class="token selector" >.elem </span><span class="token punctuation" >{</span>
+    <span class="token property" >color</span><span class="token punctuation" >:</span> blue
+  <span class="token punctuation" >}</span>
+  <span class="token selector" >.classe </span><span class="token punctuation" >{</span>
+    <span class="token property" >background</span><span class="token punctuation" >:</span> -webkit-gradient(linear, left top, left bottom, from(green), to(blue))<span class="token punctuation" >;</span>
+    <span class="token property" >background</span><span class="token punctuation" >:</span> -webkit-linear-gradient(green, blue)<span class="token punctuation" >;</span>
+    <span class="token property" >background</span><span class="token punctuation" >:</span> linear-gradient(green, blue)<span class="token punctuation" >;</span>
+  <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<h2 id="installation">Installation</h2>
+<pre class="language-javascript"><code class="language-javascript">$ npm install pleeease
+</code></pre>
+<h2 id="usage">Usage</h2>
+<h3 id="programmatic">Programmatic</h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword" >var</span> pleeease <span class="token operator" >=</span> <span class="token function" >require<span class="token punctuation" >(</span></span><span class="token string" >'pleeease'</span><span class="token punctuation" >)</span><span class="token punctuation" >,</span>
+    fs       <span class="token operator" >=</span> <span class="token function" >require<span class="token punctuation" >(</span></span><span class="token string" >'fs'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+
+<span class="token keyword" >var</span> css <span class="token operator" >=</span> fs<span class="token punctuation" >.</span><span class="token function" >readFileSync<span class="token punctuation" >(</span></span><span class="token string" >'app.css'</span><span class="token punctuation" >,</span> <span class="token string" >'utf8'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token comment" spellcheck="true">
+// define options here
+</span><span class="token keyword" >var</span> options <span class="token operator" >=</span> <span class="token punctuation" >{</span><span class="token punctuation" >}</span><span class="token punctuation" >;</span>
+
+<span class="token keyword" >var</span> fixed <span class="token operator" >=</span> pleeease<span class="token punctuation" >.</span><span class="token function" >process<span class="token punctuation" >(</span></span>css<span class="token punctuation" >,</span> options<span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+
+fs<span class="token punctuation" >.</span><span class="token function" >writeFile<span class="token punctuation" >(</span></span><span class="token string" >'app.min.css'</span><span class="token punctuation" >,</span> fixed<span class="token punctuation" >,</span> <span class="token keyword" >function</span> <span class="token punctuation" >(</span>err<span class="token punctuation" >)</span> <span class="token punctuation" >{</span>
+  <span class="token keyword" >if</span> <span class="token punctuation" >(</span>err<span class="token punctuation" >)</span> <span class="token punctuation" >{</span>
+    <span class="token keyword" >throw</span> err<span class="token punctuation" >;</span>
+  <span class="token punctuation" >}</span>
+  console<span class="token punctuation" >.</span><span class="token function" >log<span class="token punctuation" >(</span></span><span class="token string" >'File saved!'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+</code></pre>
+<h3 id="cli">CLI</h3>
+<p>Install Pleeease globally</p>
+<pre class="language-javascript"><code class="language-javascript">$ npm install <span class="token operator" >-</span>g pleeease
+</code></pre>
+<p>Or use alternate syntax</p>
+<pre class="language-javascript"><code class="language-javascript">$ node <span class="token punctuation" >.</span><span class="token operator" >/</span>bin<span class="token operator" >/</span>pleeease
+</code></pre>
+<p>Compile all CSS files from the root projet to <code>app.min.css</code></p>
+<pre class="language-javascript"><code class="language-javascript">$ pleeease compile
+$ pleeease compile <span class="token operator" >*</span><span class="token punctuation" >.</span>css to app<span class="token punctuation" >.</span>min<span class="token punctuation" >.</span>css
+</code></pre>
+<p>Compile <code>foo.css</code> to <code>bar.css</code></p>
+<pre class="language-javascript"><code class="language-javascript">$ pleeease compile foo<span class="token punctuation" >.</span>css to bar<span class="token punctuation" >.</span>css
+</code></pre>
+<p>Compile multiple files to <code>app.min.css</code></p>
+<pre class="language-javascript"><code class="language-javascript">$ pleeease compile foo<span class="token punctuation" >.</span>css bar<span class="token punctuation" >.</span>css
+</code></pre>
+<p>Compile <code>css/</code> folder to <code>public/css/app.min.css</code> (if folders doesn&#39;t exist, they will be created)</p>
+<pre class="language-javascript"><code class="language-javascript">$ pleeease compile css<span class="token operator" >/</span> to public<span class="token operator" >/</span>css<span class="token operator" >/</span>app<span class="token punctuation" >.</span>min<span class="token punctuation" >.</span>css
+</code></pre>
+<p>You can also <code>watch</code> (with the same syntax) for live compilation.</p>
+<pre class="language-javascript"><code class="language-javascript">$ pleeease watch foo<span class="token punctuation" >.</span>css
+</code></pre>
+<p>Pleeease options can be set in a <code>.pleeeaserc</code> file (JSON-like), for example:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
+  <span class="token string" >"input"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"foo.css"</span><span class="token punctuation" >,</span> <span class="token string" >"foo2.css"</span><span class="token punctuation" >]</span><span class="token punctuation" >,</span>
+  <span class="token string" >"output"</span><span class="token punctuation" >:</span> <span class="token string" >"bar.css"</span><span class="token punctuation" >,</span>
+  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >,</span>
+  <span class="token string" >"minifier"</span><span class="token punctuation" >:</span> <span class="token boolean" >false</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<ul>
+<li><code>input</code> is an array of files (default <code>[&quot;*.css&quot;]</code>)</li>
+<li><code>output</code> is the path to the compiled file (default <code>app.min.css</code>)</li>
+</ul>
+<p>For other options, see below.</p>
+<h3 id="with-brunch">With Brunch</h3>
+<p>If you&#39;re using <a href="http://brunch.io">Brunch</a>, see <a href="https://github.com/iamvdo/pleeease-brunch">pleeease-brunch</a></p>
+<h3 id="with-gulp-grunt">With Gulp, Grunt</h3>
+<p>Please, <a href="https://github.com/iamvdo/pleeease/pulls">be my guest</a> if you want to use pleeease with gulp or grunt, or any other task runner.</p>
+<h2 id="options">Options</h2>
+<p>These are the default options for now:</p>
+<ul>
+<li><code>autoprefixer</code>: <code>true</code></li>
+<li><code>minifier</code>: <code>true</code></li>
+<li><code>mqpacker</code>: <code>true</code></li>
+<li><code>polyfills</code>:<ul>
+<li><code>variables</code>: <code>true</code></li>
+<li><code>rem</code>: <code>false</code></li>
+</ul>
+</li>
+</ul>
+<p>All options can be disabled with <code>false</code> keyword or modified using each postprocessor options.</p>
+<h3 id="autoprefixer">autoprefixer</h3>
+<p>Add support for <a href="https://github.com/ai/autoprefixer">Autoprefixer</a> that add vendor prefixes to CSS. Add options as an array:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// set options
+</span><span class="token keyword" >var</span> options <span class="token operator" >=</span> <span class="token punctuation" >{</span>
+  autoprefixer<span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >'last 4 versions'</span><span class="token punctuation" >,</span> <span class="token string" >'Android 2.3'</span><span class="token punctuation" >]</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file
+</span><span class="token punctuation" >{</span>
+  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"last 4 versions"</span><span class="token punctuation" >,</span> <span class="token string" >"Android 2.3"</span><span class="token punctuation" >]</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>See <a href="https://github.com/ai/autoprefixer#browsers">available options for Autoprefixer</a>.</p>
+<h3 id="minifier">minifier</h3>
+<p>Add support for <a href="https://github.com/hail2u/node-csswring">CSS Wring</a>, a CSS minifier. There are no options.</p>
+<h3 id="mqpacker">mqpacker</h3>
+<p>Add support for <a href="https://github.com/hail2u/node-css-mqpacker">MQ Packer</a> that pack same CSS media query rules into one media query rule. There are no options.</p>
+<h3 id="polyfills-variables">polyfills.variables</h3>
+<p>Add support for a &quot;not so bad&quot; <a href="https://github.com/iamvdo/postcss-vars">CSS variables polyfill</a>. There are no options.</p>
+<h3 id="polyfills-rem">polyfills.rem</h3>
+<p>Add support for <a href="https://github.com/iamvdo/node-pixrem">pixrem</a> that generates pixel fallbacks for rem units. Add options as an array:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// set options
+</span><span class="token keyword" >var</span> options <span class="token operator" >=</span> <span class="token punctuation" >{</span>
+  polyfills<span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
+    rem<span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >'16px'</span><span class="token punctuation" >,</span> <span class="token punctuation" >{</span>replace<span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >}</span><span class="token punctuation" >]</span>
+  <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file
+</span><span class="token punctuation" >{</span>
+  <span class="token string" >"polyfills"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
+    <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"16px"</span><span class="token punctuation" >,</span> <span class="token punctuation" >{</span><span class="token string" >"replace"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >}</span><span class="token punctuation" >]</span>
+  <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>See <a href="https://github.com/iamvdo/node-pixrem#parameters">available options for pixrem</a>.</p>
+<p>For now, this uses a fork from <a href="https://github.com/robwierzbowski/node-pixrem">pixrem</a> until the <a href="https://github.com/robwierzbowski/node-pixrem/pull/10">PR will be accepted or not</a>.</p>
+<h2 id="more">More</h2>
+<p>More postprocess tasks are coming, mainly polyfills (eg. CSS filters, pseudo-classes/pseudo-elements, rgba/hsla functions, etc.).</p>
+<h2 id="licence">Licence</h2>
+<p>MIT</p>
+<footer><p>Postprocess with <a href="/">Pleeease</a> by <a href="http://iamvdo.me">@iamvdo</a></p></footer></article></section></body></html>

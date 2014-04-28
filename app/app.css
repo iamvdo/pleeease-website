@@ -1,0 +1,138 @@
+:root {
+	--color-primary: #FF2000;
+	--color-secondary: deepskyblue;
+}
+* {
+	box-sizing: border-box;
+}
+html {
+	font: 1em Raleway, sans-serif;
+	min-height: 100%;
+	-webkit-text-size-adjust: none;
+	   -moz-text-size-adjust: none;
+	    -ms-text-size-adjust: none;
+	        text-size-adjust: none;
+}
+@media (max-width: 40em) {
+	html {
+		font-size: .8em;
+	}
+}
+body {
+	margin: 0;
+}
+header,
+section,
+article,
+footer {
+	display: block;
+}
+::selection {
+	background: white;
+	color: #000;
+}
+header {
+	padding: 5em 0;
+	background: red;
+	background: linear-gradient(to bottom right, orangered, red);
+}
+.title {
+	text-align: center;
+	font: 5em Damion;
+	margin: 0;
+	color: #222;
+}
+.subtitle {
+	text-align: center;
+	font-size: .85em;
+	color: #222;
+}
+section {
+	background: #222;
+	padding: 5em 1%;
+	color: white;
+	line-height: 1.8;
+}
+article {
+	max-width: 50em;
+	margin: auto;
+}
+article a {
+	color: white;
+	padding: 2px;
+	margin: 0 -2px;
+	text-decoration: none;
+	border-bottom: 2px solid var(--color-primary);
+}
+@supports (background-size: 100%) {
+	article a {
+		border: none;
+		background: linear-gradient(var(--color-primary), var(--color-primary)) no-repeat bottom;
+		background-size: 100% 2px;
+		transition: background-size .2s;
+	}
+}
+article a:hover {
+	background-size: 100% 100%;
+}
+article h2,
+article h3 {
+	font-size: 2em;
+	color: #FF2000;
+	margin: 1em 0 .5em 0;
+}
+article h3 {
+	color: white;
+	font-size: 1.4em;
+}
+.doge {
+	text-align: center;
+}
+.buttons {
+	text-align: center;
+	margin-bottom: 5em;
+
+}
+.button {
+	display: inline-block;
+	font-size: .9em;
+	padding: .6em 1.1em;
+	color: #fff;
+	background-color: var(--color-primary);
+	box-shadow: 0 0 0 -2px #222, 0 0 0 -1px var(--color-primary);
+	border-radius: 3px;
+
+	border: none;
+
+	margin: 10px;
+	outline: none;
+	text-decoration: none;
+	
+	transition: box-shadow .3s;
+}
+.button--download {
+	background: gray;
+	box-shadow: 0 0 0 -2px #222, 0 0 0 -1px gray;
+}
+.button:hover,
+.button:focus {
+	transition-timing-function: cubic-bezier(.3,4,.5,.8);
+	box-shadow: 0 0 0 2px #222, 0 0 0 4px var(--color-primary);
+	animation: jelly .25s 1;
+}
+.button--download:hover,
+.button--download:focus {
+	box-shadow: 0 0 0 2px #222, 0 0 0 4px gray;
+}
+.button:active {
+	transition-duration: 0s;
+	background: var(--color-secondary);
+	box-shadow: 0 0 0 2px #222, 0 0 0 4px var(--color-secondary);
+}
+
+
+@keyframes jelly {
+	from, to { transform: scale(1, 1) rotate(0); }
+	33%      { transform: scale(1.1, .95) rotate(-1deg); }
+	66%      { transform: scale(.95, 1.1) rotate(1deg); }
+}

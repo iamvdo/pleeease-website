@@ -1,0 +1,37 @@
+doctype html
+html
+
+  head
+    meta(charset='utf-8')
+    meta(name='viewport',content='initial-scale=1')
+    title Pleeease &middot; Postprocess CSS with ease
+    link(rel='stylesheet',href='http://fonts.googleapis.com/css?family=Damion&text=Pplease')
+    link(rel='stylesheet',href='http://fonts.googleapis.com/css?family=Raleway')
+    link(rel='stylesheet',href='app.min.css')
+    link(rel='icon', href='images/favicon.png')
+
+    script.
+      document.createElement('header');
+      document.createElement('section');
+      document.createElement('article');
+      document.createElement('footer');
+
+  body
+
+    header
+
+      block header
+
+    section.readme
+
+      .buttons
+        a.button.button--download(href='https://github.com/iamvdo/pleeease/zipball/master') Download .zip
+        a.button.button--download(href='https://github.com/iamvdo/pleeease/tarball/master') Download .tar.gz
+        a.button(href='https://github.com/iamvdo/pleeease/') View on GitHub
+
+      article
+        block content
+
+        footer
+
+          p Postprocess with <a href="/">Pleeease</a> by <a href="http://iamvdo.me">@iamvdo</a>
