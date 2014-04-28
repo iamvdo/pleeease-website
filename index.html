@@ -1,1 +1,304 @@
-Pleeease
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Pleeease by iamvdo</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Pleeease</h1>
+        <h2>Postprocess CSS with ease</h2>
+        <a href="https://github.com/iamvdo/pleeease" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="pleeease" class="anchor" href="#pleeease"><span class="octicon octicon-link"></span></a>Pleeease</h1>
+
+<p>Postprocess CSS with ease.</p>
+
+<p>Pleeease is the best toolchain for your CSS. Just write DRY, future-proof CSS and Pleeease do the job for you.</p>
+
+<p>For now, it adds prefixes, variables and <code>rem</code> unit support, packs same media-query in one <code>@media</code> rule and minify it.</p>
+
+<p>Pleeease is based on <a href="https://github.com/ai/postcss">PostCSS</a> postprocessor.</p>
+
+<h2>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<p>You write <code>foo.css</code>:</p>
+
+<div class="highlight highlight-css"><pre><span class="nd">:root</span> <span class="p">{</span>
+    <span class="o">--</span><span class="k">color</span><span class="o">-</span><span class="n">primary</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+    <span class="o">--</span><span class="k">color</span><span class="o">-</span><span class="n">secondary</span><span class="o">:</span> <span class="nb">blue</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.elem</span> <span class="p">{</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="m">2</span><span class="n">rem</span><span class="p">;</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+    <span class="k">background</span><span class="o">:</span> <span class="n">var</span><span class="p">(</span><span class="o">--</span><span class="k">color</span><span class="o">-</span><span class="n">primary</span><span class="p">);</span>
+    <span class="k">width</span><span class="o">:</span> <span class="n">calc</span><span class="p">(</span><span class="m">100</span><span class="o">%</span> <span class="o">-</span> <span class="m">50px</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">36em</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nc">.elem</span> <span class="p">{</span>
+        <span class="k">color</span><span class="o">:</span> <span class="n">var</span><span class="p">(</span><span class="o">--</span><span class="k">color</span><span class="o">-</span><span class="n">secondary</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">36em</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nc">.classe</span> <span class="p">{</span>
+        <span class="k">background</span><span class="o">:</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="nb">green</span><span class="o">,</span> <span class="nb">blue</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>You get <code>bar.css</code> (with all options set to <code>true</code>, except <code>minifier</code>)</p>
+
+<div class="highlight highlight-css"><pre><span class="nd">:root</span> <span class="p">{</span>
+    <span class="o">--</span><span class="k">color</span><span class="o">-</span><span class="n">primary</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+    <span class="o">--</span><span class="k">color</span><span class="o">-</span><span class="n">secondary</span><span class="o">:</span> <span class="nb">blue</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.elem</span> <span class="p">{</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="m">32px</span><span class="p">;</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="m">2</span><span class="n">rem</span><span class="p">;</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+    <span class="k">background</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+    <span class="k">width</span><span class="o">:</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">calc</span><span class="p">(</span><span class="m">100</span><span class="o">%</span> <span class="o">-</span> <span class="m">50px</span><span class="p">);</span>
+    <span class="k">width</span><span class="o">:</span> <span class="n">calc</span><span class="p">(</span><span class="m">100</span><span class="o">%</span> <span class="o">-</span> <span class="m">50px</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">36em</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nc">.elem</span> <span class="p">{</span>
+        <span class="k">color</span><span class="o">:</span> <span class="nb">blue</span>
+    <span class="p">}</span>
+    <span class="nc">.classe</span> <span class="p">{</span>
+        <span class="k">background</span><span class="o">:</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="n">linear</span><span class="o">,</span> <span class="k">left</span> <span class="k">top</span><span class="o">,</span> <span class="k">left</span> <span class="k">bottom</span><span class="o">,</span> <span class="n">from</span><span class="p">(</span><span class="nb">green</span><span class="p">)</span><span class="o">,</span> <span class="n">to</span><span class="p">(</span><span class="nb">blue</span><span class="p">));</span>
+        <span class="k">background</span><span class="o">:</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="nb">green</span><span class="o">,</span> <span class="nb">blue</span><span class="p">);</span>
+        <span class="k">background</span><span class="o">:</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="nb">green</span><span class="o">,</span> <span class="nb">blue</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<pre><code>$ npm install pleeease
+</code></pre>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a name="programmatic" class="anchor" href="#programmatic"><span class="octicon octicon-link"></span></a>Programmatic</h3>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">pleeease</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'pleeease'</span><span class="p">),</span>
+    <span class="nx">fs</span>       <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">css</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s1">'app.css'</span><span class="p">,</span> <span class="s1">'utf8'</span><span class="p">);</span>
+
+<span class="c1">// define options here</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="kd">var</span> <span class="nx">fixed</span> <span class="o">=</span> <span class="nx">pleeease</span><span class="p">.</span><span class="nx">process</span><span class="p">(</span><span class="nx">css</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+
+<span class="nx">fs</span><span class="p">.</span><span class="nx">writeFile</span><span class="p">(</span><span class="s1">'app.min.css'</span><span class="p">,</span> <span class="nx">fixed</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'File saved!'</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+<h3>
+<a name="cli" class="anchor" href="#cli"><span class="octicon octicon-link"></span></a>CLI</h3>
+
+<p>Install Pleeease globally</p>
+
+<pre><code>$ npm install -g pleeease
+</code></pre>
+
+<p>Or use alternate syntax</p>
+
+<pre><code>$ node ./bin/pleeease
+</code></pre>
+
+<p>Compile all CSS files from the root projet to <code>app.min.css</code></p>
+
+<pre><code>$ pleeease compile
+$ pleeease compile *.css to app.min.css
+</code></pre>
+
+<p>Compile <code>foo.css</code> to <code>bar.css</code></p>
+
+<pre><code>$ pleeease compile foo.css to bar.css
+</code></pre>
+
+<p>Compile multiple files to <code>app.min.css</code></p>
+
+<pre><code>$ pleeease compile foo.css bar.css
+</code></pre>
+
+<p>Compile <code>css/</code> folder to <code>public/css/app.min.css</code> (if folders doesn't exist, they will be created)</p>
+
+<pre><code>$ pleeease compile css/ to public/css/app.min.css
+</code></pre>
+
+<p>You can also <code>watch</code> (with the same syntax) for live compilation.</p>
+
+<pre><code>$ pleeease watch foo.css
+</code></pre>
+
+<p>Pleeease options can be set in a <code>.pleeeaserc</code> file (JSON-like), for example:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="p">{</span>
+    <span class="s2">"input"</span><span class="o">:</span> <span class="p">[</span><span class="s2">"foo.css"</span><span class="p">],</span>
+    <span class="s2">"output"</span><span class="o">:</span> <span class="s2">"bar.css"</span><span class="p">,</span>
+    <span class="s2">"autoprefixer"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"minifier"</span><span class="o">:</span> <span class="kc">false</span>
+<span class="p">}</span>
+</pre></div>
+
+<ul>
+<li>
+<code>input</code> is an array of files (default <code>[*.css]</code>)</li>
+<li>
+<code>output</code> is the path to the compiled file (default <code>app.min.css</code>)</li>
+</ul><p>For other options, see below.</p>
+
+<h3>
+<a name="with-brunch" class="anchor" href="#with-brunch"><span class="octicon octicon-link"></span></a>With Brunch</h3>
+
+<p>If you're using <a href="http://brunch.io">Brunch</a>, see <a href="https://github.com/iamvdo/pleeease-brunch">pleeease-brunch</a></p>
+
+<h2>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h2>
+
+<p>These are the default options for now:</p>
+
+<ul>
+<li>
+<code>autoprefixer</code>: <code>true</code>
+</li>
+<li>
+<code>minifier</code>: <code>true</code>
+</li>
+<li>
+<code>mqpacker</code>: <code>true</code>
+</li>
+<li>
+<code>fallbacks</code>:
+
+<ul>
+<li>
+<code>variables</code>: <code>true</code>
+</li>
+<li>
+<code>rem</code>: <code>true</code>
+</li>
+</ul>
+</li>
+</ul><p>All options can be disabled with <code>false</code> keyword or modified using each postprocessor options.</p>
+
+<h3>
+<a name="autoprefixer" class="anchor" href="#autoprefixer"><span class="octicon octicon-link"></span></a>autoprefixer</h3>
+
+<p>Add support for <a href="https://github.com/ai/autoprefixer">Autoprefixer</a> that add vendor prefixes to CSS. Add options as an array:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">// set options</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">autoprefixer</span><span class="o">:</span> <span class="p">[</span><span class="s1">'last 4 versions'</span><span class="p">,</span> <span class="s1">'Android 2.3'</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">// .pleeeaserc file</span>
+<span class="p">{</span>
+    <span class="s2">"autoprefixer"</span><span class="o">:</span> <span class="p">[</span><span class="s2">"last 4 versions"</span><span class="p">,</span> <span class="s2">"Android 2.3"</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>See <a href="https://github.com/ai/autoprefixer#browsers">available options for Autoprefixer</a>.</p>
+
+<h3>
+<a name="minifier" class="anchor" href="#minifier"><span class="octicon octicon-link"></span></a>minifier</h3>
+
+<p>Add support for <a href="https://github.com/hail2u/node-csswring">CSS Wring</a>, a CSS minifier. There are no options.</p>
+
+<h3>
+<a name="mqpacker" class="anchor" href="#mqpacker"><span class="octicon octicon-link"></span></a>mqpacker</h3>
+
+<p>Add support for <a href="https://github.com/hail2u/node-css-mqpacker">MQ Packer</a> that pack same CSS media query rules into one media query rule. There are no options.</p>
+
+<h3>
+<a name="fallbacksvariables" class="anchor" href="#fallbacksvariables"><span class="octicon octicon-link"></span></a>fallbacks.variables</h3>
+
+<p>Add support for a "not so bad" <a href="https://github.com/iamvdo/postcss-vars">CSS variables polyfill</a>. There are no options.</p>
+
+<h3>
+<a name="fallbacksrem" class="anchor" href="#fallbacksrem"><span class="octicon octicon-link"></span></a>fallbacks.rem</h3>
+
+<p>Add support for <a href="https://github.com/iamvdo/node-pixrem">pixrem</a> that generates pixel fallbacks for rem units. Add options as an array:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">// set options</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">fallbacks</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">rem</span><span class="o">:</span> <span class="p">[</span><span class="s1">'16px'</span><span class="p">,</span> <span class="p">{</span><span class="nx">replace</span><span class="o">:</span> <span class="kc">true</span><span class="p">}]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">// .pleeeaserc file</span>
+<span class="p">{</span>
+    <span class="s2">"fallbacks"</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">"rem"</span><span class="o">:</span> <span class="p">[</span><span class="s2">"16px"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"replace"</span><span class="o">:</span> <span class="kc">true</span><span class="p">}]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>See <a href="https://github.com/iamvdo/node-pixrem#parameters">available options for pixrem</a>.</p>
+
+<p>For now, this uses a fork from <a href="https://github.com/robwierzbowski/node-pixrem">pixrem</a> until the <a href="https://github.com/robwierzbowski/node-pixrem/pull/10">PR will be accepted or not</a>.</p>
+
+<h2>
+<a name="more" class="anchor" href="#more"><span class="octicon octicon-link"></span></a>More</h2>
+
+<p>More postprocess tasks are coming, mainly polyfills (eg. CSS filters, pseudo-classes/pseudo-elements, rgba/hsla functions, etc.).</p>
+
+<h2>
+<a name="licence" class="anchor" href="#licence"><span class="octicon octicon-link"></span></a>Licence</h2>
+
+<p>MIT</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/iamvdo/pleeease/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/iamvdo/pleeease/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/iamvdo/pleeease"></a> is maintained by <a href="https://github.com/iamvdo">iamvdo</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
