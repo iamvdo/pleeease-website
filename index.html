@@ -3,7 +3,7 @@ document.createElement('section');
 document.createElement('article');
 document.createElement('footer');
 </script></head><body><header><h1 class="title">pleeease</h1><p class="subtitle">Postprocess CSS with ease</p></header><section class="readme"><div class="buttons"><a href="https://github.com/iamvdo/pleeease/zipball/master" class="button button--download">Download .zip</a><a href="https://github.com/iamvdo/pleeease/tarball/master" class="button button--download">Download .tar.gz</a><a href="https://github.com/iamvdo/pleeease/" class="button">View on GitHub</a></div><article><p>Pleeease is the best toolchain for your CSS. Just write DRY, future-proof CSS and pleeease do the job for you.</p>
-<p>For now, it adds prefixes, variables and <code>rem</code> unit support, packs same media-query in one <code>@media</code> rule and minify it.</p>
+<p>For now, it adds prefixes, variables, pseudo-elements and <code>rem</code> unit support, packs same media-query in one <code>@media</code> rule and minify it.</p>
 <p>Pleeease is based on <a href="https://github.com/ai/postcss">PostCSS</a> postprocessor.</p>
 <div class="doge">
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Such prefixes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
@@ -13,7 +13,12 @@ document.createElement('footer');
 
 <h2 id="example">Example</h2>
 <p>You write <code>foo.css</code>:</p>
-<pre class="language-css"><code class="language-css"><span class="token selector" >:root </span><span class="token punctuation" >{</span>
+<pre class="language-css"><code class="language-css"><span class="token selector" >*,
+*::after,
+*::before </span><span class="token punctuation" >{</span>
+    <span class="token property" >box-sizing</span><span class="token punctuation" >:</span> border-box<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+<span class="token selector" >:root </span><span class="token punctuation" >{</span>
   <span class="token property" >--color-primary</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
   <span class="token property" >--color-secondary</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
@@ -35,27 +40,35 @@ document.createElement('footer');
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>You get <code>bar.css</code> (with all options set to <code>true</code>, except minifier)</p>
-<pre class="language-css"><code class="language-css"><span class="token selector" >:root </span><span class="token punctuation" >{</span>
-  <span class="token property" >--color-primary</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
-  <span class="token property" >--color-secondary</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
+<pre class="language-css"><code class="language-css"><span class="token comment" spellcheck="true">/* pseudo-elements are converted */</span>
+<span class="token selector" >*,
+*:after,
+*:before </span><span class="token punctuation" >{</span> 
+    <span class="token property" >-webkit-box-sizing</span><span class="token punctuation" >:</span> border-box<span class="token punctuation" >;</span>
+    <span class="token property" >-moz-box-sizing</span><span class="token punctuation" >:</span> border-box<span class="token punctuation" >;</span>
+    <span class="token property" >box-sizing</span><span class="token punctuation" >:</span> border-box<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+<span class="token selector" >:root </span><span class="token punctuation" >{</span>
+    <span class="token property" >--color-primary</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
+    <span class="token property" >--color-secondary</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 <span class="token selector" >.elem </span><span class="token punctuation" >{</span>
-  <span class="token property" >font-size</span><span class="token punctuation" >:</span> 32px<span class="token punctuation" >;</span>
-  <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span>
-  <span class="token property" >color</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
-  <span class="token property" >background</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
-  <span class="token property" >width</span><span class="token punctuation" >:</span> -webkit-calc(100% - 50px)<span class="token punctuation" >;</span>
-  <span class="token property" >width</span><span class="token punctuation" >:</span> calc(100% - 50px)<span class="token punctuation" >;</span>
+    <span class="token property" >font-size</span><span class="token punctuation" >:</span> 32px<span class="token punctuation" >;</span> <span class="token comment" spellcheck="true">/* fallback for rem support */</span>
+    <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span>
+    <span class="token property" >background</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span> <span class="token comment" spellcheck="true">/* resolve variables */</span>
+    <span class="token property" >width</span><span class="token punctuation" >:</span> -webkit-calc(100% - 50px)<span class="token punctuation" >;</span> <span class="token comment" spellcheck="true">/* add prefixes */</span>
+    <span class="token property" >width</span><span class="token punctuation" >:</span> calc(100% - 50px)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
+<span class="token comment" spellcheck="true">/* pack same media-queries */</span>
 <span class="token atrule" >@media screen and (min-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
-  <span class="token selector" >.elem </span><span class="token punctuation" >{</span>
-    <span class="token property" >color</span><span class="token punctuation" >:</span> blue
-  <span class="token punctuation" >}</span>
-  <span class="token selector" >.classe </span><span class="token punctuation" >{</span>
-    <span class="token property" >background</span><span class="token punctuation" >:</span> -webkit-gradient(linear, left top, left bottom, from(green), to(blue))<span class="token punctuation" >;</span>
-    <span class="token property" >background</span><span class="token punctuation" >:</span> -webkit-linear-gradient(green, blue)<span class="token punctuation" >;</span>
-    <span class="token property" >background</span><span class="token punctuation" >:</span> linear-gradient(green, blue)<span class="token punctuation" >;</span>
-  <span class="token punctuation" >}</span>
+    <span class="token selector" >.elem </span><span class="token punctuation" >{</span>
+        <span class="token property" >color</span><span class="token punctuation" >:</span> blue
+    <span class="token punctuation" >}</span>
+    <span class="token selector" >.classe </span><span class="token punctuation" >{</span>
+        <span class="token property" >background</span><span class="token punctuation" >:</span> -webkit-gradient(linear, left top, left bottom, from(green), to(blue))<span class="token punctuation" >;</span>
+        <span class="token property" >background</span><span class="token punctuation" >:</span> -webkit-linear-gradient(green, blue)<span class="token punctuation" >;</span>
+        <span class="token property" >background</span><span class="token punctuation" >:</span> linear-gradient(green, blue)<span class="token punctuation" >;</span>
+    <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <h2 id="installation">Installation</h2>
@@ -129,6 +142,7 @@ $ pleeease compile <span class="token operator" >*</span><span class="token punc
 <li><code>fallbacks</code>:<ul>
 <li><code>variables</code>: <code>true</code></li>
 <li><code>rem</code>: <code>true</code></li>
+<li><code>pseudoElements</code>: <code>true</code></li>
 </ul>
 </li>
 </ul>
@@ -170,6 +184,16 @@ $ pleeease compile <span class="token operator" >*</span><span class="token punc
 </code></pre>
 <p>See <a href="https://github.com/iamvdo/node-pixrem#parameters">available options for pixrem</a>.</p>
 <p>For now, this uses a fork from <a href="https://github.com/robwierzbowski/node-pixrem">pixrem</a> until the <a href="https://github.com/robwierzbowski/node-pixrem/pull/10">PR will be accepted or not</a>.</p>
+<h3 id="fallbacks-pseudoelements">fallbacks.pseudoElements</h3>
+<p>Convert pseudo-elements using CSS3 syntax (two-colons notation like <code>::after</code>, <code>::before</code>, <code>::first-line</code> and <code>::first-letter</code>) with the old one, using only one colon (useful for IE8 support).</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.element::after </span><span class="token punctuation" >{</span>
+  <span class="token comment" spellcheck="true">/* you write */</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.element:after </span><span class="token punctuation" >{</span>
+  <span class="token comment" spellcheck="true">/* you get */</span>
+<span class="token punctuation" >}</span>
+</code></pre>
 <h2 id="more">More</h2>
 <p>More postprocess tasks are coming, mainly fallbacks (eg. CSS filters, pseudo-classes/pseudo-elements, rgba/hsla functions, etc.).</p>
 <h2 id="licence">Licence</h2>
