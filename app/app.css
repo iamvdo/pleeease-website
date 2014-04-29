@@ -71,7 +71,7 @@ header {
 }
 .title h1 a:hover,
 .title h1 a:focus {
-	animation: jelly2 .4s;
+	animation: jelly2 .5s;
 }
 .subtitle {
 	text-align: center;
@@ -86,6 +86,7 @@ nav li {
 	padding: .2em;
 }
 nav a {
+	position: relative;
 	color: var(--color-dark);
 	text-decoration: none;
 }
@@ -93,6 +94,21 @@ nav a:hover,
 nav a:focus,
 nav a.selected {
 	color: var(--color-primary);
+}
+@media (min-width: 70em) {
+	nav li a::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: -3.5em;
+		width: 2em;
+		background: var(--color-primary);
+		transition: transform .3s cubic-bezier(.3,2,.5,.8);
+	}
+	nav li a:hover::before {
+		transform: translateX(1em);
+	}
 }
 @media (max-width: 70em) {
 	nav {
@@ -234,6 +250,7 @@ article h3 {
 }
 @keyframes jelly2 {
 	from, to { transform: scale(1, 1) ; }
-	66%      { transform: scale(1.1, .9) ; }
-	33%      { transform: scale(.9, 1.1) ; }
+	25%      { transform: scale(.9, 1.1) ; }
+	50%      { transform: scale(1.1, .9) ; }
+	75%      { transform: scale(.95, 1.05) ;}
 }
