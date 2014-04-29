@@ -30,6 +30,7 @@ em {
 	font-style: normal;
 }
 header,
+nav,
 section,
 article,
 footer {
@@ -45,7 +46,6 @@ header {
 .title {
 	min-width: 18em;
 	height: 26em;
-	_height: 15em;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -129,7 +129,6 @@ section {
   }
 article {
 	max-width: 50em;
-	margin: auto;
 }
 .block {
 	padding: 4em 0;
