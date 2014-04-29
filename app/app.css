@@ -71,7 +71,7 @@ header {
 }
 .title h1 a:hover,
 .title h1 a:focus {
-	animation: tada .9s;
+	animation: jelly2 .4s;
 }
 .subtitle {
 	text-align: center;
@@ -226,11 +226,8 @@ article h3 {
 	33%      { transform: scale(1.1, .95) rotate(-1deg); }
 	66%      { transform: scale(.95, 1.1) rotate(1deg); }
 }
-@keyframes tada {
-	0% {transform: scale(1);}	
-	10%, 20% {transform: scale(0.8) rotate(-3deg);}
-	30%, 50%, 70%, 90% {transform: scale(1) rotate(3deg);}
-	40%, 60%, 80% {transform: scale(1) rotate(-3deg);}
-	100% {transform: scale(1) rotate(0);}
+@keyframes jelly2 {
+	from, to { transform: scale(1, 1) rotate(0); }
+	66%      { transform: scale(1.1, .9) ; }
+	33%      { transform: scale(.9, 1.1) ; }
 }
-
