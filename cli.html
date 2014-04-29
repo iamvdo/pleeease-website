@@ -13,15 +13,15 @@ document.createElement('footer');
 <p>You can compile more files at the same time. Here <code>&quot;foo.css&quot;</code> and <code>&quot;bar.css&quot;</code> will be concatenated to <code>&quot;baz.css&quot;</code>:</p>
 <pre class="language-javascript"><code class="language-javascript">$ pleeease compile foo<span class="token punctuation" >.</span>css bar<span class="token punctuation" >.</span>css to baz<span class="token punctuation" >.</span>css
 </code></pre>
-<p>You can also compile an entire folder, and copy file in another destination (if folders doesn&#39;t exist, they will be created):</p>
+<p>You can also compile an entire folder, and copy the result file to another destination (if folders don&#39;t exist, they will be created):</p>
 <pre class="language-javascript"><code class="language-javascript">$ pleeease compile css<span class="token operator" >/</span> to public<span class="token operator" >/</span>css<span class="token operator" >/</span>app<span class="token punctuation" >.</span>min<span class="token punctuation" >.</span>css
 </code></pre>
 <h3 id="pleeease-watch">pleeease watch</h3>
-<p>Last command but not least: <code>watch</code>. It&#39;s the same as compile, except that it activates live compilation. When a modification is detected, files will be recompiled automatically.</p>
+<p>Last command but not least: <code>watch</code>. This command is the same as the <code>compile</code> one, except that the live compilation is activated. When a modification is detected, <strong>files will be recompiled automatically</strong>.</p>
 <pre class="language-javascript"><code class="language-javascript">$ pleeease watch foo<span class="token punctuation" >.</span>css to bar<span class="token punctuation" >.</span>css
 </code></pre>
 <h3 id="defaults">defaults</h3>
-<p><em>Pleeease</em> is configured as this:</p>
+<p><em>Pleeease</em> is configured this way:</p>
 <ul>
 <li>input is <code>&quot;*.css&quot;</code></li>
 <li>output is <code>&quot;app.min.css&quot;</code></li>
@@ -36,25 +36,25 @@ document.createElement('footer');
 <pre class="language-javascript"><code class="language-javascript">$ pleeease compile styles<span class="token operator" >/</span>foo<span class="token punctuation" >.</span>css
 </code></pre>
 <p>compile <code>&quot;styles.css/foo.css&quot;</code> to <code>&quot;app.min.css&quot;</code></p>
-<p>You can <a href="#configuration-file">override default value with a configuration file</a>.</p>
+<p>You can <a href="#configuration-file">override default values with a configuration file</a>.</p>
 </div><div class="block"><h2 id="configuration-file">Configuration file</h2>
-<p><em>Pleeease</em> options can be set in a <code>.pleeeaserc</code> file (JSON-like), for example:</p>
+<p><em>Pleeease</em> options can be set in a <code>.pleeeaserc</code> file (JSON-like). For example:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
-  <span class="token string" >"input"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"foo.css"</span><span class="token punctuation" >,</span> <span class="token string" >"foo2.css"</span><span class="token punctuation" >]</span><span class="token punctuation" >,</span>
-  <span class="token string" >"output"</span><span class="token punctuation" >:</span> <span class="token string" >"bar.css"</span>
+  <span class="token string" >"input"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"foo.css"</span><span class="token punctuation" >,</span> <span class="token string" >"bar.css"</span><span class="token punctuation" >]</span><span class="token punctuation" >,</span>
+  <span class="token string" >"output"</span><span class="token punctuation" >:</span> <span class="token string" >"baz.css"</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <ul>
 <li><code>input</code> is an array of files (default <code>[&quot;*.css&quot;]</code>)</li>
-<li><code>output</code> is the path to the compiled file (default <code>app.min.css</code>)</li>
+<li><code>output</code> is the path to the result file (default <code>app.min.css</code>)</li>
 </ul>
 <p>You can now compile easily:</p>
 <pre class="language-javascript"><code class="language-javascript">$ pleeease compile
 </code></pre>
-<p>You can also overrides <a href="options.html">all postprocess options</a>. For example, if you want to enable autoprefixer and disable minifier:</p>
+<p>You can also override <a href="options.html">all postprocess options</a>. For example, if you want to enable <a href="options.html#autoprefixer">autoprefixer</a> and disable <a href="options.html#minifier">minifier</a>, just write:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
-  <span class="token string" >"input"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"foo.css"</span><span class="token punctuation" >,</span> <span class="token string" >"foo2.css"</span><span class="token punctuation" >]</span><span class="token punctuation" >,</span>
-  <span class="token string" >"output"</span><span class="token punctuation" >:</span> <span class="token string" >"bar.css"</span><span class="token punctuation" >,</span>
+  <span class="token string" >"input"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"foo.css"</span><span class="token punctuation" >,</span> <span class="token string" >"bar.css"</span><span class="token punctuation" >]</span><span class="token punctuation" >,</span>
+  <span class="token string" >"output"</span><span class="token punctuation" >:</span> <span class="token string" >"baz.css"</span><span class="token punctuation" >,</span>
   <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"last 4 versions"</span><span class="token punctuation" >]</span><span class="token punctuation" >,</span>
   <span class="token string" >"minifier"</span><span class="token punctuation" >:</span> <span class="token boolean" >false</span>
 <span class="token punctuation" >}</span>

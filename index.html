@@ -4,16 +4,16 @@ document.createElement('section');
 document.createElement('article');
 document.createElement('footer');
 </script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="index.html" title="Get started" class="selected">Get started</a></li><li><a href="cli.html" title="CLI">CLI</a></li><li><a href="workflow.html" title="Improve your workflow">Improve your workflow</a></li><li><a href="options.html" title="All options">All options</a></li><li><a href="sources.html" title="Sources">Sources</a></li></ul></nav></header><section><article><div class="block"><p><em>Pleeease</em> is the best toolchain for your CSS. Just write DRY, future-proof CSS and <em>Pleeease</em> does the job for you*.</p>
-<p>For now, it adds <strong>prefixes</strong>, <strong>variables</strong>, <strong>pseudo-elements</strong> and <strong><code>rem</code></strong> unit support, <strong>packs same media-query</strong> in one <code>@media</code> rule and <strong>minify</strong> it.</p>
+<p>For now, it adds <strong>prefixes</strong>, <strong>variables</strong>, <strong>pseudo-elements</strong> and <strong><code>rem</code></strong> unit support, <strong>packs same media-query</strong> in one <code>@media</code> rule and <strong>minify the result</strong>.</p>
 <div class="note">* no magic here, generated code should be checked</div></div><div class="block"><h2 id="get-started">Get started</h2>
-<p>The simplest way to use <em>Pleeease</em> is <a href="cli.html">CLI</a> (command-line interface).</p>
+<p>The simplest way to use <em>Pleeease</em> is to use <a href="cli.html">CLI</a> (command-line interface).</p>
 <p>First, you have to install <a href="http://nodejs.org">Node.js</a> that comes with <code>npm</code>, its module manager. Then, install <em>Pleeease</em> globally on your system:</p>
 <pre class="language-javascript"><code class="language-javascript">$ npm install <span class="token operator" >-</span>g pleeease
 </code></pre>
 <p><strong>And that&#39;s all!</strong> You&#39;re ready to learn <a href="#how-it-works">how to use it</a>.</p>
 <div class="note">If you&#39;re already an expert, see <a href="workflow.html">how to improve your workflow</a>.</div></div><div class="block"><h2 id="how-it-works">How it works</h2>
-<p><em>Pleeease</em> <strong>does not</strong> modifiy your code. It simply creates another file with what browsers need. What you have to do is configure the input and output files.</p>
-<p>For example, say you have one <code>&quot;styles.css&quot;</code> file and you want <code>&quot;styles.fixed.css&quot;</code>, execute:</p>
+<p><em>Pleeease</em> <strong>does not</strong> modifiy your code. It simply creates another file that <strong>increases browser support</strong>. What you have to do is to configure the input and output files.</p>
+<p>For example, let&#39;s say you have <code>&quot;styles.css&quot;</code> that you want to compile to <code>&quot;styles.fixed.css&quot;</code>, execute:</p>
 <pre class="language-bash"><code class="language-bash">$ pleeease compile styles<span class="token punctuation" >.</span>css to styles<span class="token punctuation" >.</span>fixed<span class="token punctuation" >.</span>css
 </code></pre>
 <p>If <code>&quot;styles.css&quot;</code> is:</p>
@@ -73,6 +73,7 @@ document.createElement('footer');
   <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
+<p>Pretty cool, isn&#39;t it?</p>
 <p><a href="cli.html">Learn more about CLI</a> or <a href="options.html">see full options</a></p>
 </div><div class="block"><h2>Sources</h2><div class="buttons"><a href="https://github.com/iamvdo/pleeease/zipball/master" class="button button--download">Download .zip</a><a href="https://github.com/iamvdo/pleeease/tarball/master" class="button button--download">Download .tar.gz</a><a href="https://github.com/iamvdo/pleeease/" class="button">View on GitHub</a></div></div><footer><p>Postprocess with <a href="/">Pleeease</a> by <a href="http://iamvdo.me">@iamvdo</a>.</p><p class="note">Thanks to <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.</p></footer></article></section><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

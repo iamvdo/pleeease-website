@@ -2,7 +2,7 @@
 
   ##Options
 
-  These are the default options for now (all `true`):
+  These are the default options for now (all set to `true`):
 
   * [autoprefixer](#autoprefixer)
   * [minifier](#minifier)
@@ -32,7 +32,7 @@
   }
   ```
 
-  Autoprefixer convert this file (with default options):
+  Autoprefixer converts this file (with default options):
 
   ```css
   .element {
@@ -107,7 +107,7 @@
 
   CSS variables begins with `--` and have to be declared in a `:root` rule. Then, they can be used with the `var(--variable)` notation.
 
-  Variables convert this file:
+  It converts this file:
 
   ```css
   :root {
@@ -134,7 +134,7 @@
   Add support for [pixrem](https://github.com/iamvdo/node-pixrem) that **generates pixel fallbacks for `rem` units**. Add options as an array:
 
   * first parameter is the root font-size (default `16px`)
-  * second parameter is an object with `replace` key if you want to replace value. (default `false`)
+  * second parameter is an object with `replace` key set to `true` if you want to replace value. (default `false`)
 
   ```javascript
   // set options
@@ -154,7 +154,7 @@
   }
   ```
 
-  Pixrem convert this file:
+  Pixrem converts this file:
 
   ```css
   .element {
@@ -177,7 +177,7 @@
 
   ###fallbacks.pseudoElements
 
-  **Convert pseudo-elements using CSS3 syntax** (two-colons notation like `::after`, `::before`, `::first-line` and `::first-letter`) with the old one, using only one colon (useful for IE8 support).
+  **Convert pseudo-elements using CSS3 syntax** (two-colons notation like `::after`, `::before`, `::first-line` and `::first-letter`) with the old one, using only one colon (useful for IE8 support). There are no options.
 
   Convert this file:
 

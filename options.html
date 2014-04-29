@@ -4,7 +4,7 @@ document.createElement('section');
 document.createElement('article');
 document.createElement('footer');
 </script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="index.html" title="Get started">Get started</a></li><li><a href="cli.html" title="CLI">CLI</a></li><li><a href="workflow.html" title="Improve your workflow">Improve your workflow</a></li><li><a href="options.html" title="All options" class="selected">All options</a></li><li><a href="sources.html" title="Sources">Sources</a></li></ul></nav></header><section><article><div class="block"><h2 id="options">Options</h2>
-<p>These are the default options for now (all <code>true</code>):</p>
+<p>These are the default options for now (all set to <code>true</code>):</p>
 <ul>
 <li><a href="#autoprefixer">autoprefixer</a></li>
 <li><a href="#minifier">minifier</a></li>
@@ -29,7 +29,7 @@ document.createElement('footer');
   <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"last 4 versions"</span><span class="token punctuation" >,</span> <span class="token string" >"Android 2.3"</span><span class="token punctuation" >]</span>
 <span class="token punctuation" >}</span>
 </code></pre>
-<p>Autoprefixer convert this file (with default options):</p>
+<p>Autoprefixer converts this file (with default options):</p>
 <pre class="language-css"><code class="language-css"><span class="token selector" >.element </span><span class="token punctuation" >{</span>
   <span class="token property" >display</span><span class="token punctuation" >:</span> flex<span class="token punctuation" >;</span>
   <span class="token property" >flex-direction</span><span class="token punctuation" >:</span> column<span class="token punctuation" >;</span>
@@ -83,7 +83,7 @@ document.createElement('footer');
 <h3 id="fallbacks-variables">fallbacks.variables</h3>
 <p>Add support for a <strong>&quot;not so bad&quot; <a href="https://github.com/iamvdo/postcss-vars">CSS variables polyfill</a></strong>. There are no options.</p>
 <p>CSS variables begins with <code>--</code> and have to be declared in a <code>:root</code> rule. Then, they can be used with the <code>var(--variable)</code> notation.</p>
-<p>Variables convert this file:</p>
+<p>It converts this file:</p>
 <pre class="language-css"><code class="language-css"><span class="token selector" >:root </span><span class="token punctuation" >{</span>
   <span class="token property" >--color-primary</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
@@ -103,7 +103,7 @@ document.createElement('footer');
 <p>Add support for <a href="https://github.com/iamvdo/node-pixrem">pixrem</a> that <strong>generates pixel fallbacks for <code>rem</code> units</strong>. Add options as an array:</p>
 <ul>
 <li>first parameter is the root font-size (default <code>16px</code>)</li>
-<li>second parameter is an object with <code>replace</code> key if you want to replace value. (default <code>false</code>)</li>
+<li>second parameter is an object with <code>replace</code> key set to <code>true</code> if you want to replace value. (default <code>false</code>)</li>
 </ul>
 <pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// set options
 </span><span class="token keyword" >var</span> options <span class="token operator" >=</span> <span class="token punctuation" >{</span>
@@ -119,7 +119,7 @@ document.createElement('footer');
   <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
-<p>Pixrem convert this file:</p>
+<p>Pixrem converts this file:</p>
 <pre class="language-css"><code class="language-css"><span class="token selector" >.element </span><span class="token punctuation" >{</span>
   <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
@@ -134,7 +134,7 @@ document.createElement('footer');
 <div class="note">For now, this uses a fork from <a href="https://github.com/robwierzbowski/node-pixrem">pixrem</a> until the <a href="https://github.com/robwierzbowski/node-pixrem/pull/10">PR will be accepted or not</a>.</div>
 
 <h3 id="fallbacks-pseudoelements">fallbacks.pseudoElements</h3>
-<p><strong>Convert pseudo-elements using CSS3 syntax</strong> (two-colons notation like <code>::after</code>, <code>::before</code>, <code>::first-line</code> and <code>::first-letter</code>) with the old one, using only one colon (useful for IE8 support).</p>
+<p><strong>Convert pseudo-elements using CSS3 syntax</strong> (two-colons notation like <code>::after</code>, <code>::before</code>, <code>::first-line</code> and <code>::first-letter</code>) with the old one, using only one colon (useful for IE8 support). There are no options.</p>
 <p>Convert this file:</p>
 <pre class="language-css"><code class="language-css"><span class="token selector" >.element::after </span><span class="token punctuation" >{</span>
   <span class="token property" >content</span><span class="token punctuation" >:</span> <span class="token string" >''</span><span class="token punctuation" >;</span>

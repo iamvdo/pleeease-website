@@ -2,17 +2,17 @@
 
   ##Configuration file
 
-  *Pleeease* options can be set in a `.pleeeaserc` file (JSON-like), for example:
+  *Pleeease* options can be set in a `.pleeeaserc` file (JSON-like). For example:
 
   ```javascript
   {
-    "input": ["foo.css", "foo2.css"],
-    "output": "bar.css"
+    "input": ["foo.css", "bar.css"],
+    "output": "baz.css"
   }
   ```
 
   * `input` is an array of files (default `["*.css"]`)
-  * `output` is the path to the compiled file (default `app.min.css`)
+  * `output` is the path to the result file (default `app.min.css`)
 
   You can now compile easily:
 
@@ -20,12 +20,12 @@
   $ pleeease compile
   ```
 
-  You can also overrides [all postprocess options](options.html). For example, if you want to enable autoprefixer and disable minifier:
+  You can also override [all postprocess options](options.html). For example, if you want to enable [autoprefixer](options.html#autoprefixer) and disable [minifier](options.html#minifier), just write:
 
   ```javascript
   {
-    "input": ["foo.css", "foo2.css"],
-    "output": "bar.css",
+    "input": ["foo.css", "bar.css"],
+    "output": "baz.css",
     "autoprefixer": ["last 4 versions"],
     "minifier": false
   }

@@ -20,7 +20,7 @@
   $ pleeease compile foo.css bar.css to baz.css
   ```
 
-  You can also compile an entire folder, and copy file in another destination (if folders doesn't exist, they will be created):
+  You can also compile an entire folder, and copy the result file to another destination (if folders don't exist, they will be created):
 
   ```javascript
   $ pleeease compile css/ to public/css/app.min.css
@@ -28,7 +28,7 @@
 
   ###pleeease watch
 
-  Last command but not least: `watch`. It's the same as compile, except that it activates live compilation. When a modification is detected, files will be recompiled automatically.
+  Last command but not least: `watch`. This command is the same as the `compile` one, except that the live compilation is activated. When a modification is detected, **files will be recompiled automatically**.
 
   ```javascript
   $ pleeease watch foo.css to bar.css
@@ -36,7 +36,7 @@
 
   ###defaults
 
-  *Pleeease* is configured as this:
+  *Pleeease* is configured this way:
 
     * input is `"*.css"`
     * output is `"app.min.css"`
@@ -61,4 +61,4 @@
 
   compile `"styles.css/foo.css"` to `"app.min.css"`
 
-  You can [override default value with a configuration file](#configuration-file).
+  You can [override default values with a configuration file](#configuration-file).
