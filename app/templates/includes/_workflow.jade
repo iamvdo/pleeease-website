@@ -1,0 +1,36 @@
+:markdown
+
+  ##Workflow
+
+  ###Programmatic
+
+  You can use the `process` function. It returns fixed CSS as string.
+
+  ```javascript
+  var pleeease = require('pleeease'),
+      fs       = require('fs');
+
+  var css = fs.readFileSync('app.css', 'utf8');
+
+  // define options here
+  var options = {};
+
+  var fixed = pleeease.process(css, options);
+
+  fs.writeFile('app.min.css', fixed, function (err) {
+    if (err) {
+      throw err;
+    }
+    console.log('File saved!');
+  });
+  ```
+
+  ###With Brunch
+
+  If you're using [Brunch](http://brunch.io) (good point), see [pleeease-brunch](https://github.com/iamvdo/pleeease-brunch). You can also use the [pre-configured Pleeease skeleton](https://github.com/iamvdo/brunch-with-pleeease)
+
+  ###With Gulp, Grunt
+
+  Please, [be my guest](https://github.com/iamvdo/pleeease/pulls) if you want to use pleeease with gulp or grunt, or any other task runner.
+
+

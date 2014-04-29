@@ -1,17 +1,20 @@
 :root {
 	--color-primary: #FF2000;
 	--color-secondary: deepskyblue;
+	--color-dark: #222;
+	--color-light: #FAFAFA;
 }
 * {
 	box-sizing: border-box;
 }
 html {
-	font: 1em Raleway, sans-serif;
+	font: 1em Open Sans, sans-serif;
 	min-height: 100%;
 	-webkit-text-size-adjust: none;
 	   -moz-text-size-adjust: none;
 	    -ms-text-size-adjust: none;
 	        text-size-adjust: none;
+	background: radial-gradient(60em at top center, white, #FAFAFA);
 }
 @media (max-width: 40em) {
 	html {
@@ -19,6 +22,7 @@ html {
 	}
 }
 body {
+	/*display: flex;*/
 	margin: 0;
 }
 header,
@@ -28,37 +32,96 @@ footer {
 	display: block;
 }
 ::selection {
-	background: white;
-	color: #000;
+	background: var(--color-dark);
+	color: #FFF;
 }
 header {
-	padding: 5em 0;
+	float: left;
+}
+.title {
+	min-width: 18em;
+	height: 26em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	background: red;
 	background: linear-gradient(to bottom right, orangered, red);
 }
-.title {
+@media (max-width: 40em) {
+	.title {
+		height: 20em;
+	}
+}
+.title h1 {
 	text-align: center;
 	font: 5em Damion;
 	margin: 0;
-	color: #222;
+	color: var(--color-dark);
 }
 .subtitle {
 	text-align: center;
 	font-size: .85em;
-	color: #222;
+	color: var(--color-dark);
+}
+nav ul {
+	list-style: none;
+	padding: 1em;
+}
+nav li {
+	padding: .2em;
+}
+nav a {
+	color: var(--color-dark);
+	text-decoration: none;
+}
+nav a:hover,
+nav a:focus,
+nav a.selected {
+	color: var(--color-primary);
+}
+@media (max-width: 70em) {
+	nav {
+		text-align: center;
+	}
+}
+@media (max-width: 40em) {
+	nav {
+		font-size: 1.2em;
+	}
 }
 section {
-	background: #222;
-	padding: 5em 1%;
-	color: white;
+	overflow: hidden;
+	/*border-top: 5px solid var(--color-dark);*/
+	padding: 0 5em;
+	color: var(--color-dark);
 	line-height: 1.8;
 }
+@media (max-width: 70em) {
+	body {
+		/*flex-flow: column;*/
+	}
+	header {
+		float: none;
+	}
+	section {
+		padding: 0 2%;
+	}
+}
+.element {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(red, blue);
+  }
 article {
 	max-width: 50em;
 	margin: auto;
 }
+.block {
+	padding: 4em 0;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+}
 article a {
-	color: white;
+	color: var(--color-dark);
 	padding: 2px;
 	margin: 0 -2px;
 	text-decoration: none;
@@ -79,19 +142,32 @@ article h2,
 article h3 {
 	font-size: 2em;
 	color: #FF2000;
-	margin: 1em 0 .5em 0;
+	margin: 0 0 2em;
 }
 article h3 {
-	color: white;
+	color: var(--color-dark);
 	font-size: 1.4em;
+	margin: 2em 0 1em;
+}
+.note {
+	font-size: .8em;
+	color: #888;
+}
+.note a {
+	background: none;
+	padding-bottom: 0;
+	color: #888;
+	border-bottom: 1px solid var(--color-dark);
+}
+.note a:hover,
+.note a:focus {
+	color: var(--color-primary);
 }
 .doge {
 	text-align: center;
 }
 .buttons {
 	text-align: center;
-	margin-bottom: 5em;
-
 }
 .button {
 	display: inline-block;
@@ -99,7 +175,7 @@ article h3 {
 	padding: .6em 1.1em;
 	color: #fff;
 	background-color: var(--color-primary);
-	box-shadow: 0 0 0 -2px #222, 0 0 0 -1px var(--color-primary);
+	box-shadow: 0 0 0 -2px var(--color-light), 0 0 0 -1px var(--color-primary);
 	border-radius: 3px;
 
 	border: none;
@@ -112,22 +188,22 @@ article h3 {
 }
 .button--download {
 	background: gray;
-	box-shadow: 0 0 0 -2px #222, 0 0 0 -1px gray;
+	box-shadow: 0 0 0 -2px var(--color-light), 0 0 0 -1px gray;
 }
 .button:hover,
 .button:focus {
 	transition-timing-function: cubic-bezier(.3,4,.5,.8);
-	box-shadow: 0 0 0 2px #222, 0 0 0 4px var(--color-primary);
+	box-shadow: 0 0 0 2px var(--color-light), 0 0 0 4px var(--color-primary);
 	animation: jelly .25s 1;
 }
 .button--download:hover,
 .button--download:focus {
-	box-shadow: 0 0 0 2px #222, 0 0 0 4px gray;
+	box-shadow: 0 0 0 2px var(--color-light), 0 0 0 4px gray;
 }
 .button:active {
 	transition-duration: 0s;
 	background: var(--color-secondary);
-	box-shadow: 0 0 0 2px #222, 0 0 0 4px var(--color-secondary);
+	box-shadow: 0 0 0 2px var(--color-light), 0 0 0 4px var(--color-secondary);
 }
 
 
@@ -136,3 +212,4 @@ article h3 {
 	33%      { transform: scale(1.1, .95) rotate(-1deg); }
 	66%      { transform: scale(.95, 1.1) rotate(1deg); }
 }
+

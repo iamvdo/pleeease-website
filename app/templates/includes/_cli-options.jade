@@ -1,0 +1,32 @@
+:markdown
+
+  ##Configuration file
+
+  Pleeease options can be set in a `.pleeeaserc` file (JSON-like), for example:
+
+  ```javascript
+  {
+    "input": ["foo.css", "foo2.css"],
+    "output": "bar.css"
+  }
+  ```
+
+  * `input` is an array of files (default `["*.css"]`)
+  * `output` is the path to the compiled file (default `app.min.css`)
+
+  You can now compile easily:
+
+  ```javascript
+  $ pleeease compile
+  ```
+
+  You can also overrides [all postprocess options](options.html). For example, if you want to enable autoprefixer and disable minifier:
+
+  ```javascript
+  {
+    "input": ["foo.css", "foo2.css"],
+    "output": "bar.css",
+    "autoprefixer": ["last 4 versions"],
+    "minifier": false
+  }
+  ```

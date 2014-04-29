@@ -1,0 +1,195 @@
+:markdown
+
+  ##Options
+
+  These are the default options for now (all `true`):
+
+  * [autoprefixer](#autoprefixer)
+  * [minifier](#minifier)
+  * [mqpacker](#mqpacker)
+  * fallbacks
+    * [variables](#fallbacks-variables)
+    * [rem](#fallbacks-rem)
+    * [pseudoElements](#fallbacks-pseudoelements)
+
+  All options can be disabled with `false` keyword or modified using each postprocessor options.
+
+  ###autoprefixer
+
+  Add support for [Autoprefixer](https://github.com/ai/autoprefixer) that **add vendor prefixes to CSS**. Add options as an array:
+
+  ```javascript
+  // set options
+  var options = {
+    autoprefixer: ['last 4 versions', 'Android 2.3']
+  }
+  ```
+
+  ```javascript
+  // .pleeeaserc file
+  {
+    "autoprefixer": ["last 4 versions", "Android 2.3"]
+  }
+  ```
+
+  Autoprefixer convert this file (with default options):
+
+  ```css
+  .element {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(red, blue);
+  }
+  ```
+
+  To this one:
+
+   ```css
+  .element {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background: -webkit-gradient(linear, left top, left bottom, from(red), to(blue));
+    background: -webkit-linear-gradient(red, blue);
+    background: linear-gradient(red, blue);
+  }
+  ```
+
+  See [full available options for Autoprefixer on GitHub](https://github.com/ai/autoprefixer#browsers).
+
+  ###minifier
+
+  Add support for [CSS Wring](https://github.com/hail2u/node-csswring), **a CSS minifier**. There are no options.
+
+  ###mqpacker
+
+  Add support for [MQ Packer](https://github.com/hail2u/node-css-mqpacker) that **pack same CSS media query rules into one media query rule**. There are no options.
+
+  Mqpacker can convert multiple files like this:
+
+  ```css
+  @media (max-width: 36em) {
+    .element {
+      color: red;
+    }
+  }
+  ```
+  ```css
+  @media (max-width: 36em) {
+    .test {
+      color: blue;
+    }
+  }
+  ```
+
+  To this one:
+
+  ```css
+  @media (max-width: 36em) {
+    .element {
+      color: red;
+    }
+    .test {
+      color: blue;
+    }
+  }
+  ```
+
+  ###fallbacks.variables
+
+  Add support for a **"not so bad" [CSS variables polyfill](https://github.com/iamvdo/postcss-vars)**. There are no options.
+
+  CSS variables begins with `--` and have to be declared in a `:root` rule. Then, they can be used with the `var(--variable)` notation.
+
+  Variables convert this file:
+
+  ```css
+  :root {
+    --color-primary: blue;
+  }
+  .element {
+    color: var(--color-primary);
+  }
+  ```
+
+  To this one:
+
+  ```css
+  :root {
+    --color-primary: blue;
+  }
+  .element {
+    color: blue;
+  }
+  ```
+
+  ###fallbacks.rem
+
+  Add support for [pixrem](https://github.com/iamvdo/node-pixrem) that **generates pixel fallbacks for `rem` units**. Add options as an array:
+
+  * first parameter is the root font-size (default `16px`)
+  * second parameter is an object with `replace` key if you want to replace value. (default `false`)
+
+  ```javascript
+  // set options
+  var options = {
+    fallbacks: {
+      rem: ['16px', {replace: true}]
+    }
+  }
+  ```
+
+  ```javascript
+  // .pleeeaserc file
+  {
+    "fallbacks": {
+      "rem": ["16px", {"replace": true}]
+    }
+  }
+  ```
+
+  Pixrem convert this file:
+
+  ```css
+  .element {
+    font-size: 2rem;
+  }
+  ```
+
+  To this one (with default options):
+
+  ```css
+  .element {
+    font-size: 32px;
+    font-size: 2rem;
+  }
+  ```
+
+  See [full available options for pixrem on GitHub](https://github.com/iamvdo/node-pixrem#parameters).
+
+  <div class="note">For now, this uses a fork from [pixrem](https://github.com/robwierzbowski/node-pixrem) until the [PR will be accepted or not](https://github.com/robwierzbowski/node-pixrem/pull/10).</div>
+
+  ###fallbacks.pseudoElements
+
+  **Convert pseudo-elements using CSS3 syntax** (two-colons notation like `::after`, `::before`, `::first-line` and `::first-letter`) with the old one, using only one colon (useful for IE8 support).
+
+  Convert this file:
+
+  ```css
+  .element::after {
+    content: '';
+  }
+  ```
+
+  To this one:
+  ```css
+  .element:after {
+    content: '';
+  }
+  ```

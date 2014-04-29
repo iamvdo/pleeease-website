@@ -1,0 +1,64 @@
+:markdown
+
+  ##Learn CLI
+
+  ###pleeease compile
+
+  The first command is `compile`
+
+  For example, compile `"foo.css"` to `"bar.css"`:
+
+  ```javascript
+  $ pleeease compile foo.css to bar.css
+  ```
+
+  **It's just easy as that!**
+
+  You can compile more files at the same time. Here `"foo.css"` and `"bar.css"` will be concatenated to `"baz.css"`:
+
+  ```javascript
+  $ pleeease compile foo.css bar.css to baz.css
+  ```
+
+  You can also compile an entire folder, and copy file in another destination (if folders doesn't exist, they will be created):
+
+  ```javascript
+  $ pleeease compile css/ to public/css/app.min.css
+  ```
+
+  ###pleeease watch
+
+  Last command but not least: `watch`. It's the same as compile, except that it activates live compilation. When a modification is detected, files will be recompiled automatically.
+
+  ```javascript
+  $ pleeease watch foo.css to bar.css
+  ```
+
+  ###defaults
+
+  Pleeease is configured as this:
+
+    * input is `"*.css"`
+    * output is `"app.min.css"`
+
+  It means that you are not forced to use the long form syntax. For example:
+
+  ```javascript
+  $ pleeease compile
+  ```
+
+  is the same as:
+
+  ```javascript
+  $ pleeease compile *.css to app.min.css
+  ```
+
+  In the same way:
+
+  ```javascript
+  $ pleeease compile styles/foo.css
+  ```
+
+  compile `"styles.css/foo.css"` to `"app.min.css"`
+
+  You can [override default value with a configuration file](#configuration-file).

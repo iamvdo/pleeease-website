@@ -1,0 +1,76 @@
+:markdown
+
+  ##How it works
+
+  Pleeease **does not** modifiy your code. It simply creates another file with what browsers need. What you have to do is configure the input and output files.
+
+  For example, say you have one `"styles.css"` file and you want `"styles.fixed.css"`, execute:
+
+  ```bash
+  $ pleeease compile styles.css to styles.fixed.css
+  ```
+
+  If `"styles.css"` is:
+
+  ```css
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+  :root {
+    --color-primary: red;
+    --color-secondary: blue;
+  }
+  .elem {
+    font-size: 2rem;
+    color: red;
+    background: var(--color-primary);
+    width: calc(100% - 50px);
+  }
+  @media screen and (min-width: 36em) {
+    .elem {
+    color: var(--color-secondary);
+    }
+  }
+  @media screen and (min-width: 36em) {
+    .class {
+    background: linear-gradient(green, blue);
+    }
+  }
+  ```
+
+  `"styles.fixed.css"` will be:
+
+  ```css
+  *,
+  *:after,
+  *:before { 
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  :root {
+    --color-primary: red;
+    --color-secondary: blue;
+  }
+  .elem {
+    font-size: 32px;
+    font-size: 2rem;
+    background: red;
+    width: -webkit-calc(100% - 50px);
+    width: calc(100% - 50px);
+  }
+  @media screen and (min-width: 36em) {
+    .elem {
+      color: blue;
+    }
+    .class {
+      background: -webkit-gradient(linear, left top, left bottom, from(green), to(blue));
+      background: -webkit-linear-gradient(green, blue);
+      background: linear-gradient(green, blue);
+    }
+  }
+  ```
+
+  Learn more, [see options](options.html)
