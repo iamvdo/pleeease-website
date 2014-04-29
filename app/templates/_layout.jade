@@ -21,13 +21,14 @@ html
     header
 
       .title
-        h1 pleeease
+        h1
+          a(href='/') pleeease
         p.subtitle Postprocess CSS with ease
 
       block link
         -var selected = 'index'; //default
 
-      -var menu = { 'index': 'Get started', 'cli': 'CLI', 'workflow': 'Improve your workflow', 'options': 'All options' };
+      -var menu = { 'index': 'Get started', 'cli': 'CLI', 'workflow': 'Improve your workflow', 'options': 'All options', 'sources': 'Sources' };
       nav
         ul
           each val, key in menu

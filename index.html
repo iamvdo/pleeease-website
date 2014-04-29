@@ -2,16 +2,16 @@
 document.createElement('section');
 document.createElement('article');
 document.createElement('footer');
-</script></head><body><header><div class="title"><h1>pleeease</h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="index.html" title="Get started" class="selected">Get started</a></li><li><a href="cli.html" title="CLI">CLI</a></li><li><a href="workflow.html" title="Improve your workflow">Improve your workflow</a></li><li><a href="options.html" title="All options">All options</a></li></ul></nav></header><section><article><div class="block"><p>Pleeease is the best toolchain for your CSS. Just write DRY, future-proof CSS and pleeease do the job for you.</p>
+</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="index.html" title="Get started" class="selected">Get started</a></li><li><a href="cli.html" title="CLI">CLI</a></li><li><a href="workflow.html" title="Improve your workflow">Improve your workflow</a></li><li><a href="options.html" title="All options">All options</a></li><li><a href="sources.html" title="Sources">Sources</a></li></ul></nav></header><section><article><div class="block"><p><em>Pleeease</em> is the best toolchain for your CSS. Just write DRY, future-proof CSS and <em>Pleeease</em> do the job for you.</p>
 <p>For now, it adds <strong>prefixes</strong>, <strong>variables</strong>, <strong>pseudo-elements</strong> and <strong><code>rem</code></strong> unit support, <strong>packs same media-query</strong> in one <code>@media</code> rule and <strong>minify</strong> it.</p>
 </div><div class="block"><h2 id="get-started">Get started</h2>
-<p>The simplest way to use Pleeease is CLI (command-line interface).</p>
-<p>First, you have to install <a href="http://nodejs.org">Node.js</a> that comes with <code>npm</code>, its module manager. Then, install Pleeease globally on your system:</p>
+<p>The simplest way to use <em>Pleeease</em> is <a href="cli.html">CLI</a> (command-line interface).</p>
+<p>First, you have to install <a href="http://nodejs.org">Node.js</a> that comes with <code>npm</code>, its module manager. Then, install <em>Pleeease</em> globally on your system:</p>
 <pre class="language-javascript"><code class="language-javascript">$ npm install <span class="token operator" >-</span>g pleeease
 </code></pre>
 <p><strong>And that&#39;s all!</strong> You&#39;re ready to learn <a href="#how-it-works">how to use it</a>.</p>
 <div class="note">If you&#39;re already an expert, see <a href="workflow.html">how to improve your workflow</a>.</div></div><div class="block"><h2 id="how-it-works">How it works</h2>
-<p>Pleeease <strong>does not</strong> modifiy your code. It simply creates another file with what browsers need. What you have to do is configure the input and output files.</p>
+<p><em>Pleeease</em> <strong>does not</strong> modifiy your code. It simply creates another file with what browsers need. What you have to do is configure the input and output files.</p>
 <p>For example, say you have one <code>&quot;styles.css&quot;</code> file and you want <code>&quot;styles.fixed.css&quot;</code>, execute:</p>
 <pre class="language-bash"><code class="language-bash">$ pleeease compile styles<span class="token punctuation" >.</span>css to styles<span class="token punctuation" >.</span>fixed<span class="token punctuation" >.</span>css
 </code></pre>

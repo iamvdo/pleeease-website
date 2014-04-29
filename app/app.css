@@ -14,7 +14,7 @@ html {
 	   -moz-text-size-adjust: none;
 	    -ms-text-size-adjust: none;
 	        text-size-adjust: none;
-	background: radial-gradient(60em at top center, white, #FAFAFA);
+	background: radial-gradient(60em at top center, white, var(--color-light));
 }
 @media (max-width: 40em) {
 	html {
@@ -24,6 +24,10 @@ html {
 body {
 	/*display: flex;*/
 	margin: 0;
+}
+em {
+	color: #FF2000;
+	font-style: normal;
 }
 header,
 section,
@@ -56,7 +60,16 @@ header {
 	text-align: center;
 	font: 5em Damion;
 	margin: 0;
+}
+.title h1 a {
+	display: inline-block;
+	padding: 0 .2em;
 	color: var(--color-dark);
+	text-decoration: none;
+}
+.title h1 a:hover,
+.title h1 a:focus {
+	animation: tada .9s;
 }
 .subtitle {
 	text-align: center;
@@ -211,5 +224,12 @@ article h3 {
 	from, to { transform: scale(1, 1) rotate(0); }
 	33%      { transform: scale(1.1, .95) rotate(-1deg); }
 	66%      { transform: scale(.95, 1.1) rotate(1deg); }
+}
+@keyframes tada {
+	0% {transform: scale(1);}	
+	10%, 20% {transform: scale(0.8) rotate(-3deg);}
+	30%, 50%, 70%, 90% {transform: scale(1) rotate(3deg);}
+	40%, 60%, 80% {transform: scale(1) rotate(-3deg);}
+	100% {transform: scale(1) rotate(0);}
 }
 
