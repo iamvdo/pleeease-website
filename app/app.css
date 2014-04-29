@@ -45,13 +45,14 @@ header {
 .title {
 	min-width: 18em;
 	height: 26em;
+	_height: 15em;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	background: red;
 	background: linear-gradient(to bottom right, orangered, red);
 }
-@media (max-width: 40em) {
+@media (max-width: 70em) {
 	.title {
 		height: 20em;
 	}
