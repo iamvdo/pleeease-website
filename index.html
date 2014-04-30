@@ -3,10 +3,11 @@ document.createElement('nav');
 document.createElement('section');
 document.createElement('article');
 document.createElement('footer');
-</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="index.html" title="Get started" class="selected">Get started</a></li><li><a href="cli.html" title="CLI">CLI</a></li><li><a href="workflow.html" title="Improve your workflow">Improve your workflow</a></li><li><a href="options.html" title="All options">All options</a></li><li><a href="sources.html" title="Sources">Sources</a></li></ul></nav></header><section><article><div class="block"><p><em>Pleeease</em> is the best toolchain for your CSS. Just write DRY, future-proof CSS and <em>Pleeease</em> does the job for you*.</p>
+</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="index.html" title="Get started" class="selected">Get started</a></li><li><a href="tool.html" title="The tool">The tool</a></li><li><a href="workflow.html" title="Improve your workflow">Improve your workflow</a></li><li><a href="options.html" title="Options">Options</a></li><li><a href="contribute.html" title="Contribute">Contribute</a></li></ul></nav></header><section><article><div class="block"><p><em>Pleeease</em> is the best toolchain for your CSS. Just write DRY, future-proof CSS and <em>Pleeease</em> does the job for you*.</p>
 <p>For now, it adds <strong>prefixes</strong>, <strong>variables</strong>, <strong>pseudo-elements</strong> and <strong><code>rem</code></strong> unit support, <strong>packs same media-query</strong> in one <code>@media</code> rule and <strong>minify the result</strong>.</p>
+<p><em>Pleeease</em> is based on <a href="https://github.com/ai/postcss">PostCSS</a>. It helps combine multiple processors and parse CSS only once.</p>
 <div class="note">* no magic here, generated code should be checked</div></div><div class="block"><h2 id="get-started">Get started</h2>
-<p>The simplest way to use <em>Pleeease</em> is to use <a href="cli.html">CLI</a> (command-line interface).</p>
+<p>The simplest way to use <em>Pleeease</em> is to use <a href="tool.html">CLI</a> (command-line interface).</p>
 <p>First, you have to install <a href="http://nodejs.org">Node.js</a> that comes with <code>npm</code>, its module manager. Then, install <em>Pleeease</em> globally on your system:</p>
 <pre class="language-javascript"><code class="language-javascript">$ npm install <span class="token operator" >-</span>g pleeease
 </code></pre>
@@ -74,7 +75,7 @@ document.createElement('footer');
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>Pretty cool, isn&#39;t it?</p>
-<p><a href="cli.html">Learn more about CLI</a> or <a href="options.html">see full options</a></p>
+<p><a href="tool.html">Learn more about the tool</a> or <a href="options.html">see full options</a></p>
 </div><div class="block"><h2>Sources</h2><div class="buttons"><a href="https://github.com/iamvdo/pleeease/zipball/master" class="button button--download">Download .zip</a><a href="https://github.com/iamvdo/pleeease/tarball/master" class="button button--download">Download .tar.gz</a><a href="https://github.com/iamvdo/pleeease/" class="button">View on GitHub</a></div></div><footer><p>Postprocess with <a href="/">Pleeease</a> by <a href="http://iamvdo.me">@iamvdo</a>.</p><p class="note">Thanks to <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.</p></footer></article></section><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
