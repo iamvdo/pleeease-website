@@ -1,0 +1,28 @@
+extends _layout
+
+block content
+
+  .block
+    :markdown
+      ##Playground
+
+      Test the awesomeness!
+
+      ###Source
+
+      Write or paste code here
+
+    textarea#input.
+      div {
+        display: flex;
+        background: linear-gradient(red, blue);
+      }
+    
+    :markdown
+      ###Result
+
+      **See the result** (with [default options](options.html)).
+
+    textarea#output
+
+  script(src='pleeease.js')
