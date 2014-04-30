@@ -1,10 +1,15 @@
 :markdown
 
-  ##Workflow
+  ##Workflows
 
-  ###Programmatic
+  ###Node.js
 
-  You can use the `process` function. It returns fixed CSS as string.
+  You can use the `process` function with 2 parameters:
+
+  * `css` is the CSS as string
+  * `options` is an object specifying [options you want](options.html)
+
+  It returns fixed CSS as string.
 
   ```javascript
   var pleeease = require('pleeease'),
@@ -27,10 +32,44 @@
 
   ###With Brunch
 
-  If you're using [Brunch](http://brunch.io) (good point), see [pleeease-brunch](https://github.com/iamvdo/pleeease-brunch). You can also use the [pre-configured Pleeease skeleton](https://github.com/iamvdo/brunch-with-pleeease).
+  If you're using [Brunch](http://brunch.io) (good point), you may want to use [pleeease-brunch](https://github.com/iamvdo/pleeease-brunch).
+
+  Add this plugin as a dependency in your `package.json`
+
+  ```javascript
+  {
+    "dependencies": {
+      "pleeease-brunch": "0.2.x"
+    }
+  }
+  ```
+
+  Or install it:
+
+  ```javascript
+  $ npm install --save pleeease-brunch
+  ```
+
+  Now, Pleeease-brunch does its job. You can set it in Brunch configuration file:
+
+  ```javascript
+  plugins:
+    pleeease:
+        autoprefixer: true
+        minifier: true
+        mqpacker: true
+        fallbacks:
+            variables: true
+            rem: false
+            pseudoElements: false
+  ```
+
+  Note that pleeease-brunch is an optimizer plugin, so it only works when `optimize: true` is set. The `--production` environment activates optimizers.
+
+  You can also use the [pre-configured Pleeease skeleton](https://github.com/iamvdo/brunch-with-pleeease).
 
   ###With Gulp, Grunt
 
-  Please, [be my guest](https://github.com/iamvdo/pleeease/pulls) if you want to use *Pleeease* with Gulp or Grunt, or any other task runner.
+  Please, be my guest if you want to use *Pleeease* with Gulp or Grunt, or any other task runner. Contribute!
 
 
