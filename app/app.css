@@ -240,6 +240,7 @@ textarea {
 	height: 400px;
 	padding: 1em;
 	font: 1.4em Consolas, monospace;
+	resize: vertical;
 }
 
 @keyframes jelly {
@@ -260,5 +261,17 @@ textarea {
 	}
 	article {
 		margin: auto;
+	}
+}
+@media (min-width: 102.5em) {
+	.playground {
+		max-width: none;
+	}
+	.textareas {
+		display: flex;
+	}
+	.textarea {
+		flex: 1;
+		margin: 1em;
 	}
 }

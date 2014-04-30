@@ -1,28 +1,31 @@
 extends _layout
 
+block link
+  -var selected = 'playground';
+
 block content
 
-  .block
-    :markdown
-      ##Playground
+  .block.block--playground
 
-      Test the awesomeness!
+      h2 Playground
+      p Test the awesomeness!
 
-      ###Source
+      .textareas
 
-      Write or paste code here
+        .textarea
+          h3 Source
+          p Write or paste code here
+          textarea#input.
+            div {
+              display: flex;
+              background: linear-gradient(red, blue);
+            }
 
-    textarea#input.
-      div {
-        display: flex;
-        background: linear-gradient(red, blue);
-      }
-    
-    :markdown
-      ###Result
-
-      **See the result** (with [default options](options.html)).
-
-    textarea#output
+        .textarea
+          h3 Result
+          p
+            strong See the result
+            |  (with [default options](options.html))
+          textarea#output
 
   script(src='pleeease.js')
