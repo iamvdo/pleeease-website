@@ -71,7 +71,7 @@ header {
 }
 .title h1 a:hover,
 .title h1 a:focus {
-	animation: jelly2 .5s;
+	animation: jelly .5s;
 }
 .subtitle {
 	text-align: center;
@@ -230,7 +230,7 @@ article h3 {
 .button:focus {
 	transition-timing-function: cubic-bezier(.3,4,.5,.8);
 	box-shadow: 0 0 0 2px var(--color-light), 0 0 0 4px var(--color-primary);
-	animation: jelly .25s 1;
+	animation: jelly .5s 1;
 }
 .button--download:hover,
 .button--download:focus {
@@ -242,13 +242,7 @@ article h3 {
 	box-shadow: 0 0 0 2px var(--color-light), 0 0 0 4px var(--color-secondary);
 }
 
-
 @keyframes jelly {
-	from, to { transform: scale(1, 1) rotate(0); }
-	33%      { transform: scale(1.1, .95) rotate(-1deg); }
-	66%      { transform: scale(.95, 1.1) rotate(1deg); }
-}
-@keyframes jelly2 {
 	from, to { transform: scale(1, 1) ; }
 	25%      { transform: scale(.9, 1.1) ; }
 	50%      { transform: scale(1.1, .9) ; }
