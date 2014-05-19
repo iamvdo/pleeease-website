@@ -3,30 +3,38 @@ document.createElement('nav');
 document.createElement('section');
 document.createElement('article');
 document.createElement('footer');
-</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="index.html" title="Get started">Get started</a></li><li><a href="tool.html" title="The tool">The tool</a></li><li><a href="workflow.html" title="Improve your workflow">Improve your workflow</a></li><li><a href="options.html" title="Options" class="selected">Options</a></li><li><a href="contribute.html" title="Contribute">Contribute</a></li><li><a href="playground.html" class="play">Playground</a></li></ul></nav></header><section><article class="options"><div class="block"><h2 id="options">Options</h2>
+</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="index.html" title="Get started">Get started</a></li><li><a href="tool.html" title="The tool">The tool</a></li><li><a href="workflow.html" title="Improve your workflow">Improve your workflow</a></li><li><a href="options.html" title="Options" class="selected">Options</a></li><li><a href="contribute.html" title="Contribute">Contribute</a></li><li><a href="playground.html" class="play">Playground</a></li><li class="version">Version <strong>0.3.0</strong> (2014-05-19)</li></ul></nav></header><section><article class="options"><div class="block"><h2 id="options">Options</h2>
 <p>These are the default options for now (all set to <code>true</code>):</p>
 <ul>
-<li><a href="#autoprefixer">autoprefixer</a></li>
-<li><a href="#minifier">minifier</a></li>
-<li><a href="#mqpacker">mqpacker</a></li>
 <li>fallbacks<ul>
+<li><a href="#fallbacks-autoprefixer">autoprefixer</a></li>
 <li><a href="#fallbacks-variables">variables</a></li>
 <li><a href="#fallbacks-rem">rem</a></li>
 <li><a href="#fallbacks-pseudoelements">pseudoElements</a></li>
 </ul>
 </li>
+<li>optimizers<ul>
+<li><a href="#optimizers-import">import</a></li>
+<li><a href="#optimizers-minifier">minifier</a></li>
+<li><a href="#optimizers-mqpacker">mqpacker</a></li>
+</ul>
+</li>
 </ul>
 <p>All options can be disabled with <code>false</code> keyword or modified using each postprocessor options.</p>
-<h3 id="autoprefixer">autoprefixer</h3>
+<h3 id="fallbacks-autoprefixer">fallbacks.autoprefixer</h3>
 <p>Add support for <a href="https://github.com/ai/autoprefixer">Autoprefixer</a> that <strong>add vendor prefixes to CSS</strong>. Add options as an array:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// set options
 </span><span class="token keyword" >var</span> options <span class="token operator" >=</span> <span class="token punctuation" >{</span>
-  autoprefixer<span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >'last 4 versions'</span><span class="token punctuation" >,</span> <span class="token string" >'Android 2.3'</span><span class="token punctuation" >]</span>
+  fallbacks<span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
+    autoprefixer<span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >'last 4 versions'</span><span class="token punctuation" >,</span> <span class="token string" >'Android 2.3'</span><span class="token punctuation" >]</span>
+  <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file
 </span><span class="token punctuation" >{</span>
-  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"last 4 versions"</span><span class="token punctuation" >,</span> <span class="token string" >"Android 2.3"</span><span class="token punctuation" >]</span>
+  <span class="token string" >"fallbacks"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
+    <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"last 4 versions"</span><span class="token punctuation" >,</span> <span class="token string" >"Android 2.3"</span><span class="token punctuation" >]</span>
+  <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>Autoprefixer converts this file (with default options):</p>
@@ -53,33 +61,6 @@ document.createElement('footer');
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>See <a href="https://github.com/ai/autoprefixer#browsers">full available options for Autoprefixer on GitHub</a>.</p>
-<h3 id="minifier">minifier</h3>
-<p>Add support for <a href="https://github.com/hail2u/node-csswring">CSS Wring</a>, <strong>a CSS minifier</strong>. There are no options.</p>
-<h3 id="mqpacker">mqpacker</h3>
-<p>Add support for <a href="https://github.com/hail2u/node-css-mqpacker">MQ Packer</a> that <strong>pack same CSS media query rules into one media query rule</strong>. There are no options.</p>
-<p>Mqpacker can convert multiple files like this:</p>
-<pre class="language-css"><code class="language-css"><span class="token atrule" >@media (max-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
-  <span class="token selector" >.element </span><span class="token punctuation" >{</span>
-    <span class="token property" >color</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
-  <span class="token punctuation" >}</span>
-<span class="token punctuation" >}</span>
-</code></pre>
-<pre class="language-css"><code class="language-css"><span class="token atrule" >@media (max-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
-  <span class="token selector" >.test </span><span class="token punctuation" >{</span>
-    <span class="token property" >color</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
-  <span class="token punctuation" >}</span>
-<span class="token punctuation" >}</span>
-</code></pre>
-<p>To this one:</p>
-<pre class="language-css"><code class="language-css"><span class="token atrule" >@media (max-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
-  <span class="token selector" >.element </span><span class="token punctuation" >{</span>
-    <span class="token property" >color</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
-  <span class="token punctuation" >}</span>
-  <span class="token selector" >.test </span><span class="token punctuation" >{</span>
-    <span class="token property" >color</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
-  <span class="token punctuation" >}</span>
-<span class="token punctuation" >}</span>
-</code></pre>
 <h3 id="fallbacks-variables">fallbacks.variables</h3>
 <p>Add support for a <strong>&quot;not so bad&quot; <a href="https://github.com/iamvdo/postcss-vars">CSS variables polyfill</a></strong>. There are no options.</p>
 <p>CSS variables begins with <code>--</code> and have to be declared in a <code>:root</code> rule. Then, they can be used with the <code>var(--variable)</code> notation.</p>
@@ -143,6 +124,41 @@ document.createElement('footer');
 <p>To this one:</p>
 <pre class="language-css"><code class="language-css"><span class="token selector" >.element:after </span><span class="token punctuation" >{</span>
   <span class="token property" >content</span><span class="token punctuation" >:</span> <span class="token string" >''</span><span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<h3 id="optimizers-import">optimizers.import</h3>
+<p>Inline <code>@import</code> styles with relative paths (absolute ones will be unaffected, as the ones including media-queries)</p>
+<p>You can use the CSS syntax you want:</p>
+<pre class="language-css"><code class="language-css"><span class="token atrule" >@import "file.css"<span class="token punctuation" >;</span></span> <span class="token comment" spellcheck="true">/* imported */</span>
+<span class="token atrule" >@import url(file.css)<span class="token punctuation" >;</span></span> <span class="token comment" spellcheck="true">/* imported */</span>
+<span class="token atrule" >@import url("http<span class="token punctuation" >:</span>//foo.com/bar.css")<span class="token punctuation" >;</span></span> <span class="token comment" spellcheck="true">/* not imported */</span>
+<span class="token atrule" >@import url("file.css") screen and (max-width<span class="token punctuation" >:</span> 35em)<span class="token punctuation" >;</span></span> <span class="token comment" spellcheck="true">/* not imported */</span>
+</code></pre>
+<h3 id="optimizers-minifier">optimizers.minifier</h3>
+<p>Add support for <a href="https://github.com/hail2u/node-csswring">CSS Wring</a>, <strong>a CSS minifier</strong>. There are no options.</p>
+<h3 id="optimizers-mqpacker">optimizers.mqpacker</h3>
+<p>Add support for <a href="https://github.com/hail2u/node-css-mqpacker">MQ Packer</a> that <strong>pack same CSS media query rules into one media query rule</strong>. There are no options.</p>
+<p>Mqpacker can convert multiple files like this:</p>
+<pre class="language-css"><code class="language-css"><span class="token atrule" >@media (max-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
+  <span class="token selector" >.element </span><span class="token punctuation" >{</span>
+    <span class="token property" >color</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
+  <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<pre class="language-css"><code class="language-css"><span class="token atrule" >@media (max-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
+  <span class="token selector" >.test </span><span class="token punctuation" >{</span>
+    <span class="token property" >color</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
+  <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>To this one:</p>
+<pre class="language-css"><code class="language-css"><span class="token atrule" >@media (max-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
+  <span class="token selector" >.element </span><span class="token punctuation" >{</span>
+    <span class="token property" >color</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
+  <span class="token punctuation" >}</span>
+  <span class="token selector" >.test </span><span class="token punctuation" >{</span>
+    <span class="token property" >color</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
+  <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 </div><footer><p>Postprocess with <a href="/">Pleeease</a> by <a href="http://twitter.com/iamvdo">@iamvdo</a>.</p><p class="note">Thanks to <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.</p></footer></article></section><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -3,7 +3,7 @@ document.createElement('nav');
 document.createElement('section');
 document.createElement('article');
 document.createElement('footer');
-</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="index.html" title="Get started">Get started</a></li><li><a href="tool.html" title="The tool">The tool</a></li><li><a href="workflow.html" title="Improve your workflow" class="selected">Improve your workflow</a></li><li><a href="options.html" title="Options">Options</a></li><li><a href="contribute.html" title="Contribute">Contribute</a></li><li><a href="playground.html" class="play">Playground</a></li></ul></nav></header><section><article class="workflow"><div class="block"><h2 id="workflows">Workflows</h2>
+</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="index.html" title="Get started">Get started</a></li><li><a href="tool.html" title="The tool">The tool</a></li><li><a href="workflow.html" title="Improve your workflow" class="selected">Improve your workflow</a></li><li><a href="options.html" title="Options">Options</a></li><li><a href="contribute.html" title="Contribute">Contribute</a></li><li><a href="playground.html" class="play">Playground</a></li><li class="version">Version <strong>0.3.0</strong> (2014-05-19)</li></ul></nav></header><section><article class="workflow"><div class="block"><h2 id="workflows">Workflows</h2>
 <h3 id="node-js">Node.js</h3>
 <p>You can use the <code>process</code> function with 2 parameters:</p>
 <ul>
@@ -33,23 +33,25 @@ fs<span class="token punctuation" >.</span><span class="token function" >writeFi
 <p>Add this plugin as a dependency in your <code>package.json</code></p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
   <span class="token string" >"dependencies"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
-    <span class="token string" >"pleeease-brunch"</span><span class="token punctuation" >:</span> <span class="token string" >"0.2.x"</span>
+    <span class="token string" >"pleeease-brunch"</span><span class="token punctuation" >:</span> <span class="token string" >"0.3.x"</span>
   <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>Or install it:</p>
 <pre class="language-javascript"><code class="language-javascript">$ npm install <span class="token operator" >--</span>save pleeease<span class="token operator" >-</span>brunch
 </code></pre>
-<p>Now, Pleeease-brunch does its job. You can set it in Brunch configuration file:</p>
+<p>Now, Pleeease-brunch does its job. You can set it in Brunch configuration file, for example:</p>
 <pre class="language-javascript"><code class="language-javascript">plugins<span class="token punctuation" >:</span>
   pleeease<span class="token punctuation" >:</span>
+    fallbacks<span class="token punctuation" >:</span>
       autoprefixer<span class="token punctuation" >:</span> <span class="token boolean" >true</span>
+      variables<span class="token punctuation" >:</span> <span class="token boolean" >true</span>
+      rem<span class="token punctuation" >:</span> <span class="token boolean" >false</span>
+      pseudoElements<span class="token punctuation" >:</span> <span class="token boolean" >false</span>
+    optimizers<span class="token punctuation" >:</span>
+      import<span class="token punctuation" >:</span> <span class="token boolean" >true</span>
       minifier<span class="token punctuation" >:</span> <span class="token boolean" >true</span>
       mqpacker<span class="token punctuation" >:</span> <span class="token boolean" >true</span>
-      fallbacks<span class="token punctuation" >:</span>
-          variables<span class="token punctuation" >:</span> <span class="token boolean" >true</span>
-          rem<span class="token punctuation" >:</span> <span class="token boolean" >false</span>
-          pseudoElements<span class="token punctuation" >:</span> <span class="token boolean" >false</span>
 </code></pre>
 <p>Note that pleeease-brunch is an optimizer plugin, so it only works when <code>optimize: true</code> is set. The <code>--production</code> environment activates optimizers.</p>
 <p>You can also use the <a href="https://github.com/iamvdo/brunch-with-pleeease">pre-configured Pleeease skeleton</a>.</p>

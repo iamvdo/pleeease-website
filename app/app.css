@@ -85,6 +85,12 @@ nav ul {
 nav li {
 	padding: .2em;
 }
+nav li.version {
+	padding: 2em .5em;
+	font-size: .8em;
+	font-style: italic;
+	opacity: .5;
+}
 nav a {
 	position: relative;
 	color: var(--color-dark);
@@ -176,7 +182,7 @@ article h3 {
 }
 article h3 {
 	color: var(--color-dark);
-	font-size: 1.4em;
+	font-size: 1.6em;
 	margin: 2em 0 1em;
 }
 .note {

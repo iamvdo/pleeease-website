@@ -39,7 +39,7 @@
   ```javascript
   {
     "dependencies": {
-      "pleeease-brunch": "0.2.x"
+      "pleeease-brunch": "0.3.x"
     }
   }
   ```
@@ -50,18 +50,22 @@
   $ npm install --save pleeease-brunch
   ```
 
-  Now, Pleeease-brunch does its job. You can set it in Brunch configuration file:
+  Now, Pleeease-brunch does its job. You can set it in Brunch configuration file, for example:
 
   ```javascript
   plugins:
     pleeease:
+      fallbacks:
         autoprefixer: true
+        variables: true
+        rem: false
+        pseudoElements: false
+      optimizers:
+        import: true
         minifier: true
         mqpacker: true
-        fallbacks:
-            variables: true
-            rem: false
-            pseudoElements: false
+        
+            
   ```
 
   Note that pleeease-brunch is an optimizer plugin, so it only works when `optimize: true` is set. The `--production` environment activates optimizers.

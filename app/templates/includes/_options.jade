@@ -4,31 +4,37 @@
 
   These are the default options for now (all set to `true`):
 
-  * [autoprefixer](#autoprefixer)
-  * [minifier](#minifier)
-  * [mqpacker](#mqpacker)
   * fallbacks
+    * [autoprefixer](#fallbacks-autoprefixer)
     * [variables](#fallbacks-variables)
     * [rem](#fallbacks-rem)
     * [pseudoElements](#fallbacks-pseudoelements)
+  * optimizers
+    * [import](#optimizers-import)
+    * [minifier](#optimizers-minifier)
+    * [mqpacker](#optimizers-mqpacker)
 
   All options can be disabled with `false` keyword or modified using each postprocessor options.
 
-  ###autoprefixer
+  ###fallbacks.autoprefixer
 
   Add support for [Autoprefixer](https://github.com/ai/autoprefixer) that **add vendor prefixes to CSS**. Add options as an array:
 
   ```javascript
   // set options
   var options = {
-    autoprefixer: ['last 4 versions', 'Android 2.3']
+    fallbacks: {
+      autoprefixer: ['last 4 versions', 'Android 2.3']
+    }
   }
   ```
 
   ```javascript
   // .pleeeaserc file
   {
-    "autoprefixer": ["last 4 versions", "Android 2.3"]
+    "fallbacks": {
+      "autoprefixer": ["last 4 versions", "Android 2.3"]
+    }
   }
   ```
 
@@ -62,44 +68,6 @@
   ```
 
   See [full available options for Autoprefixer on GitHub](https://github.com/ai/autoprefixer#browsers).
-
-  ###minifier
-
-  Add support for [CSS Wring](https://github.com/hail2u/node-csswring), **a CSS minifier**. There are no options.
-
-  ###mqpacker
-
-  Add support for [MQ Packer](https://github.com/hail2u/node-css-mqpacker) that **pack same CSS media query rules into one media query rule**. There are no options.
-
-  Mqpacker can convert multiple files like this:
-
-  ```css
-  @media (max-width: 36em) {
-    .element {
-      color: red;
-    }
-  }
-  ```
-  ```css
-  @media (max-width: 36em) {
-    .test {
-      color: blue;
-    }
-  }
-  ```
-
-  To this one:
-
-  ```css
-  @media (max-width: 36em) {
-    .element {
-      color: red;
-    }
-    .test {
-      color: blue;
-    }
-  }
-  ```
 
   ###fallbacks.variables
 
@@ -191,5 +159,56 @@
   ```css
   .element:after {
     content: '';
+  }
+  ```
+
+  ###optimizers.import
+
+  Inline `@import` styles with relative paths (absolute ones will be unaffected, as the ones including media-queries)
+
+  You can use the CSS syntax you want:
+
+  ```css
+  @import "file.css"; /* imported */
+  @import url(file.css); /* imported */
+  @import url("http://foo.com/bar.css"); /* not imported */
+  @import url("file.css") screen and (max-width: 35em); /* not imported */
+  ```
+
+  ###optimizers.minifier
+
+  Add support for [CSS Wring](https://github.com/hail2u/node-csswring), **a CSS minifier**. There are no options.
+
+  ###optimizers.mqpacker
+
+  Add support for [MQ Packer](https://github.com/hail2u/node-css-mqpacker) that **pack same CSS media query rules into one media query rule**. There are no options.
+
+  Mqpacker can convert multiple files like this:
+
+  ```css
+  @media (max-width: 36em) {
+    .element {
+      color: red;
+    }
+  }
+  ```
+  ```css
+  @media (max-width: 36em) {
+    .test {
+      color: blue;
+    }
+  }
+  ```
+
+  To this one:
+
+  ```css
+  @media (max-width: 36em) {
+    .element {
+      color: red;
+    }
+    .test {
+      color: blue;
+    }
   }
   ```

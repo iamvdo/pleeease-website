@@ -20,13 +20,17 @@
   $ pleeease compile
   ```
 
-  You can also override [all postprocess options](options.html). For example, if you want to enable [autoprefixer](options.html#autoprefixer) and disable [minifier](options.html#minifier), just write:
+  You can also override [all postprocess options](options.html). For example, if you want to enable [autoprefixer](options.html#fallbacks-autoprefixer) and disable [minifier](options.html#optimizers-minifier), just write:
 
   ```javascript
   {
     "input": ["foo.css", "bar.css"],
     "output": "baz.css",
-    "autoprefixer": ["last 4 versions"],
-    "minifier": false
+    "fallbacks": {
+      "autoprefixer": ["last 4 versions"]
+    },
+    "optimizers": {
+      "minifier": false
+    }
   }
   ```

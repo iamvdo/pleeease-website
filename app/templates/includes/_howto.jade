@@ -6,13 +6,14 @@
 
   For example, let's say you have `"styles.css"` that you want to compile to `"styles.fixed.css"`, execute:
 
-  ```bash
+  ```javascript
   $ pleeease compile styles.css to styles.fixed.css
   ```
 
   If `"styles.css"` is:
 
   ```css
+  @import url("bar.css");
   *,
   *::after,
   *::before {
@@ -43,6 +44,9 @@
   `"styles.fixed.css"` will be:
 
   ```css
+  .bar {
+    /* imported styles */
+  }
   *,
   *:after,
   *:before { 
