@@ -72,8 +72,38 @@
 
   You can also use the [pre-configured Pleeease skeleton](https://github.com/iamvdo/brunch-with-pleeease).
 
-  ###With Gulp, Grunt
+  ###With Gulp
 
-  Please, be my guest if you want to use *Pleeease* with Gulp or Grunt, or any other task runner. Contribute!
+  You can use [gulp-pleeease](https://github.com/danielhusar/gulp-pleeease). Here is a `Gulpfile.js` example, with Sass and sourcemaps support:
+
+  ```javascript
+  var gulp = require('gulp');
+  var sass = require('gulp-ruby-sass');
+  var pleeease = require('gulp-pleeease');
+
+  var SassOptions = {
+      sourcemap: true,
+      style: "compact"
+  };
+  // set minifier to false to keep Sass sourcemaps support
+  var PleeeaseOptions = {
+      optimizers: {
+          minifier: false
+      }
+  };
+
+  gulp.task('awesome_css', function () {
+      gulp.src('./scss/main.scss')
+          .pipe(sass(SassOptions))
+          .pipe(pleeease(PleeeaseOptions))
+          .pipe(gulp.dest('./public'));
+  });
+  ```
+
+  Note: This is based on [@ddprrt's article](http://fettblog.eu/blog/2014/04/10/gulp-sass-autoprefixer-sourcemaps/) for sourcemaps support. You can also use [gulp-sass](https://github.com/dlmanning/gulp-sass) (based on libsass) if you don't need sourcemaps.
+
+  ###Grunt
+
+  You can use [grunt-pleeease](https://github.com/danielhusar/grunt-pleeease).
 
 

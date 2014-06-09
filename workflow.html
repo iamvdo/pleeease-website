@@ -55,8 +55,33 @@ fs<span class="token punctuation" >.</span><span class="token function" >writeFi
 </code></pre>
 <p>Note that pleeease-brunch is an optimizer plugin, so it only works when <code>optimize: true</code> is set. The <code>--production</code> environment activates optimizers.</p>
 <p>You can also use the <a href="https://github.com/iamvdo/brunch-with-pleeease">pre-configured Pleeease skeleton</a>.</p>
-<h3 id="with-gulp-grunt">With Gulp, Grunt</h3>
-<p>Please, be my guest if you want to use <em>Pleeease</em> with Gulp or Grunt, or any other task runner. Contribute!</p>
+<h3 id="with-gulp">With Gulp</h3>
+<p>You can use <a href="https://github.com/danielhusar/gulp-pleeease">gulp-pleeease</a>. Here is a <code>Gulpfile.js</code> example, with Sass and sourcemaps support:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword" >var</span> gulp <span class="token operator" >=</span> <span class="token function" >require<span class="token punctuation" >(</span></span><span class="token string" >'gulp'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token keyword" >var</span> sass <span class="token operator" >=</span> <span class="token function" >require<span class="token punctuation" >(</span></span><span class="token string" >'gulp-ruby-sass'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token keyword" >var</span> pleeease <span class="token operator" >=</span> <span class="token function" >require<span class="token punctuation" >(</span></span><span class="token string" >'gulp-pleeease'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+
+<span class="token keyword" >var</span> SassOptions <span class="token operator" >=</span> <span class="token punctuation" >{</span>
+    sourcemap<span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >,</span>
+    style<span class="token punctuation" >:</span> <span class="token string" >"compact"</span>
+<span class="token punctuation" >}</span><span class="token punctuation" >;</span><span class="token comment" spellcheck="true">
+// set minifier to false to keep Sass sourcemaps support
+</span><span class="token keyword" >var</span> PleeeaseOptions <span class="token operator" >=</span> <span class="token punctuation" >{</span>
+    optimizers<span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
+        minifier<span class="token punctuation" >:</span> <span class="token boolean" >false</span>
+    <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span><span class="token punctuation" >;</span>
+
+gulp<span class="token punctuation" >.</span><span class="token function" >task<span class="token punctuation" >(</span></span><span class="token string" >'awesome_css'</span><span class="token punctuation" >,</span> <span class="token keyword" >function</span> <span class="token punctuation" >(</span><span class="token punctuation" >)</span> <span class="token punctuation" >{</span>
+    gulp<span class="token punctuation" >.</span><span class="token function" >src<span class="token punctuation" >(</span></span><span class="token string" >'./scss/main.scss'</span><span class="token punctuation" >)</span>
+        <span class="token punctuation" >.</span><span class="token function" >pipe<span class="token punctuation" >(</span></span><span class="token function" >sass<span class="token punctuation" >(</span></span>SassOptions<span class="token punctuation" >)</span><span class="token punctuation" >)</span>
+        <span class="token punctuation" >.</span><span class="token function" >pipe<span class="token punctuation" >(</span></span><span class="token function" >pleeease<span class="token punctuation" >(</span></span>PleeeaseOptions<span class="token punctuation" >)</span><span class="token punctuation" >)</span>
+        <span class="token punctuation" >.</span><span class="token function" >pipe<span class="token punctuation" >(</span></span>gulp<span class="token punctuation" >.</span><span class="token function" >dest<span class="token punctuation" >(</span></span><span class="token string" >'./public'</span><span class="token punctuation" >)</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+</code></pre>
+<p>Note: This is based on <a href="http://fettblog.eu/blog/2014/04/10/gulp-sass-autoprefixer-sourcemaps/">@ddprrt&#39;s article</a> for sourcemaps support. You can also use <a href="https://github.com/dlmanning/gulp-sass">gulp-sass</a> (based on libsass) if you don&#39;t need sourcemaps.</p>
+<h3 id="grunt">Grunt</h3>
+<p>You can use <a href="https://github.com/danielhusar/grunt-pleeease">grunt-pleeease</a>.</p>
 </div><div class="block"><h2>Sources</h2><div class="buttons"><a href="https://github.com/iamvdo/pleeease/zipball/master" class="button button--download">Download .zip</a><a href="https://github.com/iamvdo/pleeease/tarball/master" class="button button--download">Download .tar.gz</a><a href="https://github.com/iamvdo/pleeease/" class="button">View on GitHub</a></div></div><footer><p>Postprocess with <a href="/">Pleeease</a> by <a href="http://twitter.com/iamvdo">@iamvdo</a>.</p><p class="note">Thanks to <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.</p></footer></article></section><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
