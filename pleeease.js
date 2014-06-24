@@ -4,6 +4,11 @@ var pleeease = require('pleeease');
 var input = document.querySelector('#input');
 var output = document.querySelector('#output');
 
+if(location.search !== '') {
+  var q = location.search.substring(1);
+  input.value = decodeURI(q);
+}
+
 var options = {
   "minifier": false
 };
@@ -15,6 +20,11 @@ var doPleeease = function () {
 };
 doPleeease();
 input.addEventListener('keyup', doPleeease);
+
+
+
+
+
 },{"pleeease":2}],2:[function(require,module,exports){
 var postcss        = require('postcss'),
     prefixer       = require('autoprefixer'),
