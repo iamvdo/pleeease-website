@@ -2,35 +2,53 @@
 
   ##Options
 
-  These are the default options for now (all set to `true`):
-
-  * fallbacks
-    * [autoprefixer](#fallbacks-autoprefixer)
-    * [variables](#fallbacks-variables)
-    * [rem](#fallbacks-rem)
-    * [pseudoElements](#fallbacks-pseudoelements)
-  * optimizers
-    * [import](#optimizers-import)
-    * [minifier](#optimizers-minifier)
-    * [mqpacker](#optimizers-mqpacker)
-
-  All options can be disabled with `false` keyword or modified using each postprocessor options.
-
-  ###fallbacks.autoprefixer
-
-  Add support for [Autoprefixer](https://github.com/ai/autoprefixer) that **add vendor prefixes to CSS**. Add options as an array:
+  These are the default options (default `.pleeeaserc` file):
 
   ```javascript
-  // set options
-  var options = {
-    fallbacks: {
-      autoprefixer: ['last 4 versions', 'Android 2.3']
-    }
+  {
+    "in": ["*.css"],
+    "out": "app.min.css",
+
+    "fallbacks": {
+      "autoprefixer": true,
+      "variables": true,
+      "rem": true,
+      "pseudoElements": true
+    },
+    "optimizers": {
+      "import": true,
+      "minifier": true,
+      "mqpacker": true
+    },
+
+    "sourcemaps": false
   }
   ```
 
+  All options can be disabled with the `false` keyword or modified using each postprocessor options. See each options:
+
+  * [in, out](tool.html#configuration-file)
+  * fallbacks: [autoprefixer](#fallbacks-autoprefixer), [variables](#fallbacks-variables), [rem](#fallbacks-rem), [pseudoElements](#fallbacks-pseudoelements)
+  * optimizers: [import](#optimizers-import), [minifier](#optimizers-minifier), [mqpacker](#optimizers-mqpacker)
+  * [sourcemaps](#sourcemaps)
+
+
+  ###fallbacks.autoprefixer
+
+  Add support for [Autoprefixer 2.0.0](https://github.com/ai/autoprefixer) that **add vendor prefixes to CSS**. From Autoprefixer options, you can specify the browsers you want to target in your project:
+
+  * `last 2 versions` is last versions for each browser
+  * `last 2 Chrome versions` is last versions of the specified browser.
+  * `> 5%` is browser versions, selected by global usage statistics.
+  * `Firefox > 20` is Firefox versions newer than 20.
+  * `Firefox >= 20` is Firefox version 20 or newer.
+  * `ios 7` to set browser version directly.
+  * `none` clean CSS from any vendor prefixes.
+
+  For example:
+
   ```javascript
-  // .pleeeaserc file
+  // .pleeeaserc file (remove comment)
   {
     "fallbacks": {
       "autoprefixer": ["last 4 versions", "Android 2.3"]
@@ -38,7 +56,7 @@
   }
   ```
 
-  Autoprefixer converts this file (with default options):
+  Autoprefixer converts this file:
 
   ```css
   .element {
@@ -59,8 +77,8 @@
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
     background: -webkit-gradient(linear, left top, left bottom, from(red), to(blue));
     background: -webkit-linear-gradient(red, blue);
     background: linear-gradient(red, blue);
@@ -105,16 +123,7 @@
   * second parameter is an object with `replace` key set to `true` if you want to replace value. (default `false`)
 
   ```javascript
-  // set options
-  var options = {
-    fallbacks: {
-      rem: ['16px', {replace: true}]
-    }
-  }
-  ```
-
-  ```javascript
-  // .pleeeaserc file
+  // .pleeeaserc file (remove comment)
   {
     "fallbacks": {
       "rem": ["16px", {"replace": true}]
@@ -164,7 +173,7 @@
 
   ###optimizers.import
 
-  Inline `@import` styles with relative paths (absolute ones will be unaffected, as the ones including media-queries)
+  Inlines `@import` styles with relative paths (absolute ones will be unaffected, as the ones including media-queries)
 
   You can use the CSS syntax you want:
 
@@ -173,6 +182,17 @@
   @import url(file.css); /* imported */
   @import url("http://foo.com/bar.css"); /* not imported */
   @import url("file.css") screen and (max-width: 35em); /* not imported */
+  ```
+
+  Note that you can set the "root" folder for imported files, even if this is not the root of your project (default is `process.cwd()`). For example, if you compile `css/foo.css` that containing an `@import`, set options like this:
+
+  ```javascript
+  // .pleeeaserc file (remove comment)
+  {
+      "optimizers": {
+          "import": "css"
+      }
+  }
   ```
 
   ###optimizers.minifier
@@ -212,3 +232,16 @@
     }
   }
   ```
+
+  ###Sourcemaps
+
+  *Pleeease* supports sourcemaps from CSS (disabled by default). Enabled them in `.pleeeaserc` file:
+
+  ```javascript
+  // .pleeeaserc file (remove comment)
+  {
+      "sourcemaps": true
+  }
+  ```
+
+  <div class="note">You can also use [sourcemaps from a preprocessor like Sass](workflow.html#with-gulp) (a bit hacky for now).</div>

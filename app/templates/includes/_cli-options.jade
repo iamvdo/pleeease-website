@@ -6,15 +6,17 @@
 
   ```javascript
   {
-    "input": ["foo.css", "bar.css"],
-    "output": "baz.css"
+    "in": ["foo.css", "bar.css"],
+    "out": "baz.css"
   }
   ```
 
-  * `input` is an array of files (default `["*.css"]`)
-  * `output` is the path to the result file (default `app.min.css`)
+  * `in` is an array of files (default `["*.css"]`)
+  * `out` is the path to the result file (default `app.min.css`)
 
-  You can now compile easily:
+  <div class="note">Note: In previous version (<0.4), these options were `input` and `output`</div>
+
+  You can now compile easily, without arguments:
 
   ```javascript
   $ pleeease compile
@@ -24,8 +26,8 @@
 
   ```javascript
   {
-    "input": ["foo.css", "bar.css"],
-    "output": "baz.css",
+    "in": ["foo.css", "bar.css"],
+    "out": "baz.css",
     "fallbacks": {
       "autoprefixer": ["last 4 versions"]
     },

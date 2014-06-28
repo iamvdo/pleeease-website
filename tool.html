@@ -3,7 +3,7 @@ document.createElement('nav');
 document.createElement('section');
 document.createElement('article');
 document.createElement('footer');
-</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="index.html" title="Get started">Get started</a></li><li><a href="tool.html" title="The tool" class="selected">The tool</a></li><li><a href="workflow.html" title="Improve your workflow">Improve your workflow</a></li><li><a href="options.html" title="Options">Options</a></li><li><a href="contribute.html" title="Contribute">Contribute</a></li><li><a href="playground.html" class="play">Playground</a></li><li class="version">Version <strong>0.3.0</strong> (2014-05-19)</li></ul></nav></header><section><article class="tool"><div class="block"><h2 id="the-tool">The tool</h2>
+</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="index.html" title="Get started">Get started</a></li><li><a href="tool.html" title="The tool" class="selected">The tool</a></li><li><a href="workflow.html" title="Improve your workflow">Improve your workflow</a></li><li><a href="options.html" title="Options">Options</a></li><li><a href="contribute.html" title="Contribute">Contribute</a></li><li><a href="playground.html" class="play">Playground</a></li><li class="version">Version <strong>0.4.0</strong></li></ul></nav></header><section><article class="tool"><div class="block"><h2 id="the-tool">The tool</h2>
 <p>The tool is CLI-based.</p>
 <h3 id="pleeease-compile">pleeease compile</h3>
 <p>The first command is <code>compile</code></p>
@@ -41,21 +41,23 @@ document.createElement('footer');
 </div><div class="block"><h2 id="configuration-file">Configuration file</h2>
 <p><em>Pleeease</em> options can be set in a <code>.pleeeaserc</code> file (JSON-like). For example:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
-  <span class="token string" >"input"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"foo.css"</span><span class="token punctuation" >,</span> <span class="token string" >"bar.css"</span><span class="token punctuation" >]</span><span class="token punctuation" >,</span>
-  <span class="token string" >"output"</span><span class="token punctuation" >:</span> <span class="token string" >"baz.css"</span>
+  <span class="token string" >"in"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"foo.css"</span><span class="token punctuation" >,</span> <span class="token string" >"bar.css"</span><span class="token punctuation" >]</span><span class="token punctuation" >,</span>
+  <span class="token string" >"out"</span><span class="token punctuation" >:</span> <span class="token string" >"baz.css"</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <ul>
-<li><code>input</code> is an array of files (default <code>[&quot;*.css&quot;]</code>)</li>
-<li><code>output</code> is the path to the result file (default <code>app.min.css</code>)</li>
+<li><code>in</code> is an array of files (default <code>[&quot;*.css&quot;]</code>)</li>
+<li><code>out</code> is the path to the result file (default <code>app.min.css</code>)</li>
 </ul>
-<p>You can now compile easily:</p>
+<div class="note">Note: In previous version (<0.4), these options were `input` and `output`</div>
+
+<p>You can now compile easily, without arguments:</p>
 <pre class="language-javascript"><code class="language-javascript">$ pleeease compile
 </code></pre>
 <p>You can also override <a href="options.html">all postprocess options</a>. For example, if you want to enable <a href="options.html#fallbacks-autoprefixer">autoprefixer</a> and disable <a href="options.html#optimizers-minifier">minifier</a>, just write:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
-  <span class="token string" >"input"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"foo.css"</span><span class="token punctuation" >,</span> <span class="token string" >"bar.css"</span><span class="token punctuation" >]</span><span class="token punctuation" >,</span>
-  <span class="token string" >"output"</span><span class="token punctuation" >:</span> <span class="token string" >"baz.css"</span><span class="token punctuation" >,</span>
+  <span class="token string" >"in"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"foo.css"</span><span class="token punctuation" >,</span> <span class="token string" >"bar.css"</span><span class="token punctuation" >]</span><span class="token punctuation" >,</span>
+  <span class="token string" >"out"</span><span class="token punctuation" >:</span> <span class="token string" >"baz.css"</span><span class="token punctuation" >,</span>
   <span class="token string" >"fallbacks"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
     <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"last 4 versions"</span><span class="token punctuation" >]</span>
   <span class="token punctuation" >}</span><span class="token punctuation" >,</span>
