@@ -241,12 +241,20 @@ article h3 {
 	background: var(--color-secondary);
 	box-shadow: 0 0 0 2px var(--color-light), 0 0 0 4px var(--color-secondary);
 }
-textarea {
+textarea,
+.textarea-area {
+	background: #FFF;
+	border: 1px solid #888;
 	width: 100%;
 	height: 400px;
 	padding: 1em;
 	font: 1.4em Consolas, monospace;
 	resize: vertical;
+	white-space: pre-wrap;
+	overflow: scroll;
+}
+#output {
+	background: #eee;
 }
 
 @keyframes jelly {
