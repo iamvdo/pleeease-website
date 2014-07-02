@@ -12,6 +12,7 @@ document.createElement('footer');
   <span class="token string" >"fallbacks"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
     <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >,</span>
     <span class="token string" >"variables"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >,</span>
+    <span class="token string" >"filters"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >,</span>
     <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >,</span>
     <span class="token string" >"pseudoElements"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span>
   <span class="token punctuation" >}</span><span class="token punctuation" >,</span>
@@ -27,12 +28,12 @@ document.createElement('footer');
 <p>All options can be disabled with the <code>false</code> keyword or modified using each postprocessor options. See each options:</p>
 <ul>
 <li><a href="tool.html#configuration-file">in, out</a></li>
-<li>fallbacks: <a href="#fallbacks-autoprefixer">autoprefixer</a>, <a href="#fallbacks-variables">variables</a>, <a href="#fallbacks-rem">rem</a>, <a href="#fallbacks-pseudoelements">pseudoElements</a></li>
+<li>fallbacks: <a href="#fallbacks-autoprefixer">autoprefixer</a>, <a href="#fallbacks-variables">variables</a>, <a href="#fallbacks-filters">filters</a>, <a href="#fallbacks-rem">rem</a>, <a href="#fallbacks-pseudoelements">pseudoElements</a></li>
 <li>optimizers: <a href="#optimizers-import">import</a>, <a href="#optimizers-minifier">minifier</a>, <a href="#optimizers-mqpacker">mqpacker</a></li>
 <li><a href="#sourcemaps">sourcemaps</a></li>
 </ul>
 <h3 id="fallbacks-autoprefixer">fallbacks.autoprefixer</h3>
-<p>Add support for <a href="https://github.com/ai/autoprefixer">Autoprefixer 2.0.0</a> that <strong>add vendor prefixes to CSS</strong>. From Autoprefixer options, you can specify the browsers you want to target in your project:</p>
+<p>Adds support for <a href="https://github.com/ai/autoprefixer">Autoprefixer 2.0.0</a> that <strong>add vendor prefixes to CSS</strong>. From Autoprefixer options, you can specify the browsers you want to target in your project:</p>
 <ul>
 <li><code>last 2 versions</code> is last versions for each browser</li>
 <li><code>last 2 Chrome versions</code> is last versions of the specified browser.</li>
@@ -54,7 +55,7 @@ document.createElement('footer');
 <pre class="language-css"><code class="language-css"><span class="token selector" >.element </span><span class="token punctuation" >{</span>
   <span class="token property" >display</span><span class="token punctuation" >:</span> flex<span class="token punctuation" >;</span>
   <span class="token property" >flex-direction</span><span class="token punctuation" >:</span> column<span class="token punctuation" >;</span>
-  <span class="token property" >background</span><span class="token punctuation" >:</span> linear-gradient(red, blue)<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >linear-gradient</span>(red, blue)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>To this one:</p>
@@ -68,21 +69,21 @@ document.createElement('footer');
   <span class="token property" >-webkit-flex-direction</span><span class="token punctuation" >:</span> column<span class="token punctuation" >;</span>
       <span class="token property" >-ms-flex-direction</span><span class="token punctuation" >:</span> column<span class="token punctuation" >;</span>
           <span class="token property" >flex-direction</span><span class="token punctuation" >:</span> column<span class="token punctuation" >;</span>
-  <span class="token property" >background</span><span class="token punctuation" >:</span> -webkit-gradient(linear, left top, left bottom, from(red), to(blue))<span class="token punctuation" >;</span>
-  <span class="token property" >background</span><span class="token punctuation" >:</span> -webkit-linear-gradient(red, blue)<span class="token punctuation" >;</span>
-  <span class="token property" >background</span><span class="token punctuation" >:</span> linear-gradient(red, blue)<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >-webkit-gradient</span>(linear, left top, left bottom, <span class="token function" >from</span>(red), <span class="token function" >to</span>(blue))<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >-webkit-linear-gradient</span>(red, blue)<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >linear-gradient</span>(red, blue)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>See <a href="https://github.com/ai/autoprefixer#browsers">full available options for Autoprefixer on GitHub</a>.</p>
 <h3 id="fallbacks-variables">fallbacks.variables</h3>
-<p>Add support for a <strong>&quot;not so bad&quot; <a href="https://github.com/iamvdo/postcss-vars">CSS variables polyfill</a></strong>. There are no options.</p>
+<p>Adds support for a <strong>&quot;not so bad&quot; <a href="https://github.com/iamvdo/postcss-vars">CSS variables polyfill</a></strong>. There are no options.</p>
 <p>CSS variables begins with <code>--</code> and have to be declared in a <code>:root</code> rule. Then, they can be used with the <code>var(--variable)</code> notation.</p>
 <p>It converts this file:</p>
 <pre class="language-css"><code class="language-css"><span class="token selector" >:root </span><span class="token punctuation" >{</span>
   <span class="token property" >--color-primary</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 <span class="token selector" >.element </span><span class="token punctuation" >{</span>
-  <span class="token property" >color</span><span class="token punctuation" >:</span> var(--color-primary)<span class="token punctuation" >;</span>
+  <span class="token property" >color</span><span class="token punctuation" >:</span> <span class="token function" >var</span>(--color-primary)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>To this one:</p>
@@ -93,8 +94,38 @@ document.createElement('footer');
   <span class="token property" >color</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
+<h3 id="fallbacks-filters">fallbacks.filters</h3>
+<p>Converts CSS shorthand filters to SVG equivalents. Uses <a href="https://github.com/iamvdo/pleeease-filters">pleeease-filters</a>.</p>
+<p>It converts this file:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.blur </span><span class="token punctuation" >{</span>
+  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>To this one:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.blur </span><span class="token punctuation" >{</span>
+  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token url" >url('data:image/svg+xml;utf8,&lt;svg xmlns="http://www.w3.org/2000/svg">&lt;filter id="filter">&lt;feGaussianBlur stdDeviation="4" />&lt;/filter>&lt;/svg>#filter')</span><span class="token punctuation" >;</span>
+  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>You can also force IE filters with an option:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
+</span><span class="token punctuation" >{</span>
+  <span class="token string" >"fallbacks"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
+    <span class="token string" >"filters"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span> <span class="token string" >"oldIE"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span> <span class="token punctuation" >}</span>
+  <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>Using the first example, you&#39;ll get:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.blur </span><span class="token punctuation" >{</span>
+  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token url" >url('data:image/svg+xml;utf8,&lt;svg xmlns="http://www.w3.org/2000/svg">&lt;filter id="filter">&lt;feGaussianBlur stdDeviation="4" />&lt;/filter>&lt;/svg>#filter')</span><span class="token punctuation" >;</span>
+  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
+  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token property" >progid</span><span class="token punctuation" >:</span>DXImageTransform.Microsoft.<span class="token function" >Blur</span>(pixelradius=4)<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>Then, needed prefixes are added by Autoprefixer. You don&#39;t have to care about this.</p>
+<p><strong>Be careful</strong>, not all browsers support CSS or SVG filters. For your information, latest WebKit browsers support CSS shorthand, Firefox support SVG filters and IE9- support IE filters (limited and slightly degraded). <strong>It means that IE10+, Opera Mini and Android browsers have no support at all</strong>. Moreover, IE filters shouldn&#39;t be used.</p>
 <h3 id="fallbacks-rem">fallbacks.rem</h3>
-<p>Add support for <a href="https://github.com/iamvdo/node-pixrem">pixrem</a> that <strong>generates pixel fallbacks for <code>rem</code> units</strong>. Add options as an array:</p>
+<p>Adds support for <a href="https://github.com/iamvdo/node-pixrem">pixrem</a> that <strong>generates pixel fallbacks for <code>rem</code> units</strong>. Add options as an array:</p>
 <ul>
 <li>first parameter is the root font-size (default <code>16px</code>)</li>
 <li>second parameter is an object with <code>replace</code> key set to <code>true</code> if you want to replace value. (default <code>false</code>)</li>
@@ -121,8 +152,8 @@ document.createElement('footer');
 <div class="note">For now, this uses a fork from <a href="https://github.com/robwierzbowski/node-pixrem">pixrem</a> until the <a href="https://github.com/robwierzbowski/node-pixrem/pull/10">PR will be accepted or not</a>.</div>
 
 <h3 id="fallbacks-pseudoelements">fallbacks.pseudoElements</h3>
-<p><strong>Convert pseudo-elements using CSS3 syntax</strong> (two-colons notation like <code>::after</code>, <code>::before</code>, <code>::first-line</code> and <code>::first-letter</code>) with the old one, using only one colon (useful for IE8 support). There are no options.</p>
-<p>Convert this file:</p>
+<p><strong>Converts pseudo-elements using CSS3 syntax</strong> (two-colons notation like <code>::after</code>, <code>::before</code>, <code>::first-line</code> and <code>::first-letter</code>) with the old one, using only one colon (useful for IE8 support). There are no options.</p>
+<p>Converts this file:</p>
 <pre class="language-css"><code class="language-css"><span class="token selector" >.element::after </span><span class="token punctuation" >{</span>
   <span class="token property" >content</span><span class="token punctuation" >:</span> <span class="token string" >''</span><span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
@@ -149,9 +180,9 @@ document.createElement('footer');
 <span class="token punctuation" >}</span>
 </code></pre>
 <h3 id="optimizers-minifier">optimizers.minifier</h3>
-<p>Add support for <a href="https://github.com/hail2u/node-csswring">CSS Wring</a>, <strong>a CSS minifier</strong>. There are no options.</p>
+<p>Adds support for <a href="https://github.com/hail2u/node-csswring">CSS Wring</a>, <strong>a CSS minifier</strong>. There are no options.</p>
 <h3 id="optimizers-mqpacker">optimizers.mqpacker</h3>
-<p>Add support for <a href="https://github.com/hail2u/node-css-mqpacker">MQ Packer</a> that <strong>pack same CSS media query rules into one media query rule</strong>. There are no options.</p>
+<p>Adds support for <a href="https://github.com/hail2u/node-css-mqpacker">MQ Packer</a> that <strong>pack same CSS media query rules into one media query rule</strong>. There are no options.</p>
 <p>Mqpacker can convert multiple files like this:</p>
 <pre class="language-css"><code class="language-css"><span class="token atrule" >@media (max-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
   <span class="token selector" >.element </span><span class="token punctuation" >{</span>

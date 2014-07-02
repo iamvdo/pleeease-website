@@ -28,6 +28,7 @@
     color: red;
     background: var(--color-primary);
     width: calc(100% - 50px);
+    filter: blur(4px);
   }
   @media screen and (min-width: 36em) {
     .elem {
@@ -49,7 +50,7 @@
   }
   *,
   *:after,
-  *:before { 
+  *:before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -64,6 +65,9 @@
     background: red;
     width: -webkit-calc(100% - 50px);
     width: calc(100% - 50px);
+    filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="4" /></filter></svg>#filter');
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
   }
   @media screen and (min-width: 36em) {
     .elem {

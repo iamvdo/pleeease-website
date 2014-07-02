@@ -5,7 +5,14 @@ document.createElement('article');
 document.createElement('footer');
 </script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="index.html" title="Get started" class="selected">Get started</a></li><li><a href="tool.html" title="The tool">The tool</a></li><li><a href="workflow.html" title="Improve your workflow">Improve your workflow</a></li><li><a href="options.html" title="Options">Options</a></li><li><a href="contribute.html" title="Contribute">Contribute</a></li><li><a href="playground.html" class="play">Playground</a></li><li class="version">Version <strong>0.4.0</strong></li></ul></nav></header><section><article class="index"><div class="block"><p><em>Pleeease</em> is a CSS post-processor. The main goal of this tool is to <strong>perform all treatments that a pre-processor shouldn&#39;t have to do!</strong> (eg, dealing with prefixes, convert <code>rem</code> to <code>px</code>, support older browsers, etc.). Just learn how to <a href="tool.html#configuration-file">configure it</a> and let <em>Pleeease</em> do the job for you*.</p>
 <p><strong><em>Pleeease</em> is also a great tool if you want to write DRY, future-proof CSS.</strong></p>
-<p>For now, it adds <strong>prefixes</strong>, <strong>variables</strong>, <strong>pseudo-elements</strong> and <strong><code>rem</code></strong> unit support, <strong>packs same media-query</strong> in one <code>@media</code> rule, <strong>inlines <code>@import</code></strong> styles and <strong>minifies the result</strong>.</p>
+<ul>
+<li>adds <strong>prefixes</strong>, based on <a href="https://github.com/ai/autoprefixer">Autoprefixer</a></li>
+<li>provides fallbacks for <strong>CSS variables</strong>, <strong>pseudo-elements</strong>, <strong><code>rem</code></strong> unit</li>
+<li>converts <strong>CSS shorthand filters</strong> to SVG equivalents</li>
+<li><strong>packs same media-query</strong> in one <code>@media</code> rule</li>
+<li><strong>inlines <code>@import</code></strong> styles</li>
+<li><strong>minifies the result</strong></li>
+</ul>
 <p><em>Pleeease</em> is based on <a href="https://github.com/ai/postcss">PostCSS</a>. It helps combine multiple processors and parse CSS only once.</p>
 <div class="note">* no magic here, generated code should be checked</div></div><div class="block"><h2 id="get-started">Get started</h2>
 <p>The simplest way to use <em>Pleeease</em> is to use <a href="tool.html">CLI</a> (command-line interface).</p>
@@ -32,17 +39,18 @@ document.createElement('footer');
 <span class="token selector" >.elem </span><span class="token punctuation" >{</span>
   <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span>
   <span class="token property" >color</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
-  <span class="token property" >background</span><span class="token punctuation" >:</span> var(--color-primary)<span class="token punctuation" >;</span>
-  <span class="token property" >width</span><span class="token punctuation" >:</span> calc(100% - 50px)<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >var</span>(--color-primary)<span class="token punctuation" >;</span>
+  <span class="token property" >width</span><span class="token punctuation" >:</span> <span class="token function" >calc</span>(100% - 50px)<span class="token punctuation" >;</span>
+  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 <span class="token atrule" >@media screen and (min-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
   <span class="token selector" >.elem </span><span class="token punctuation" >{</span>
-  <span class="token property" >color</span><span class="token punctuation" >:</span> var(--color-secondary)<span class="token punctuation" >;</span>
+  <span class="token property" >color</span><span class="token punctuation" >:</span> <span class="token function" >var</span>(--color-secondary)<span class="token punctuation" >;</span>
   <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 <span class="token atrule" >@media screen and (min-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
   <span class="token selector" >.class </span><span class="token punctuation" >{</span>
-  <span class="token property" >background</span><span class="token punctuation" >:</span> linear-gradient(green, blue)<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >linear-gradient</span>(green, blue)<span class="token punctuation" >;</span>
   <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
@@ -52,7 +60,7 @@ document.createElement('footer');
 <span class="token punctuation" >}</span>
 <span class="token selector" >*,
 *:after,
-*:before </span><span class="token punctuation" >{</span> 
+*:before </span><span class="token punctuation" >{</span>
   <span class="token property" >-webkit-box-sizing</span><span class="token punctuation" >:</span> border-box<span class="token punctuation" >;</span>
   <span class="token property" >-moz-box-sizing</span><span class="token punctuation" >:</span> border-box<span class="token punctuation" >;</span>
   <span class="token property" >box-sizing</span><span class="token punctuation" >:</span> border-box<span class="token punctuation" >;</span>
@@ -65,17 +73,20 @@ document.createElement('footer');
   <span class="token property" >font-size</span><span class="token punctuation" >:</span> 32px<span class="token punctuation" >;</span>
   <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span>
   <span class="token property" >background</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
-  <span class="token property" >width</span><span class="token punctuation" >:</span> -webkit-calc(100% - 50px)<span class="token punctuation" >;</span>
-  <span class="token property" >width</span><span class="token punctuation" >:</span> calc(100% - 50px)<span class="token punctuation" >;</span>
+  <span class="token property" >width</span><span class="token punctuation" >:</span> <span class="token function" >-webkit-calc</span>(100% - 50px)<span class="token punctuation" >;</span>
+  <span class="token property" >width</span><span class="token punctuation" >:</span> <span class="token function" >calc</span>(100% - 50px)<span class="token punctuation" >;</span>
+  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token url" >url('data:image/svg+xml;utf8,&lt;svg xmlns="http://www.w3.org/2000/svg">&lt;filter id="filter">&lt;feGaussianBlur stdDeviation="4" />&lt;/filter>&lt;/svg>#filter')</span><span class="token punctuation" >;</span>
+  <span class="token property" >-webkit-filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
+          <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 <span class="token atrule" >@media screen and (min-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
   <span class="token selector" >.elem </span><span class="token punctuation" >{</span>
     <span class="token property" >color</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
   <span class="token punctuation" >}</span>
   <span class="token selector" >.class </span><span class="token punctuation" >{</span>
-    <span class="token property" >background</span><span class="token punctuation" >:</span> -webkit-gradient(linear, left top, left bottom, from(green), to(blue))<span class="token punctuation" >;</span>
-    <span class="token property" >background</span><span class="token punctuation" >:</span> -webkit-linear-gradient(green, blue)<span class="token punctuation" >;</span>
-    <span class="token property" >background</span><span class="token punctuation" >:</span> linear-gradient(green, blue)<span class="token punctuation" >;</span>
+    <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >-webkit-gradient</span>(linear, left top, left bottom, <span class="token function" >from</span>(green), <span class="token function" >to</span>(blue))<span class="token punctuation" >;</span>
+    <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >-webkit-linear-gradient</span>(green, blue)<span class="token punctuation" >;</span>
+    <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >linear-gradient</span>(green, blue)<span class="token punctuation" >;</span>
   <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>

@@ -12,6 +12,7 @@
     "fallbacks": {
       "autoprefixer": true,
       "variables": true,
+      "filters": true,
       "rem": true,
       "pseudoElements": true
     },
@@ -28,14 +29,14 @@
   All options can be disabled with the `false` keyword or modified using each postprocessor options. See each options:
 
   * [in, out](tool.html#configuration-file)
-  * fallbacks: [autoprefixer](#fallbacks-autoprefixer), [variables](#fallbacks-variables), [rem](#fallbacks-rem), [pseudoElements](#fallbacks-pseudoelements)
+  * fallbacks: [autoprefixer](#fallbacks-autoprefixer), [variables](#fallbacks-variables), [filters](#fallbacks-filters), [rem](#fallbacks-rem), [pseudoElements](#fallbacks-pseudoelements)
   * optimizers: [import](#optimizers-import), [minifier](#optimizers-minifier), [mqpacker](#optimizers-mqpacker)
   * [sourcemaps](#sourcemaps)
 
 
   ###fallbacks.autoprefixer
 
-  Add support for [Autoprefixer 2.0.0](https://github.com/ai/autoprefixer) that **add vendor prefixes to CSS**. From Autoprefixer options, you can specify the browsers you want to target in your project:
+  Adds support for [Autoprefixer 2.0.0](https://github.com/ai/autoprefixer) that **add vendor prefixes to CSS**. From Autoprefixer options, you can specify the browsers you want to target in your project:
 
   * `last 2 versions` is last versions for each browser
   * `last 2 Chrome versions` is last versions of the specified browser.
@@ -89,7 +90,7 @@
 
   ###fallbacks.variables
 
-  Add support for a **"not so bad" [CSS variables polyfill](https://github.com/iamvdo/postcss-vars)**. There are no options.
+  Adds support for a **"not so bad" [CSS variables polyfill](https://github.com/iamvdo/postcss-vars)**. There are no options.
 
   CSS variables begins with `--` and have to be declared in a `:root` rule. Then, they can be used with the `var(--variable)` notation.
 
@@ -115,9 +116,55 @@
   }
   ```
 
+  ###fallbacks.filters
+
+  Converts CSS shorthand filters to SVG equivalents. Uses [pleeease-filters](https://github.com/iamvdo/pleeease-filters).
+
+  It converts this file:
+
+  ```css
+  .blur {
+    filter: blur(4px);
+  }
+  ```
+
+  To this one:
+
+  ```css
+  .blur {
+    filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="4" /></filter></svg>#filter');
+    filter: blur(4px);
+  }
+  ```
+
+  You can also force IE filters with an option:
+
+  ```javascript
+  // .pleeeaserc file (remove comment)
+  {
+    "fallbacks": {
+      "filters": { "oldIE": true }
+    }
+  }
+  ```
+
+  Using the first example, you'll get:
+
+  ```css
+  .blur {
+    filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="4" /></filter></svg>#filter');
+    filter: blur(4px);
+    filter: progid:DXImageTransform.Microsoft.Blur(pixelradius=4);
+  }
+  ```
+
+  Then, needed prefixes are added by Autoprefixer. You don't have to care about this.
+
+  **Be careful**, not all browsers support CSS or SVG filters. For your information, latest WebKit browsers support CSS shorthand, Firefox support SVG filters and IE9- support IE filters (limited and slightly degraded). **It means that IE10+, Opera Mini and Android browsers have no support at all**. Moreover, IE filters shouldn't be used.
+
   ###fallbacks.rem
 
-  Add support for [pixrem](https://github.com/iamvdo/node-pixrem) that **generates pixel fallbacks for `rem` units**. Add options as an array:
+  Adds support for [pixrem](https://github.com/iamvdo/node-pixrem) that **generates pixel fallbacks for `rem` units**. Add options as an array:
 
   * first parameter is the root font-size (default `16px`)
   * second parameter is an object with `replace` key set to `true` if you want to replace value. (default `false`)
@@ -154,9 +201,9 @@
 
   ###fallbacks.pseudoElements
 
-  **Convert pseudo-elements using CSS3 syntax** (two-colons notation like `::after`, `::before`, `::first-line` and `::first-letter`) with the old one, using only one colon (useful for IE8 support). There are no options.
+  **Converts pseudo-elements using CSS3 syntax** (two-colons notation like `::after`, `::before`, `::first-line` and `::first-letter`) with the old one, using only one colon (useful for IE8 support). There are no options.
 
-  Convert this file:
+  Converts this file:
 
   ```css
   .element::after {
@@ -197,11 +244,11 @@
 
   ###optimizers.minifier
 
-  Add support for [CSS Wring](https://github.com/hail2u/node-csswring), **a CSS minifier**. There are no options.
+  Adds support for [CSS Wring](https://github.com/hail2u/node-csswring), **a CSS minifier**. There are no options.
 
   ###optimizers.mqpacker
 
-  Add support for [MQ Packer](https://github.com/hail2u/node-css-mqpacker) that **pack same CSS media query rules into one media query rule**. There are no options.
+  Adds support for [MQ Packer](https://github.com/hail2u/node-css-mqpacker) that **pack same CSS media query rules into one media query rule**. There are no options.
 
   Mqpacker can convert multiple files like this:
 
