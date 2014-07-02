@@ -1358,7 +1358,7 @@ input.addEventListener('keyup', doPleeease);
     Filter.prototype.check = function(decl) {
       var v;
       v = decl.value;
-      return v.toLowerCase().indexOf('alpha(') === -1 && v.indexOf('DXImageTransform.Microsoft') === -1;
+      return v.toLowerCase().indexOf('alpha(') === -1 && v.indexOf('DXImageTransform.Microsoft') === -1 && v.indexOf('data:image/svg+xml') === -1;
     };
 
     return Filter;
@@ -18204,6 +18204,10 @@ function Filter (opts) {
 
 			var properties = {};
 
+			if (unit === '' && amount !== 0) {
+				return properties;
+			}
+
 			amount = helpers.length(amount, unit);
 
 			// CSS
@@ -18380,7 +18384,7 @@ Filter.prototype.convert = function (value) {
 		properties = this.filters.contrast(amount, unit);
 	}
 	// Blur
-	fmatch = value.match(/(blur)\((\s*[0-9\.]+)(px|em|rem)\s*\)/i);
+	fmatch = value.match(/(blur)\((\s*[0-9\.]+)(px|em|rem|)\s*\)/i);
 	if (fmatch !== null) {
 		amount = parseFloat(fmatch[2], 10);
 		unit   = fmatch[3];
@@ -18442,8 +18446,19 @@ Filter.prototype.postcss = function (css) {
 				if (_this.options.oldIE && properties.filtersIE.length > 0) {
 					var filtersIE = properties.filtersIE.join(' ');
 
-					// insert IE filters
-					rule.insertAfter(decl, { prop: 'filter', value: filtersIE });
+					// insert IE filters, only if it's not already present
+					var newDecl = { prop: 'filter', value: filtersIE};
+					var add = true;
+					rule.eachDecl(function (d) {
+						if (newDecl.value === d.value) {
+							add = false;
+							return false;
+						}
+						
+					});
+					if (add) {
+						rule.insertAfter(decl, newDecl);
+					}
 				}
 
 				if (properties.filtersSVG.length > 0) {
@@ -18458,8 +18473,18 @@ Filter.prototype.postcss = function (css) {
 						var svgString = createSVG(properties.filtersSVG);
 						var filtersSVG = 'url(\'data:image/svg+xml;utf8,' + svgString + '#filter\')';
 
-						// insert SVG filters
-						rule.insertBefore(decl, { prop: 'filter', value: filtersSVG});
+						// insert SVG filters, only if it's not already present
+						var newDecl = { prop: 'filter', value: filtersSVG};
+						var add = true;
+						rule.eachDecl(function (d) {
+							if (newDecl.value === d.value) {
+								add = false;
+								return false;
+							}
+						});
+						if (add) {
+							rule.insertBefore(decl, newDecl);
+						}
 					}
 				}
 
