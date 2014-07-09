@@ -1,4 +1,4 @@
-var pleeease = require('pleeease');
+var pleeease = require('../../node_modules/pleeease-brunch/node_modules/pleeease');
 var prismjs  = require('prismjs');
 
 var input = document.querySelector('#input');
@@ -15,7 +15,7 @@ var options = {
 	}
 };
 function htmlEntities(str) {
-  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  return String(str).replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 var doPleeease = function () {
   var source = input.value;
@@ -23,7 +23,7 @@ var doPleeease = function () {
   try {
     compiled = pleeease.process(source, options);
   } catch (err) {}
-  output.innerHTML = prismjs.highlight(htmlEntities(compiled), prismjs.languages.css);
+  output.innerHTML = prismjs.highlight(compiled, prismjs.languages.css);
 };
 doPleeease();
 input.addEventListener('keyup', doPleeease);
