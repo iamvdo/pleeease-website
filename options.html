@@ -10,19 +10,19 @@ document.createElement('footer');
   <span class="token string" >"out"</span><span class="token punctuation" >:</span> <span class="token string" >"app.min.css"</span><span class="token punctuation" >,</span>
 
   <span class="token string" >"fallbacks"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
-    <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >,</span>
-    <span class="token string" >"variables"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >,</span>
-    <span class="token string" >"filters"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >,</span>
-    <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >,</span>
-    <span class="token string" >"pseudoElements"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span>
+    <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+    <span class="token string" >"variables"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+    <span class="token string" >"filters"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+    <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+    <span class="token string" >"pseudoElements"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
   <span class="token punctuation" >}</span><span class="token punctuation" >,</span>
   <span class="token string" >"optimizers"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
-    <span class="token string" >"import"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >,</span>
-    <span class="token string" >"minifier"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >,</span>
-    <span class="token string" >"mqpacker"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span>
+    <span class="token string" >"import"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+    <span class="token string" >"minifier"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+    <span class="token string" >"mqpacker"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
   <span class="token punctuation" >}</span><span class="token punctuation" >,</span>
 
-  <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token boolean" >false</span>
+  <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>All options can be disabled with the <code>false</code> keyword or modified using each postprocessor options. See each options:</p>
@@ -55,7 +55,7 @@ document.createElement('footer');
 <pre class="language-css"><code class="language-css"><span class="token selector" >.element </span><span class="token punctuation" >{</span>
   <span class="token property" >display</span><span class="token punctuation" >:</span> flex<span class="token punctuation" >;</span>
   <span class="token property" >flex-direction</span><span class="token punctuation" >:</span> column<span class="token punctuation" >;</span>
-  <span class="token property" >background</span><span class="token punctuation" >:</span> linear-gradient(red, blue)<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >linear-gradient</span>(red, blue)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>To this one:</p>
@@ -69,9 +69,9 @@ document.createElement('footer');
   <span class="token property" >-webkit-flex-direction</span><span class="token punctuation" >:</span> column<span class="token punctuation" >;</span>
       <span class="token property" >-ms-flex-direction</span><span class="token punctuation" >:</span> column<span class="token punctuation" >;</span>
           <span class="token property" >flex-direction</span><span class="token punctuation" >:</span> column<span class="token punctuation" >;</span>
-  <span class="token property" >background</span><span class="token punctuation" >:</span> -webkit-gradient(linear, left top, left bottom, from(red), to(blue))<span class="token punctuation" >;</span>
-  <span class="token property" >background</span><span class="token punctuation" >:</span> -webkit-linear-gradient(red, blue)<span class="token punctuation" >;</span>
-  <span class="token property" >background</span><span class="token punctuation" >:</span> linear-gradient(red, blue)<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >-webkit-gradient</span>(linear, left top, left bottom, <span class="token function" >from</span>(red), <span class="token function" >to</span>(blue))<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >-webkit-linear-gradient</span>(red, blue)<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >linear-gradient</span>(red, blue)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>See <a href="https://github.com/ai/autoprefixer#browsers">full available options for Autoprefixer on GitHub</a>.</p>
@@ -83,7 +83,7 @@ document.createElement('footer');
   <span class="token property" >--color-primary</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 <span class="token selector" >.element </span><span class="token punctuation" >{</span>
-  <span class="token property" >color</span><span class="token punctuation" >:</span> var(--color-primary)<span class="token punctuation" >;</span>
+  <span class="token property" >color</span><span class="token punctuation" >:</span> <span class="token function" >var</span>(--color-primary)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>To this one:</p>
@@ -98,28 +98,31 @@ document.createElement('footer');
 <p>Converts CSS shorthand filters to SVG equivalent. Uses <a href="https://github.com/iamvdo/pleeease-filters">pleeease-filters</a>.</p>
 <p>It converts this file:</p>
 <pre class="language-css"><code class="language-css"><span class="token selector" >.blur </span><span class="token punctuation" >{</span>
-  <span class="token property" >filter</span><span class="token punctuation" >:</span> blur(4px)<span class="token punctuation" >;</span>
+  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>To this one:</p>
 <pre class="language-css"><code class="language-css"><span class="token selector" >.blur </span><span class="token punctuation" >{</span>
   <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token url" >url('data:image/svg+xml;utf8,&lt;svg xmlns="http://www.w3.org/2000/svg">&lt;filter id="filter">&lt;feGaussianBlur stdDeviation="4" />&lt;/filter>&lt;/svg>#filter')</span><span class="token punctuation" >;</span>
-  <span class="token property" >filter</span><span class="token punctuation" >:</span> blur(4px)<span class="token punctuation" >;</span>
+  <span class="token property" >-webkit-filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
+          <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
+<p>Great combo with Autoprefixer!</p>
 <p>You can also force IE filters with an option:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
 </span><span class="token punctuation" >{</span>
   <span class="token string" >"fallbacks"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
-    <span class="token string" >"filters"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span> <span class="token string" >"oldIE"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span> <span class="token punctuation" >}</span>
+    <span class="token string" >"filters"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span> <span class="token string" >"oldIE"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span> <span class="token punctuation" >}</span>
   <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>Using the first example, you&#39;ll get:</p>
 <pre class="language-css"><code class="language-css"><span class="token selector" >.blur </span><span class="token punctuation" >{</span>
   <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token url" >url('data:image/svg+xml;utf8,&lt;svg xmlns="http://www.w3.org/2000/svg">&lt;filter id="filter">&lt;feGaussianBlur stdDeviation="4" />&lt;/filter>&lt;/svg>#filter')</span><span class="token punctuation" >;</span>
-  <span class="token property" >filter</span><span class="token punctuation" >:</span> blur(4px)<span class="token punctuation" >;</span>
-  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token property" >progid</span><span class="token punctuation" >:</span>DXImageTransform.Microsoft.Blur(pixelradius=4)<span class="token punctuation" >;</span>
+  <span class="token property" >-webkit-filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
+          <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
+  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token property" >progid</span><span class="token punctuation" >:</span>DXImageTransform.Microsoft.<span class="token function" >Blur</span>(pixelradius=4)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>Then, needed prefixes are added by Autoprefixer. You don&#39;t have to care about this.</p>
@@ -133,7 +136,7 @@ document.createElement('footer');
 <pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
 </span><span class="token punctuation" >{</span>
   <span class="token string" >"fallbacks"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
-    <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"16px"</span><span class="token punctuation" >,</span> <span class="token punctuation" >{</span><span class="token string" >"replace"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >}</span><span class="token punctuation" >]</span>
+    <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"16px"</span><span class="token punctuation" >,</span> <span class="token punctuation" >{</span><span class="token string" >"replace"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >}</span><span class="token punctuation" >]</span>
   <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
@@ -210,7 +213,7 @@ document.createElement('footer');
 <p><em>Pleeease</em> supports sourcemaps from CSS (disabled by default). Enabled them in <code>.pleeeaserc</code> file:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
 </span><span class="token punctuation" >{</span>
-    <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token boolean" >true</span>
+    <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <div class="note">You can also use <a href="workflow.html#with-gulp">sourcemaps from a preprocessor like Sass</a> (a bit hacky for now).</div></div><footer><p>Postprocess with <a href="/">Pleeease</a> by <a href="http://twitter.com/iamvdo">@iamvdo</a>.</p><p class="note">Thanks to <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.</p></footer></article></section><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

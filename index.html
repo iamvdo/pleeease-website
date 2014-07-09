@@ -39,18 +39,18 @@ document.createElement('footer');
 <span class="token selector" >.elem </span><span class="token punctuation" >{</span>
   <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span>
   <span class="token property" >color</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
-  <span class="token property" >background</span><span class="token punctuation" >:</span> var(--color-primary)<span class="token punctuation" >;</span>
-  <span class="token property" >width</span><span class="token punctuation" >:</span> calc(100% - 50px)<span class="token punctuation" >;</span>
-  <span class="token property" >filter</span><span class="token punctuation" >:</span> blur(4px)<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >var</span>(--color-primary)<span class="token punctuation" >;</span>
+  <span class="token property" >width</span><span class="token punctuation" >:</span> <span class="token function" >calc</span>(100% - 50px)<span class="token punctuation" >;</span>
+  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 <span class="token atrule" >@media screen and (min-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
   <span class="token selector" >.elem </span><span class="token punctuation" >{</span>
-  <span class="token property" >color</span><span class="token punctuation" >:</span> var(--color-secondary)<span class="token punctuation" >;</span>
+  <span class="token property" >color</span><span class="token punctuation" >:</span> <span class="token function" >var</span>(--color-secondary)<span class="token punctuation" >;</span>
   <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 <span class="token atrule" >@media screen and (min-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
   <span class="token selector" >.class </span><span class="token punctuation" >{</span>
-  <span class="token property" >background</span><span class="token punctuation" >:</span> linear-gradient(green, blue)<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >linear-gradient</span>(green, blue)<span class="token punctuation" >;</span>
   <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
@@ -73,20 +73,20 @@ document.createElement('footer');
   <span class="token property" >font-size</span><span class="token punctuation" >:</span> 32px<span class="token punctuation" >;</span>
   <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span>
   <span class="token property" >background</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
-  <span class="token property" >width</span><span class="token punctuation" >:</span> -webkit-calc(100% - 50px)<span class="token punctuation" >;</span>
-  <span class="token property" >width</span><span class="token punctuation" >:</span> calc(100% - 50px)<span class="token punctuation" >;</span>
+  <span class="token property" >width</span><span class="token punctuation" >:</span> <span class="token function" >-webkit-calc</span>(100% - 50px)<span class="token punctuation" >;</span>
+  <span class="token property" >width</span><span class="token punctuation" >:</span> <span class="token function" >calc</span>(100% - 50px)<span class="token punctuation" >;</span>
   <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token url" >url('data:image/svg+xml;utf8,&lt;svg xmlns="http://www.w3.org/2000/svg">&lt;filter id="filter">&lt;feGaussianBlur stdDeviation="4" />&lt;/filter>&lt;/svg>#filter')</span><span class="token punctuation" >;</span>
-  <span class="token property" >-webkit-filter</span><span class="token punctuation" >:</span> blur(4px)<span class="token punctuation" >;</span>
-          <span class="token property" >filter</span><span class="token punctuation" >:</span> blur(4px)<span class="token punctuation" >;</span>
+  <span class="token property" >-webkit-filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
+          <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 <span class="token atrule" >@media screen and (min-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
   <span class="token selector" >.elem </span><span class="token punctuation" >{</span>
     <span class="token property" >color</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
   <span class="token punctuation" >}</span>
   <span class="token selector" >.class </span><span class="token punctuation" >{</span>
-    <span class="token property" >background</span><span class="token punctuation" >:</span> -webkit-gradient(linear, left top, left bottom, from(green), to(blue))<span class="token punctuation" >;</span>
-    <span class="token property" >background</span><span class="token punctuation" >:</span> -webkit-linear-gradient(green, blue)<span class="token punctuation" >;</span>
-    <span class="token property" >background</span><span class="token punctuation" >:</span> linear-gradient(green, blue)<span class="token punctuation" >;</span>
+    <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >-webkit-gradient</span>(linear, left top, left bottom, <span class="token function" >from</span>(green), <span class="token function" >to</span>(blue))<span class="token punctuation" >;</span>
+    <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >-webkit-linear-gradient</span>(green, blue)<span class="token punctuation" >;</span>
+    <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >linear-gradient</span>(green, blue)<span class="token punctuation" >;</span>
   <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>

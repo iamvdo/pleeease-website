@@ -44,14 +44,14 @@ fs<span class="token punctuation" >.</span><span class="token function" >writeFi
 <pre class="language-javascript"><code class="language-javascript">plugins<span class="token punctuation" >:</span>
   pleeease<span class="token punctuation" >:</span>
     fallbacks<span class="token punctuation" >:</span>
-      autoprefixer<span class="token punctuation" >:</span> <span class="token boolean" >true</span>
-      variables<span class="token punctuation" >:</span> <span class="token boolean" >true</span>
-      rem<span class="token punctuation" >:</span> <span class="token boolean" >false</span>
-      pseudoElements<span class="token punctuation" >:</span> <span class="token boolean" >false</span>
+      autoprefixer<span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+      variables<span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+      rem<span class="token punctuation" >:</span> <span class="token keyword" >false</span>
+      pseudoElements<span class="token punctuation" >:</span> <span class="token keyword" >false</span>
     optimizers<span class="token punctuation" >:</span>
-      import<span class="token punctuation" >:</span> <span class="token boolean" >true</span>
-      minifier<span class="token punctuation" >:</span> <span class="token boolean" >true</span>
-      mqpacker<span class="token punctuation" >:</span> <span class="token boolean" >true</span>
+      <span class="token keyword" >import</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+      minifier<span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+      mqpacker<span class="token punctuation" >:</span> <span class="token keyword" >true</span>
 </code></pre>
 <p>Note that pleeease-brunch is an optimizer plugin, so it only works when <code>optimize: true</code> is set. The <code>--production</code> environment activates optimizers.</p>
 <p>You can also use the <a href="https://github.com/iamvdo/brunch-with-pleeease">pre-configured Pleeease skeleton</a>.</p>
@@ -62,13 +62,13 @@ fs<span class="token punctuation" >.</span><span class="token function" >writeFi
 <span class="token keyword" >var</span> pleeease <span class="token operator" >=</span> <span class="token function" >require<span class="token punctuation" >(</span></span><span class="token string" >'gulp-pleeease'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
 
 <span class="token keyword" >var</span> SassOptions <span class="token operator" >=</span> <span class="token punctuation" >{</span>
-    sourcemap<span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >,</span>
+    sourcemap<span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
     style<span class="token punctuation" >:</span> <span class="token string" >"compact"</span>
 <span class="token punctuation" >}</span><span class="token punctuation" >;</span><span class="token comment" spellcheck="true">
 // set minifier to false to keep Sass sourcemaps support
 </span><span class="token keyword" >var</span> PleeeaseOptions <span class="token operator" >=</span> <span class="token punctuation" >{</span>
     optimizers<span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
-        minifier<span class="token punctuation" >:</span> <span class="token boolean" >false</span>
+        minifier<span class="token punctuation" >:</span> <span class="token keyword" >false</span>
     <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span><span class="token punctuation" >;</span>
 

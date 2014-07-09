@@ -15,7 +15,7 @@ document.createElement('footer');
 <pre class="language-javascript"><code class="language-javascript">$ pleeease compile foo<span class="token punctuation" >.</span>css bar<span class="token punctuation" >.</span>css to baz<span class="token punctuation" >.</span>css
 </code></pre>
 <p>You can also compile an entire folder, and copy the result file to another destination (if folders don&#39;t exist, they will be created):</p>
-<pre class="language-javascript"><code class="language-javascript">$ pleeease compile css<span class="token operator" >/</span> to public<span class="token operator" >/</span>css<span class="token operator" >/</span>app<span class="token punctuation" >.</span>min<span class="token punctuation" >.</span>css
+<pre class="language-javascript"><code class="language-javascript">$ pleeease compile css<span class="token operator" >/</span> to <span class="token keyword" >public</span><span class="token operator" >/</span>css<span class="token operator" >/</span>app<span class="token punctuation" >.</span>min<span class="token punctuation" >.</span>css
 </code></pre>
 <h3 id="pleeease-watch">pleeease watch</h3>
 <p>Last command but not least: <code>watch</code>. This command is the same as the <code>compile</code> one, except that the live compilation is activated. When a modification is detected, <strong>files will be recompiled automatically</strong>.</p>
@@ -62,7 +62,7 @@ document.createElement('footer');
     <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"last 4 versions"</span><span class="token punctuation" >]</span>
   <span class="token punctuation" >}</span><span class="token punctuation" >,</span>
   <span class="token string" >"optimizers"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
-    <span class="token string" >"minifier"</span><span class="token punctuation" >:</span> <span class="token boolean" >false</span>
+    <span class="token string" >"minifier"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span>
   <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
