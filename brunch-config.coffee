@@ -3,6 +3,11 @@ exports.config =
     watched: ['app']
     public: ''
   files:
+    javascripts:
+      joinTo:
+        'playground.js': /^app(\/|\\)playground/
+      order:
+        before: ['app/playground/prism.js']
     stylesheets:
       joinTo: 'app.min.css'
       order:
