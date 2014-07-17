@@ -86,10 +86,13 @@ nav li {
 	padding: .2em;
 }
 nav li.version {
-	padding: 2em .5em;
+	padding: 2em .5em .5em .5em;
 	font-size: .8em;
 	font-style: italic;
 	opacity: .5;
+}
+nav li.version + li.version {
+	padding-top: 0;
 }
 nav a {
 	position: relative;
@@ -107,7 +110,7 @@ nav a.play {
 	background: rgba(0,0,0,.1);
 }
 @media (min-width: 70em) {
-	nav li a::before {
+	nav li:not(.version) a::before {
 		content: '';
 		position: absolute;
 		top: 0;
