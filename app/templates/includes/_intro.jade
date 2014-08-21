@@ -1,16 +1,22 @@
 :markdown
 
-  *Pleeease* is a CSS post-processor. The main goal of this tool is to **perform all treatments that a pre-processor shouldn't have to do!** (eg, dealing with prefixes, convert `rem` to `px`, support older browsers, etc.). Just learn how to [configure it](tool.html#configuration-file) and let *Pleeease* do the job for you*.
+  *Pleeease* is a CSS post-processor. **It simplifies the use of preprocessors and helps keep stylesheets as small as possible for a better maintenability**. This means no more Compass for prefixes, no more `rem` mixins, and so on. Everything is getting simpler now*.
 
-  ***Pleeease* is also a great tool if you want to write DRY, future-proof CSS.**
+  ***Pleeease* is also a great tool if you want to write plain CSS as it helps support older browsers**. Just see how to [configure it](tool.html#configuration-file) and let *Pleeease* do its job:
 
   * adds **prefixes**, based on [Autoprefixer](https://github.com/ai/autoprefixer)
-  * provides fallbacks for **CSS variables**, **pseudo-elements**, **`rem`** unit
+  * provides fallbacks for **`rem`** unit, CSS3 **pseudo-elements** notation
   * converts **CSS shorthand filters** to SVG equivalent
   * **packs same media-query** in one `@media` rule
   * **inlines `@import`** styles
   * **minifies the result**
 
-  *Pleeease* is based on [PostCSS](https://github.com/ai/postcss). It helps combine multiple processors and parse CSS only once.
+  *Pleeease**.NEXT*** goes even further and allows you to use some of the future CSS's features today:
 
-  <div class="note">* no magic here, generated code should be checked</div>
+  * provides fallbacks for **CSS custom properties (aka CSS variables)** and **custom media-queries**
+  * reduce **`calc()`** whenever possible
+  * adds some features from CSS4 colors module: **`color()`, `hwb()`, `#RRGGBBAA` notation** and more
+
+  **Note:** be careful that Pleeease.NEXT's features are at risk. [Learn more](options.html).
+
+  <div class="note">* no magic here, generated code have to be checked</div>

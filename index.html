@@ -3,18 +3,24 @@ document.createElement('nav');
 document.createElement('section');
 document.createElement('article');
 document.createElement('footer');
-</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="index.html" title="Get started" class="selected">Get started</a></li><li><a href="tool.html" title="The tool">The tool</a></li><li><a href="workflow.html" title="Improve your workflow">Improve your workflow</a></li><li><a href="options.html" title="Options">Options</a></li><li><a href="contribute.html" title="Contribute">Contribute</a></li><li><a href="playground.html" class="play">Playground</a></li><li class="version">Version <strong>0.4.x</strong></li><li class="version"><a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a></li></ul></nav></header><section><article class="index"><div class="block"><p><em>Pleeease</em> is a CSS post-processor. The main goal of this tool is to <strong>perform all treatments that a pre-processor shouldn&#39;t have to do!</strong> (eg, dealing with prefixes, convert <code>rem</code> to <code>px</code>, support older browsers, etc.). Just learn how to <a href="tool.html#configuration-file">configure it</a> and let <em>Pleeease</em> do the job for you*.</p>
-<p><strong><em>Pleeease</em> is also a great tool if you want to write DRY, future-proof CSS.</strong></p>
+</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="index.html" title="Get started" class="selected">Get started</a></li><li><a href="tool.html" title="The tool">The tool</a></li><li><a href="workflow.html" title="Improve your workflow">Improve your workflow</a></li><li><a href="options.html" title="Options">Options</a></li><li><a href="contribute.html" title="Contribute">Contribute</a></li><li><a href="playground.html" class="play">Playground</a></li><li class="version">Version <strong>0.4.x</strong></li><li class="version"><a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a></li></ul></nav></header><section><article class="index"><div class="block"><p><em>Pleeease</em> is a CSS post-processor. <strong>It simplifies the use of preprocessors and helps keep stylesheets as small as possible for a better maintenability</strong>. This means no more Compass for prefixes, no more <code>rem</code> mixins, and so on. Everything is getting simpler now*.</p>
+<p><strong><em>Pleeease</em> is also a great tool if you want to write plain CSS as it helps support older browsers</strong>. Just see how to <a href="tool.html#configuration-file">configure it</a> and let <em>Pleeease</em> do its job:</p>
 <ul>
 <li>adds <strong>prefixes</strong>, based on <a href="https://github.com/ai/autoprefixer">Autoprefixer</a></li>
-<li>provides fallbacks for <strong>CSS variables</strong>, <strong>pseudo-elements</strong>, <strong><code>rem</code></strong> unit</li>
+<li>provides fallbacks for <strong><code>rem</code></strong> unit, CSS3 <strong>pseudo-elements</strong> notation</li>
 <li>converts <strong>CSS shorthand filters</strong> to SVG equivalent</li>
 <li><strong>packs same media-query</strong> in one <code>@media</code> rule</li>
 <li><strong>inlines <code>@import</code></strong> styles</li>
 <li><strong>minifies the result</strong></li>
 </ul>
-<p><em>Pleeease</em> is based on <a href="https://github.com/ai/postcss">PostCSS</a>. It helps combine multiple processors and parse CSS only once.</p>
-<div class="note">* no magic here, generated code should be checked</div></div><div class="block"><h2 id="get-started">Get started</h2>
+<p><em>Pleeease<strong>.NEXT</strong></em> goes even further and allows you to use some of the future CSS&#39;s features today:</p>
+<ul>
+<li>provides fallbacks for <strong>CSS custom properties (aka CSS variables)</strong> and <strong>custom media-queries</strong></li>
+<li>reduce <strong><code>calc()</code></strong> whenever possible</li>
+<li>adds some features from CSS4 colors module: <strong><code>color()</code>, <code>hwb()</code>, <code>#RRGGBBAA</code> notation</strong> and more</li>
+</ul>
+<p><strong>Note:</strong> be careful that Pleeease.NEXT&#39;s features are at risk. <a href="options.html">Learn more</a>.</p>
+<div class="note">* no magic here, generated code have to be checked</div></div><div class="block"><h2 id="get-started">Get started</h2>
 <p>The simplest way to use <em>Pleeease</em> is to use <a href="tool.html">CLI</a> (command-line interface).</p>
 <p>First, you have to install <a href="http://nodejs.org">Node.js</a> that usually comes with <code>npm</code>, its module manager. Then, install <em>Pleeease</em> globally on your system:</p>
 <pre class="language-javascript"><code class="language-javascript">$ npm install <span class="token operator" >-</span>g pleeease
