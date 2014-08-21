@@ -32,14 +32,14 @@
 
   ###With Brunch
 
-  If you're using [Brunch](http://brunch.io) (good point), you may want to use [pleeease-brunch](https://github.com/iamvdo/pleeease-brunch).
+  If you're using [Brunch](http://brunch.io) (good point), you may want to use [brunch-pleeease](https://github.com/iamvdo/brunch-pleeease).
 
   Add this plugin as a dependency in your `package.json`
 
   ```javascript
   {
     "dependencies": {
-      "pleeease-brunch": "0.3.x"
+      "brunch-pleeease": "0.4.x"
     }
   }
   ```
@@ -47,10 +47,10 @@
   Or install it:
 
   ```javascript
-  $ npm install --save pleeease-brunch
+  $ npm install --save brunch-pleeease
   ```
 
-  Now, Pleeease-brunch does its job. You can set it in Brunch configuration file, for example:
+  Now, the module does its job. You can set it in Brunch configuration file, for example:
 
   ```javascript
   plugins:
@@ -64,11 +64,20 @@
         import: true
         minifier: true
         mqpacker: true
-        
-            
   ```
 
-  Note that pleeease-brunch is an optimizer plugin, so it only works when `optimize: true` is set. The `--production` environment activates optimizers.
+  Note that brunch-pleeease is an optimizer plugin, so it only works when `optimize: true` is set. The `--production` environment activates optimizers.
+
+  If you want sourcemaps, from CSS or from a preprocessor like Sass, you can activate them in configuration file, like so:
+
+  ```javascript
+  sourceMaps: true
+  plugins:
+    pleeease:
+      sourcemaps: true
+  ```
+
+  The first `sourceMaps` option enable sourcemaps from Brunch (for [Sass brunch](https://github.com/brunch/sass-brunch) for example). The second one `plugins.pleeease.sourcemaps` enable sourcemaps for Pleeease (basically `@import`'ed file). **You can now have a full sourcemaps chain!**
 
   You can also use the [pre-configured Pleeease skeleton](https://github.com/iamvdo/brunch-with-pleeease).
 
@@ -102,7 +111,7 @@
 
   Note: This is based on [@ddprrt's article](http://fettblog.eu/blog/2014/04/10/gulp-sass-autoprefixer-sourcemaps/) for sourcemaps support. You can also use [gulp-sass](https://github.com/dlmanning/gulp-sass) (based on libsass) if you don't need sourcemaps.
 
-  ###Grunt
+  ###With Grunt
 
   You can use [grunt-pleeease](https://github.com/danielhusar/grunt-pleeease).
 
