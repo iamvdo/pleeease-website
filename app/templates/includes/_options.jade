@@ -51,7 +51,7 @@
   ###autoprefixer
 
   <div class="note">
-  Type: `Array` | Default: `["> 1%", "last 2 versions", "Firefox ESR", "Opera 12.1"]`
+  Type: `Object` | Default: `{browsers: ["> 1%", "last 2 versions", "Firefox ESR", "Opera 12.1"], cascade: true}`
   </div>
 
   **Adds vendor prefixes to CSS**, using [Autoprefixer](https://github.com/ai/autoprefixer). From Autoprefixer options, you can specify the browsers you want to target in your project:
@@ -69,7 +69,7 @@
   ```javascript
   // .pleeeaserc file (remove comment)
   {
-    "autoprefixer": ["last 4 versions", "ios 6"]
+    "autoprefixer": {browsers: ["last 4 versions", "ios 6"]}
   }
   ```
 
@@ -102,7 +102,16 @@
   }
   ```
 
-  See [full available options for Autoprefixer on GitHub](https://github.com/ai/autoprefixer#browsers).
+  You can also disable visual cascade for CSS prefixes:
+
+  ```javascript
+  // .pleeeaserc file (remove comment)
+  {
+    "autoprefixer": {cascade: false}
+  }
+  ```
+
+  See [Autoprefixer on GitHub](https://github.com/ai/autoprefixer).
 
   ###filters
 
@@ -191,7 +200,7 @@
   }
   ```
 
-  See [full available options for pixrem on GitHub](https://github.com/iamvdo/node-pixrem#parameters).
+  See [pixrem on GitHub](https://github.com/iamvdo/node-pixrem).
 
   ###pseudoElements
 
@@ -238,7 +247,7 @@
   }
   ```
 
-  You can [read more about options](https://github.com/postcss/postcss-import#postcss-import-) on GitHub.
+  See [postcss-import on GitHub](https://github.com/postcss/postcss-import#postcss-import-).
 
   ###minifier
 
@@ -246,7 +255,7 @@
   Type: `Object` | Default: `{preserveHacks: true, removeAllComments: true}`
   </div>
 
-  **Minifies**, using [CSS Wring](https://github.com/hail2u/node-csswring). See [full options](https://github.com/hail2u/node-csswring#optionsg).
+  **Minifies**, using [CSS Wring](https://github.com/hail2u/node-csswring).
 
   ###mqpacker
 
