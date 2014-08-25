@@ -5,8 +5,8 @@ exports.config =
   files:
     javascripts:
       joinTo:
-        'playground.js': /^app(\/|\\)playground/
-        'pleeease.js'  : /^app(\/|\\)pleeease/
+        'play/playground.js': /^app(\/|\\)playground/
+        'play/pleeease.js'  : /^app(\/|\\)pleeease/
       order:
         before: ['app/playground/prism.js']
     stylesheets:

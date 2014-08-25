@@ -63,7 +63,7 @@ Type: <code>String</code> | Default: <code>&quot;app.min.css&quot;</code>
 <p><strong>Defines output file</strong>.</p>
 <h3 id="autoprefixer">autoprefixer</h3>
 <div class="note">
-Type: <code>Array</code> | Default: <code>[&quot;&gt; 1%&quot;, &quot;last 2 versions&quot;, &quot;Firefox ESR&quot;, &quot;Opera 12.1&quot;]</code>
+Type: <code>Object</code> | Default: <code>{browsers: [&quot;&gt; 1%&quot;, &quot;last 2 versions&quot;, &quot;Firefox ESR&quot;, &quot;Opera 12.1&quot;], cascade: true}</code>
 </div>
 
 <p><strong>Adds vendor prefixes to CSS</strong>, using <a href="https://github.com/ai/autoprefixer">Autoprefixer</a>. From Autoprefixer options, you can specify the browsers you want to target in your project:</p>
@@ -79,7 +79,7 @@ Type: <code>Array</code> | Default: <code>[&quot;&gt; 1%&quot;, &quot;last 2 ver
 <p>For example:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
 </span><span class="token punctuation" >{</span>
-  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"last 4 versions"</span><span class="token punctuation" >,</span> <span class="token string" >"ios 6"</span><span class="token punctuation" >]</span>
+  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>browsers<span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"last 4 versions"</span><span class="token punctuation" >,</span> <span class="token string" >"ios 6"</span><span class="token punctuation" >]</span><span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>Autoprefixer converts this file:</p>
@@ -105,7 +105,13 @@ Type: <code>Array</code> | Default: <code>[&quot;&gt; 1%&quot;, &quot;last 2 ver
   <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >linear-gradient</span>(red, blue)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
-<p>See <a href="https://github.com/ai/autoprefixer#browsers">full available options for Autoprefixer on GitHub</a>.</p>
+<p>You can also disable visual cascade for CSS prefixes:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
+</span><span class="token punctuation" >{</span>
+  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>cascade<span class="token punctuation" >:</span> <span class="token keyword" >false</span><span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>See <a href="https://github.com/ai/autoprefixer">Autoprefixer on GitHub</a>.</p>
 <h3 id="filters">filters</h3>
 <div class="note">
 Type: <code>Object</code> | Default: <code>{oldIE: false}</code>
@@ -167,7 +173,7 @@ Type: <code>Array</code> | Default: <code>[&quot;16px&quot;, {replace: false}]</
   <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
-<p>See <a href="https://github.com/iamvdo/node-pixrem#parameters">full available options for pixrem on GitHub</a>.</p>
+<p>See <a href="https://github.com/iamvdo/node-pixrem">pixrem on GitHub</a>.</p>
 <h3 id="pseudoelements">pseudoElements</h3>
 <p><strong>Converts pseudo-elements using CSS3 syntax</strong> (two-colons notation like <code>::after</code>, <code>::before</code>, <code>::first-line</code> and <code>::first-letter</code>) with the old one, using only one colon (useful for IE8 support). There are no options.</p>
 <p>Converts this file:</p>
@@ -198,13 +204,13 @@ Type: <code>Object</code> | Default: <code>{path: process.cwd(), encoding: &quot
     <span class="token string" >"import"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span><span class="token string" >"path"</span><span class="token punctuation" >:</span> <span class="token string" >"css"</span><span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
-<p>You can <a href="https://github.com/postcss/postcss-import#postcss-import-">read more about options</a> on GitHub.</p>
+<p>See <a href="https://github.com/postcss/postcss-import#postcss-import-">postcss-import on GitHub</a>.</p>
 <h3 id="minifier">minifier</h3>
 <div class="note">
 Type: <code>Object</code> | Default: <code>{preserveHacks: true, removeAllComments: true}</code>
 </div>
 
-<p><strong>Minifies</strong>, using <a href="https://github.com/hail2u/node-csswring">CSS Wring</a>. See <a href="https://github.com/hail2u/node-csswring#optionsg">full options</a>.</p>
+<p><strong>Minifies</strong>, using <a href="https://github.com/hail2u/node-csswring">CSS Wring</a>.</p>
 <h3 id="mqpacker">mqpacker</h3>
 <p><strong>Packs same CSS media-queries into one media-query rule</strong>, using <a href="https://github.com/hail2u/node-css-mqpacker">MQ Packer</a>. There are no options.</p>
 <p>Mqpacker can convert multiple files like this:</p>
