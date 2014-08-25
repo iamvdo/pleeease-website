@@ -593,7 +593,7 @@ if(location.search !== '') {
 }
 
 var options = {
-	"minifier": false,
+  "minifier": false,
   "next": true
 };
 function htmlEntities (str) {
