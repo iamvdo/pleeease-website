@@ -1,0 +1,359 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><title>Pleeease &middot; Postprocess CSS with ease</title><meta name="description" content="Write DRY, future-proof CSS and let Pleeease do the job"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Damion"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700"><link rel="stylesheet" href="../app.min.css"><link rel="icon" href="../images/favicon.png"><!--[if IE]><style>.title { padding-top: 5em; }</style><![endif]--><script>document.createElement('header');
+document.createElement('nav');
+document.createElement('section');
+document.createElement('article');
+document.createElement('footer');
+</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="/" title="Get started">Get started</a></li><li><a href="/docs" title="Documentation" class="selected">Documentation</a><ul><li><a href="#configuration-file">Configuration file</a></li><li><a href="#features">Features</a></li><li><a href="#cli">CLI</a></li></ul></li><li><a href="/workflow" title="Improve your workflow">Improve your workflow</a></li><li><a href="/play" class="play">Interactive demo</a></li><li class="version">Version <strong>0.4.x</strong></li><li class="version"><a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a></li></ul></nav></header><section><article class="docs"><div class="block"><h1 id="documentation">Documentation</h1>
+<p>Learn <a href="#configuration-file">how to configure</a> Pleeease, which <a href="#features">features you can use</a> and <a href="#cli">how to use CLI</a>.</p>
+</div><div class="block"><h2 id="configuration-file">Configuration file</h2>
+<p>When using CLI, Pleeease&#39;s options have to be set in a file called <code>.pleeeaserc</code> (JSON-like). For example:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
+  <span class="token string" >"in"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"foo.css"</span><span class="token punctuation" >,</span> <span class="token string" >"bar.css"</span><span class="token punctuation" >]</span><span class="token punctuation" >,</span>
+  <span class="token string" >"out"</span><span class="token punctuation" >:</span> <span class="token string" >"baz.css"</span><span class="token punctuation" >,</span>
+  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"last 3 versions"</span><span class="token punctuation" >,</span> <span class="token string" >"Android 2.3"</span><span class="token punctuation" >]</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<ul>
+<li><code>in</code> defines that <code>foo.css</code> and <code>bar.css</code> are input files</li>
+<li><code>out</code> defines that <code>baz.css</code> is the output file (the file that will be created)</li>
+<li><code>autoprefixer</code> adds CSS prefixes for the last 3 versions of each browsers and support Android 2.3</li>
+</ul>
+<div class="note">Note: In previous version (<0.4), options were `input` and `output`</div>
+
+<p>Then, you can override <a href="#options">all postprocess options</a> the same way.</p>
+</div><div class="block"><h2 id="features">Features</h2>
+<p>The default <code>.pleeeaserc</code> file is:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
+  <span class="token string" >"in"</span><span class="token punctuation" >:</span> <span class="token string" >"*.css"</span><span class="token punctuation" >,</span>
+  <span class="token string" >"out"</span><span class="token punctuation" >:</span> <span class="token string" >"app.min.css"</span><span class="token punctuation" >,</span>
+
+  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+  <span class="token string" >"filters"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+  <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+  <span class="token string" >"pseudoElements"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+
+  <span class="token string" >"import"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+  <span class="token string" >"minifier"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+  <span class="token string" >"mqpacker"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+
+  <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span>
+
+  <span class="token string" >"next"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>All features can be disabled with the <code>false</code> keyword or modified using each postprocessor options. See each features:</p>
+<ul>
+<li><a href="#in">in</a>, <a href="#out">out</a></li>
+<li><a href="#autoprefixer">autoprefixer</a>, <a href="#filters">filters</a>, <a href="#rem">rem</a>, <a href="#pseudoelements">pseudoElements</a></li>
+<li><a href="#import">import</a>, <a href="#minifier">minifier</a>, <a href="#mqpacker">mqpacker</a></li>
+<li><a href="#pleeease-next">Pleeease.NEXT</a></li>
+<li><a href="#sourcemaps">sourcemaps</a></li>
+</ul>
+<h3 id="in">in</h3>
+<div class="note">
+Type: <code>String</code>, <code>Array</code> | Default: <code>&quot;*.css&quot;</code>
+</div>
+
+<p><strong>Defines input file(s)</strong>.</p>
+<h3 id="out">out</h3>
+<div class="note">
+Type: <code>String</code> | Default: <code>&quot;app.min.css&quot;</code>
+</div>
+
+<p><strong>Defines output file</strong>.</p>
+<h3 id="autoprefixer">autoprefixer</h3>
+<div class="note">
+Type: <code>Array</code> | Default: <code>[&quot;&gt; 1%&quot;, &quot;last 2 versions&quot;, &quot;Firefox ESR&quot;, &quot;Opera 12.1&quot;]</code>
+</div>
+
+<p><strong>Adds vendor prefixes to CSS</strong>, using <a href="https://github.com/ai/autoprefixer">Autoprefixer</a>. From Autoprefixer options, you can specify the browsers you want to target in your project:</p>
+<ul>
+<li><code>last 2 versions</code> is last versions for each browser</li>
+<li><code>last 2 Chrome versions</code> is last versions of the specified browser.</li>
+<li><code>&gt; 5%</code> is browser versions, selected by global usage statistics.</li>
+<li><code>Firefox &gt; 20</code> is Firefox versions newer than 20.</li>
+<li><code>Firefox &gt;= 20</code> is Firefox version 20 or newer.</li>
+<li><code>ios 7</code> to set browser version directly.</li>
+<li><code>none</code> clean CSS from any vendor prefixes.</li>
+</ul>
+<p>For example:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
+</span><span class="token punctuation" >{</span>
+  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"last 4 versions"</span><span class="token punctuation" >,</span> <span class="token string" >"ios 6"</span><span class="token punctuation" >]</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>Autoprefixer converts this file:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.element </span><span class="token punctuation" >{</span>
+  <span class="token property" >display</span><span class="token punctuation" >:</span> flex<span class="token punctuation" >;</span>
+  <span class="token property" >flex-direction</span><span class="token punctuation" >:</span> column<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >linear-gradient</span>(red, blue)<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>To this one:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.element </span><span class="token punctuation" >{</span>
+  <span class="token property" >display</span><span class="token punctuation" >:</span> -webkit-box<span class="token punctuation" >;</span>
+  <span class="token property" >display</span><span class="token punctuation" >:</span> -webkit-flex<span class="token punctuation" >;</span>
+  <span class="token property" >display</span><span class="token punctuation" >:</span> -ms-flexbox<span class="token punctuation" >;</span>
+  <span class="token property" >display</span><span class="token punctuation" >:</span> flex<span class="token punctuation" >;</span>
+  <span class="token property" >-webkit-box-orient</span><span class="token punctuation" >:</span> vertical<span class="token punctuation" >;</span>
+  <span class="token property" >-webkit-box-direction</span><span class="token punctuation" >:</span> normal<span class="token punctuation" >;</span>
+  <span class="token property" >-webkit-flex-direction</span><span class="token punctuation" >:</span> column<span class="token punctuation" >;</span>
+      <span class="token property" >-ms-flex-direction</span><span class="token punctuation" >:</span> column<span class="token punctuation" >;</span>
+          <span class="token property" >flex-direction</span><span class="token punctuation" >:</span> column<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >-webkit-gradient</span>(linear, left top, left bottom, <span class="token function" >from</span>(red), <span class="token function" >to</span>(blue))<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >-webkit-linear-gradient</span>(red, blue)<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >linear-gradient</span>(red, blue)<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>See <a href="https://github.com/ai/autoprefixer#browsers">full available options for Autoprefixer on GitHub</a>.</p>
+<h3 id="filters">filters</h3>
+<div class="note">
+Type: <code>Object</code> | Default: <code>{oldIE: false}</code>
+</div>
+
+<p><strong>Converts CSS shorthand filters to SVG equivalent</strong>, using <a href="https://github.com/iamvdo/pleeease-filters">pleeease-filters</a>.</p>
+<p>It converts this file:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.blur </span><span class="token punctuation" >{</span>
+  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>To this one:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.blur </span><span class="token punctuation" >{</span>
+  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token url" >url('data:image/svg+xml;utf8,&lt;svg xmlns="http://www.w3.org/2000/svg">&lt;filter id="filter">&lt;feGaussianBlur stdDeviation="4" />&lt;/filter>&lt;/svg>#filter')</span><span class="token punctuation" >;</span>
+  <span class="token property" >-webkit-filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
+          <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>Great combo with Autoprefixer!</p>
+<p>You can also force IE filters with an option:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
+</span><span class="token punctuation" >{</span>
+  <span class="token string" >"filters"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span> <span class="token string" >"oldIE"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span> <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>Using the first example, you&#39;ll get:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.blur </span><span class="token punctuation" >{</span>
+  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token url" >url('data:image/svg+xml;utf8,&lt;svg xmlns="http://www.w3.org/2000/svg">&lt;filter id="filter">&lt;feGaussianBlur stdDeviation="4" />&lt;/filter>&lt;/svg>#filter')</span><span class="token punctuation" >;</span>
+  <span class="token property" >-webkit-filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
+          <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token function" >blur</span>(4px)<span class="token punctuation" >;</span>
+  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token property" >progid</span><span class="token punctuation" >:</span>DXImageTransform.Microsoft.<span class="token function" >Blur</span>(pixelradius=4)<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>Then, needed prefixes are added by Autoprefixer. You don&#39;t have to care about this.</p>
+<p><strong>Be careful</strong>, not all browsers support CSS or SVG filters. For your information, latest WebKit browsers support CSS shorthand, Firefox support SVG filters and IE9- support IE filters (limited and slightly degraded). <strong>It means that IE10+, Opera Mini and Android browsers have no support at all</strong>. Moreover, IE filters shouldn&#39;t be used.</p>
+<h3 id="rem">rem</h3>
+<div class="note">
+Type: <code>Array</code> | Default: <code>[&quot;16px&quot;, {replace: false}]</code>
+</div>
+
+<p><strong>Generates pixel fallbacks for <code>rem</code> units</strong>, using <a href="https://github.com/iamvdo/node-pixrem">pixrem</a>. Add options as an array:</p>
+<ul>
+<li>first parameter is the root font-size (default <code>16px</code>)</li>
+<li>second parameter is an object with <code>replace</code> key set to <code>true</code> if you want to replace value. (default <code>false</code>)</li>
+</ul>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
+</span><span class="token punctuation" >{</span>
+  <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"16px"</span><span class="token punctuation" >,</span> <span class="token punctuation" >{</span><span class="token string" >"replace"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >}</span><span class="token punctuation" >]</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>Pixrem converts this file:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.element </span><span class="token punctuation" >{</span>
+  <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>To this one (with default options):</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.element </span><span class="token punctuation" >{</span>
+  <span class="token property" >font-size</span><span class="token punctuation" >:</span> 32px<span class="token punctuation" >;</span>
+  <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>See <a href="https://github.com/iamvdo/node-pixrem#parameters">full available options for pixrem on GitHub</a>.</p>
+<h3 id="pseudoelements">pseudoElements</h3>
+<p><strong>Converts pseudo-elements using CSS3 syntax</strong> (two-colons notation like <code>::after</code>, <code>::before</code>, <code>::first-line</code> and <code>::first-letter</code>) with the old one, using only one colon (useful for IE8 support). There are no options.</p>
+<p>Converts this file:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.element::after </span><span class="token punctuation" >{</span>
+  <span class="token property" >content</span><span class="token punctuation" >:</span> <span class="token string" >''</span><span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>To this one:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.element:after </span><span class="token punctuation" >{</span>
+  <span class="token property" >content</span><span class="token punctuation" >:</span> <span class="token string" >''</span><span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<h3 id="import">import</h3>
+<div class="note">
+Type: <code>Object</code> | Default: <code>{path: process.cwd(), encoding: &quot;utf8&quot;, transform: null}</code>
+</div>
+
+<p><strong>Inlines <code>@import</code> styles</strong>, using <a href="https://github.com/postcss/postcss-import">postcss-import</a>.</p>
+<p>You can use the CSS syntax you want:</p>
+<pre class="language-css"><code class="language-css"><span class="token atrule" >@import "file.css"<span class="token punctuation" >;</span></span>
+<span class="token atrule" >@import url(file.css)<span class="token punctuation" >;</span></span>
+<span class="token atrule" >@import url("http<span class="token punctuation" >:</span>//foo.com/bar.css")<span class="token punctuation" >;</span></span> <span class="token comment" spellcheck="true">/* not imported */</span>
+<span class="token atrule" >@import url("file.css") screen and (max-width<span class="token punctuation" >:</span> 35em)<span class="token punctuation" >;</span></span> <span class="token comment" spellcheck="true">/* imported in media-queries */</span>
+</code></pre>
+<p>Note that you can set the &quot;root&quot; folder for imported files with <code>path</code> option, even if this is not the root of your project (default is <code>process.cwd()</code>). For example, if you compile <code>css/foo.css</code> that containing an <code>@import</code>, set options like this:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
+</span><span class="token punctuation" >{</span>
+    <span class="token string" >"import"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span><span class="token string" >"path"</span><span class="token punctuation" >:</span> <span class="token string" >"css"</span><span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>You can <a href="https://github.com/postcss/postcss-import#postcss-import-">read more about options</a> on GitHub.</p>
+<h3 id="minifier">minifier</h3>
+<div class="note">
+Type: <code>Object</code> | Default: <code>{preserveHacks: true, removeAllComments: true}</code>
+</div>
+
+<p><strong>Minifies</strong>, using <a href="https://github.com/hail2u/node-csswring">CSS Wring</a>. See <a href="https://github.com/hail2u/node-csswring#optionsg">full options</a>.</p>
+<h3 id="mqpacker">mqpacker</h3>
+<p><strong>Packs same CSS media-queries into one media-query rule</strong>, using <a href="https://github.com/hail2u/node-css-mqpacker">MQ Packer</a>. There are no options.</p>
+<p>Mqpacker can convert multiple files like this:</p>
+<pre class="language-css"><code class="language-css"><span class="token atrule" >@media (max-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
+  <span class="token selector" >.element </span><span class="token punctuation" >{</span>
+    <span class="token property" >color</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
+  <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<pre class="language-css"><code class="language-css"><span class="token atrule" >@media (max-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
+  <span class="token selector" >.test </span><span class="token punctuation" >{</span>
+    <span class="token property" >color</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
+  <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>To this one:</p>
+<pre class="language-css"><code class="language-css"><span class="token atrule" >@media (max-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
+  <span class="token selector" >.element </span><span class="token punctuation" >{</span>
+    <span class="token property" >color</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
+  <span class="token punctuation" >}</span>
+  <span class="token selector" >.test </span><span class="token punctuation" >{</span>
+    <span class="token property" >color</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
+  <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<h3 id="sourcemaps">Sourcemaps</h3>
+<p>Pleeease supports sourcemaps (disabled by default). Enabled them in <code>.pleeeaserc</code> file:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
+</span><span class="token punctuation" >{</span>
+    <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<div class="note">You can also use <a href="/workflow/#with-gulp">sourcemaps from a preprocessor like Sass</a> (a bit hacky for now).</div></div><div class="block"><h2 id="pleeease-next">Pleeease.NEXT</h2>
+<p>Pleeease<strong>.NEXT</strong> goes even further and allows you to use some of the future CSS&#39;s features today.</p>
+<p><strong>Be careful!</strong> All these features are at-risk. You can read <a href="http://blog.rodneyrehm.de/archives/30-CSS-Polyfill-Preprocessor-Its-A-Myth.html">these great advices from Rodney Rehm</a> about Myth. Same conclusion goes here with Pleeease.NEXT. <strong>Make responsible use of it</strong>.</p>
+<p>Each property can be enable in <code>next</code> option:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
+</span><span class="token punctuation" >{</span>
+    <span class="token string" >"next"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
+      <span class="token string" >"customProperties"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+      <span class="token string" >"colors"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+    <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>Or enable all properties:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
+</span><span class="token punctuation" >{</span>
+    <span class="token string" >"next"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<h3 id="customproperties">customProperties</h3>
+<div class="note">
+Type: <code>Object</code> | Default: <code>{preserve: false}</code>
+</div>
+
+<p><strong>Transforms CSS custom properties</strong> into more compatible CSS. Basically, it&#39;s a <strong>&quot;not so bad&quot; <a href="https://github.com/iamvdo/postcss-vars">CSS variables polyfill</a></strong>.</p>
+<p>CSS variables begins with <code>--</code> and have to be declared in a <code>:root</code> rule (this is a limitation from real CSS spec). Then, they can be used with the <code>var(--variable)</code> notation.</p>
+<p>It converts this file:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >:root </span><span class="token punctuation" >{</span>
+  <span class="token property" >--color-primary</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+<span class="token selector" >.element </span><span class="token punctuation" >{</span>
+  <span class="token property" >color</span><span class="token punctuation" >:</span> <span class="token function" >var</span>(--color-primary)<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>To this one:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.element </span><span class="token punctuation" >{</span>
+  <span class="token property" >color</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>You can also keep var-declarations with <code>{preserve: true}</code>.</p>
+<h3 id="custommedia">customMedia</h3>
+<div class="note">
+There are no options.
+</div>
+
+<p><strong>Transforms custom media-queries</strong> into more compatible CSS.</p>
+<p>CSS custom media-queries have to be declared in an <code>@custom-media</code> rule and can be used in <code>@media</code> statements, with the <code>--</code> syntax.</p>
+<p>It converts this file:</p>
+<pre class="language-css"><code class="language-css"><span class="token atrule" >@custom-media --small-viewport (max-width<span class="token punctuation" >:</span> 30em)<span class="token punctuation" >;</span></span>
+<span class="token atrule" >@media (--small-viewport)</span> <span class="token punctuation" >{</span>
+  <span class="token comment" spellcheck="true">/* styles for small viewport */</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>To this one:</p>
+<pre class="language-css"><code class="language-css"><span class="token atrule" >@media (max-width<span class="token punctuation" >:</span> 30em)</span> <span class="token punctuation" >{</span>
+  <span class="token comment" spellcheck="true">/* styles for small viewport */</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<h3 id="calc">calc</h3>
+<div class="note">
+There are no options.
+</div>
+
+<p><strong>Resolves <code>calc()</code> references</strong> whenever possible.</p>
+<p>It converts this file:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.e </span><span class="token punctuation" >{</span>
+  <span class="token property" >width</span><span class="token punctuation" >:</span> <span class="token function" >calc</span>(100% - 50px)<span class="token punctuation" >;</span>
+  <span class="token property" >height</span><span class="token punctuation" >:</span> <span class="token function" >calc</span>(2em * 2)<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>To this one:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.e </span><span class="token punctuation" >{</span>
+  <span class="token property" >width</span><span class="token punctuation" >:</span> <span class="token function" >calc</span>(100% - 50px)<span class="token punctuation" >;</span>
+  <span class="token property" >height</span><span class="token punctuation" >:</span> 4em<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>This could be particularly useful with the <code>customProperties</code> option.</p>
+<p><strong>Note:</strong> Necessary prefixes are added by Autoprefixer afterward.</p>
+<h3 id="colors">colors</h3>
+<div class="note">
+Type: <code>Object</code> | Default: <code>{color: true, hexAlpha: true, hwb: true, rebbecapurple: true}</code>
+</div>
+
+<p><strong>Transforms CSS4 color functions</strong> to more compatible CSS.</p>
+<ul>
+<li>transforms <code>color()</code></li>
+<li>transforms <code>#RRGGBBAA</code></li>
+<li>transforms <code>hwb()</code></li>
+<li>allows to use <code>rebeccapurple</code> color</li>
+</ul>
+<p>It converts this file:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.e </span><span class="token punctuation" >{</span>
+  <span class="token property" >color</span><span class="token punctuation" >:</span> #F000<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >color</span>(black <span class="token function" >a</span>(.5))<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>To this one:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.e </span><span class="token punctuation" >{</span>
+  <span class="token property" >color</span><span class="token punctuation" >:</span> <span class="token function" >rgba</span>(255, 0, 0, 0)<span class="token punctuation" >;</span>
+  <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >rgba</span>(0, 0, 0, .5)<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+</div><div class="block"><h2 id="cli">CLI</h2>
+<p>You can compile files or watch them! The two commands work with a <a href="#configuration-file">configuration file</a>.</p>
+<h3 id="compile">compile</h3>
+<pre class="language-javascript"><code class="language-javascript">$ pleeease compile
+</code></pre>
+<h3 id="watch">watch</h3>
+<pre class="language-javascript"><code class="language-javascript">$ pleeease watch
+</code></pre>
+<p>Same as <code>compile</code>, except that the live compilation is activated. When a modification is detected, <strong>files will be recompiled automatically</strong>.</p>
+<h3 id="help">help</h3>
+<pre class="language-javascript"><code class="language-javascript">$ pleeease
+</code></pre>
+</div><footer><p>Postprocess with <a href="/">Pleeease</a> by <a href="http://twitter.com/iamvdo">@iamvdo</a>.</p><p class="note">Thanks to <a href="http://twitter.com/andreysitnik">@andreysitnik</a> for PostCSS and Autoprefixer, <a href="http://twitter.com/moox">@MoOx</a> for some PostCSS plugins and <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.</p></footer></article></section><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50460425-1', 'pleeease.io');
+ga('send', 'pageview');</script></body></html>

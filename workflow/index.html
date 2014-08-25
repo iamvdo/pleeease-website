@@ -1,0 +1,98 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><title>Pleeease &middot; Postprocess CSS with ease</title><meta name="description" content="Write DRY, future-proof CSS and let Pleeease do the job"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Damion"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700"><link rel="stylesheet" href="../app.min.css"><link rel="icon" href="../images/favicon.png"><!--[if IE]><style>.title { padding-top: 5em; }</style><![endif]--><script>document.createElement('header');
+document.createElement('nav');
+document.createElement('section');
+document.createElement('article');
+document.createElement('footer');
+</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="/" title="Get started">Get started</a></li><li><a href="/docs" title="Documentation">Documentation</a></li><li><a href="/workflow" title="Improve your workflow" class="selected">Improve your workflow</a></li><li><a href="/play" class="play">Interactive demo</a></li><li class="version">Version <strong>0.4.x</strong></li><li class="version"><a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a></li></ul></nav></header><section><article class="workflow"><div class="block"><h2 id="workflow">Workflow</h2>
+<h3 id="node-js">Node.js</h3>
+<p>You can use the <code>process</code> function with 2 parameters:</p>
+<ul>
+<li><code>css</code> is the CSS as string</li>
+<li><code>options</code> is an object specifying <a href="/docs/#features">options you want</a></li>
+</ul>
+<p>It returns fixed CSS as string.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword" >var</span> pleeease <span class="token operator" >=</span> <span class="token function" >require<span class="token punctuation" >(</span></span><span class="token string" >'pleeease'</span><span class="token punctuation" >)</span><span class="token punctuation" >,</span>
+    fs       <span class="token operator" >=</span> <span class="token function" >require<span class="token punctuation" >(</span></span><span class="token string" >'fs'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+
+<span class="token keyword" >var</span> css <span class="token operator" >=</span> fs<span class="token punctuation" >.</span><span class="token function" >readFileSync<span class="token punctuation" >(</span></span><span class="token string" >'app.css'</span><span class="token punctuation" >,</span> <span class="token string" >'utf8'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+
+<span class="token comment" spellcheck="true">// define options here
+</span><span class="token keyword" >var</span> options <span class="token operator" >=</span> <span class="token punctuation" >{</span><span class="token punctuation" >}</span><span class="token punctuation" >;</span>
+
+<span class="token keyword" >var</span> fixed <span class="token operator" >=</span> pleeease<span class="token punctuation" >.</span><span class="token function" >process<span class="token punctuation" >(</span></span>css<span class="token punctuation" >,</span> options<span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+
+fs<span class="token punctuation" >.</span><span class="token function" >writeFile<span class="token punctuation" >(</span></span><span class="token string" >'app.min.css'</span><span class="token punctuation" >,</span> fixed<span class="token punctuation" >,</span> <span class="token keyword" >function</span> <span class="token punctuation" >(</span>err<span class="token punctuation" >)</span> <span class="token punctuation" >{</span>
+  <span class="token keyword" >if</span> <span class="token punctuation" >(</span>err<span class="token punctuation" >)</span> <span class="token punctuation" >{</span>
+    <span class="token keyword" >throw</span> err<span class="token punctuation" >;</span>
+  <span class="token punctuation" >}</span>
+  console<span class="token punctuation" >.</span><span class="token function" >log<span class="token punctuation" >(</span></span><span class="token string" >'File saved!'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+</code></pre>
+<h3 id="with-brunch">With Brunch</h3>
+<p>If you&#39;re using <a href="http://brunch.io">Brunch</a> (good point), you may want to use <a href="https://github.com/iamvdo/brunch-pleeease">brunch-pleeease</a>.</p>
+<p>Add this plugin as a dependency in your <code>package.json</code></p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
+  <span class="token string" >"dependencies"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
+    <span class="token string" >"brunch-pleeease"</span><span class="token punctuation" >:</span> <span class="token string" >"0.4.x"</span>
+  <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>Or install it:</p>
+<pre class="language-javascript"><code class="language-javascript">$ npm install <span class="token operator" >--</span>save brunch<span class="token operator" >-</span>pleeease
+</code></pre>
+<p>Now, the module does its job. You can set it in Brunch configuration file, for example:</p>
+<pre class="language-javascript"><code class="language-javascript">plugins<span class="token punctuation" >:</span>
+  pleeease<span class="token punctuation" >:</span>
+    fallbacks<span class="token punctuation" >:</span>
+      autoprefixer<span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+      variables<span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+      rem<span class="token punctuation" >:</span> <span class="token keyword" >false</span>
+      pseudoElements<span class="token punctuation" >:</span> <span class="token keyword" >false</span>
+    optimizers<span class="token punctuation" >:</span>
+      <span class="token keyword" >import</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+      minifier<span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+      mqpacker<span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+</code></pre>
+<p>Note that brunch-pleeease is an optimizer plugin, so it only works when <code>optimize: true</code> is set. The <code>--production</code> environment activates optimizers.</p>
+<p>If you want sourcemaps, from CSS or from a preprocessor like Sass, you can activate them in configuration file, like so:</p>
+<pre class="language-javascript"><code class="language-javascript">sourceMaps<span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+plugins<span class="token punctuation" >:</span>
+  pleeease<span class="token punctuation" >:</span>
+    sourcemaps<span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+</code></pre>
+<p>The first <code>sourceMaps</code> option enable sourcemaps from Brunch (for <a href="https://github.com/brunch/sass-brunch">Sass brunch</a> for example). The second one <code>plugins.pleeease.sourcemaps</code> enable sourcemaps for Pleeease (basically <code>@import</code>&#39;ed file). <strong>You can now have a full sourcemaps chain!</strong></p>
+<p>You can also use the <a href="https://github.com/iamvdo/brunch-with-pleeease">pre-configured Pleeease skeleton</a>.</p>
+<h3 id="with-gulp">With Gulp</h3>
+<p>You can use <a href="https://github.com/danielhusar/gulp-pleeease">gulp-pleeease</a>. Here is a <code>Gulpfile.js</code> example, with Sass and sourcemaps support:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword" >var</span> gulp <span class="token operator" >=</span> <span class="token function" >require<span class="token punctuation" >(</span></span><span class="token string" >'gulp'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token keyword" >var</span> sass <span class="token operator" >=</span> <span class="token function" >require<span class="token punctuation" >(</span></span><span class="token string" >'gulp-ruby-sass'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token keyword" >var</span> pleeease <span class="token operator" >=</span> <span class="token function" >require<span class="token punctuation" >(</span></span><span class="token string" >'gulp-pleeease'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+
+<span class="token keyword" >var</span> SassOptions <span class="token operator" >=</span> <span class="token punctuation" >{</span>
+    sourcemap<span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+    style<span class="token punctuation" >:</span> <span class="token string" >"compact"</span>
+<span class="token punctuation" >}</span><span class="token punctuation" >;</span>
+<span class="token comment" spellcheck="true">// set minifier to false to keep Sass sourcemaps support
+</span><span class="token keyword" >var</span> PleeeaseOptions <span class="token operator" >=</span> <span class="token punctuation" >{</span>
+    optimizers<span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
+        minifier<span class="token punctuation" >:</span> <span class="token keyword" >false</span>
+    <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span><span class="token punctuation" >;</span>
+
+gulp<span class="token punctuation" >.</span><span class="token function" >task<span class="token punctuation" >(</span></span><span class="token string" >'awesome_css'</span><span class="token punctuation" >,</span> <span class="token keyword" >function</span> <span class="token punctuation" >(</span><span class="token punctuation" >)</span> <span class="token punctuation" >{</span>
+    gulp<span class="token punctuation" >.</span><span class="token function" >src<span class="token punctuation" >(</span></span><span class="token string" >'./scss/main.scss'</span><span class="token punctuation" >)</span>
+        <span class="token punctuation" >.</span><span class="token function" >pipe<span class="token punctuation" >(</span></span><span class="token function" >sass<span class="token punctuation" >(</span></span>SassOptions<span class="token punctuation" >)</span><span class="token punctuation" >)</span>
+        <span class="token punctuation" >.</span><span class="token function" >pipe<span class="token punctuation" >(</span></span><span class="token function" >pleeease<span class="token punctuation" >(</span></span>PleeeaseOptions<span class="token punctuation" >)</span><span class="token punctuation" >)</span>
+        <span class="token punctuation" >.</span><span class="token function" >pipe<span class="token punctuation" >(</span></span>gulp<span class="token punctuation" >.</span><span class="token function" >dest<span class="token punctuation" >(</span></span><span class="token string" >'./public'</span><span class="token punctuation" >)</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+</code></pre>
+<p>Note: This is based on <a href="http://fettblog.eu/blog/2014/04/10/gulp-sass-autoprefixer-sourcemaps/">@ddprrt&#39;s article</a> for sourcemaps support. You can also use <a href="https://github.com/dlmanning/gulp-sass">gulp-sass</a> (based on libsass) if you don&#39;t need sourcemaps.</p>
+<h3 id="with-grunt">With Grunt</h3>
+<p>You can use <a href="https://github.com/danielhusar/grunt-pleeease">grunt-pleeease</a>.</p>
+</div><div class="block"><h2>Sources</h2><div class="buttons"><a href="https://github.com/iamvdo/pleeease/zipball/master" class="button button--download">Download .zip</a><a href="https://github.com/iamvdo/pleeease/tarball/master" class="button button--download">Download .tar.gz</a><a href="https://github.com/iamvdo/pleeease/" class="button">View on GitHub</a></div></div><footer><p>Postprocess with <a href="/">Pleeease</a> by <a href="http://twitter.com/iamvdo">@iamvdo</a>.</p><p class="note">Thanks to <a href="http://twitter.com/andreysitnik">@andreysitnik</a> for PostCSS and Autoprefixer, <a href="http://twitter.com/moox">@MoOx</a> for some PostCSS plugins and <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.</p></footer></article></section><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50460425-1', 'pleeease.io');
+ga('send', 'pageview');</script></body></html>

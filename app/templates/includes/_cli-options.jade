@@ -2,37 +2,20 @@
 
   ##Configuration file
 
-  *Pleeease* options can be set in a `.pleeeaserc` file (JSON-like). For example:
-
-  ```javascript
-  {
-    "in": ["foo.css", "bar.css"],
-    "out": "baz.css"
-  }
-  ```
-
-  * `in` is an array of files (default `["*.css"]`)
-  * `out` is the path to the result file (default `app.min.css`)
-
-  <div class="note">Note: In previous version (<0.4), these options were `input` and `output`</div>
-
-  You can now compile easily, without arguments:
-
-  ```javascript
-  $ pleeease compile
-  ```
-
-  You can also override [all postprocess options](options.html). For example, if you want to enable [autoprefixer](options.html#fallbacks-autoprefixer) and disable [minifier](options.html#optimizers-minifier), just write:
+  When using CLI, Pleeease's options have to be set in a file called `.pleeeaserc` (JSON-like). For example:
 
   ```javascript
   {
     "in": ["foo.css", "bar.css"],
     "out": "baz.css",
-    "fallbacks": {
-      "autoprefixer": ["last 4 versions"]
-    },
-    "optimizers": {
-      "minifier": false
-    }
+    "autoprefixer": ["last 3 versions", "Android 2.3"]
   }
   ```
+
+  * `in` defines that `foo.css` and `bar.css` are input files
+  * `out` defines that `baz.css` is the output file (the file that will be created)
+  * `autoprefixer` adds CSS prefixes for the last 3 versions of each browsers and support Android 2.3
+
+  <div class="note">Note: In previous version (<0.4), options were `input` and `output`</div>
+
+  Then, you can override [all postprocess options](#options) the same way.

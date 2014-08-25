@@ -1,42 +1,60 @@
 :markdown
 
-  ##Options
+  ##Features
 
-  These are the default options (default `.pleeeaserc` file):
+  The default `.pleeeaserc` file is:
 
   ```javascript
   {
-    "in": ["*.css"],
+    "in": "*.css",
     "out": "app.min.css",
 
-    "fallbacks": {
-      "autoprefixer": true,
-      "variables": true,
-      "filters": true,
-      "rem": true,
-      "pseudoElements": true
-    },
-    "optimizers": {
-      "import": true,
-      "minifier": true,
-      "mqpacker": true
-    },
+    "autoprefixer": true,
+    "filters": true,
+    "rem": true,
+    "pseudoElements": true
+
+    "import": true,
+    "minifier": true,
+    "mqpacker": true
 
     "sourcemaps": false
+
+    "next": false
   }
   ```
 
-  All options can be disabled with the `false` keyword or modified using each postprocessor options. See each options:
+  All features can be disabled with the `false` keyword or modified using each postprocessor options. See each features:
 
-  * [in, out](tool.html#configuration-file)
-  * fallbacks: [autoprefixer](#fallbacks-autoprefixer), [variables](#fallbacks-variables), [filters](#fallbacks-filters), [rem](#fallbacks-rem), [pseudoElements](#fallbacks-pseudoelements)
-  * optimizers: [import](#optimizers-import), [minifier](#optimizers-minifier), [mqpacker](#optimizers-mqpacker)
+  * [in](#in), [out](#out)
+  * [autoprefixer](#autoprefixer), [filters](#filters), [rem](#rem), [pseudoElements](#pseudoelements)
+  * [import](#import), [minifier](#minifier), [mqpacker](#mqpacker)
+  * [Pleeease.NEXT](#pleeease-next)
   * [sourcemaps](#sourcemaps)
 
+  ###in
 
-  ###fallbacks.autoprefixer
+  <div class="note">
+  Type: `String`, `Array` | Default: `"*.css"`
+  </div>
 
-  Adds support for [Autoprefixer 2.0.0](https://github.com/ai/autoprefixer) that **add vendor prefixes to CSS**. From Autoprefixer options, you can specify the browsers you want to target in your project:
+  **Defines input file(s)**.
+
+  ###out
+
+  <div class="note">
+  Type: `String` | Default: `"app.min.css"`
+  </div>
+
+  **Defines output file**.
+
+  ###autoprefixer
+
+  <div class="note">
+  Type: `Array` | Default: `["> 1%", "last 2 versions", "Firefox ESR", "Opera 12.1"]`
+  </div>
+
+  **Adds vendor prefixes to CSS**, using [Autoprefixer](https://github.com/ai/autoprefixer). From Autoprefixer options, you can specify the browsers you want to target in your project:
 
   * `last 2 versions` is last versions for each browser
   * `last 2 Chrome versions` is last versions of the specified browser.
@@ -51,9 +69,7 @@
   ```javascript
   // .pleeeaserc file (remove comment)
   {
-    "fallbacks": {
-      "autoprefixer": ["last 4 versions", "Android 2.3"]
-    }
+    "autoprefixer": ["last 4 versions", "ios 6"]
   }
   ```
 
@@ -88,37 +104,13 @@
 
   See [full available options for Autoprefixer on GitHub](https://github.com/ai/autoprefixer#browsers).
 
-  ###fallbacks.variables
+  ###filters
 
-  Adds support for a **"not so bad" [CSS variables polyfill](https://github.com/iamvdo/postcss-vars)**. There are no options.
+  <div class="note">
+  Type: `Object` | Default: `{oldIE: false}`
+  </div>
 
-  CSS variables begins with `--` and have to be declared in a `:root` rule. Then, they can be used with the `var(--variable)` notation.
-
-  It converts this file:
-
-  ```css
-  :root {
-    --color-primary: blue;
-  }
-  .element {
-    color: var(--color-primary);
-  }
-  ```
-
-  To this one:
-
-  ```css
-  :root {
-    --color-primary: blue;
-  }
-  .element {
-    color: blue;
-  }
-  ```
-
-  ###fallbacks.filters
-
-  Converts CSS shorthand filters to SVG equivalent. Uses [pleeease-filters](https://github.com/iamvdo/pleeease-filters).
+  **Converts CSS shorthand filters to SVG equivalent**, using [pleeease-filters](https://github.com/iamvdo/pleeease-filters).
 
   It converts this file:
 
@@ -145,9 +137,7 @@
   ```javascript
   // .pleeeaserc file (remove comment)
   {
-    "fallbacks": {
-      "filters": { "oldIE": true }
-    }
+    "filters": { "oldIE": true }
   }
   ```
 
@@ -166,9 +156,13 @@
 
   **Be careful**, not all browsers support CSS or SVG filters. For your information, latest WebKit browsers support CSS shorthand, Firefox support SVG filters and IE9- support IE filters (limited and slightly degraded). **It means that IE10+, Opera Mini and Android browsers have no support at all**. Moreover, IE filters shouldn't be used.
 
-  ###fallbacks.rem
+  ###rem
 
-  Adds support for [pixrem](https://github.com/iamvdo/node-pixrem) that **generates pixel fallbacks for `rem` units**. Add options as an array:
+  <div class="note">
+  Type: `Array` | Default: `["16px", {replace: false}]`
+  </div>
+
+  **Generates pixel fallbacks for `rem` units**, using [pixrem](https://github.com/iamvdo/node-pixrem). Add options as an array:
 
   * first parameter is the root font-size (default `16px`)
   * second parameter is an object with `replace` key set to `true` if you want to replace value. (default `false`)
@@ -176,9 +170,7 @@
   ```javascript
   // .pleeeaserc file (remove comment)
   {
-    "fallbacks": {
-      "rem": ["16px", {"replace": true}]
-    }
+    "rem": ["16px", {"replace": true}]
   }
   ```
 
@@ -201,9 +193,7 @@
 
   See [full available options for pixrem on GitHub](https://github.com/iamvdo/node-pixrem#parameters).
 
-  <div class="note">For now, this uses a fork from [pixrem](https://github.com/robwierzbowski/node-pixrem) until the [PR will be accepted or not](https://github.com/robwierzbowski/node-pixrem/pull/10).</div>
-
-  ###fallbacks.pseudoElements
+  ###pseudoElements
 
   **Converts pseudo-elements using CSS3 syntax** (two-colons notation like `::after`, `::before`, `::first-line` and `::first-letter`) with the old one, using only one colon (useful for IE8 support). There are no options.
 
@@ -222,37 +212,45 @@
   }
   ```
 
-  ###optimizers.import
+  ###import
 
-  Inlines `@import` styles with relative paths (absolute ones will be unaffected, as the ones including media-queries)
+  <div class="note">
+  Type: `Object` | Default: `{path: process.cwd(), encoding: "utf8", transform: null}`
+  </div>
+
+  **Inlines `@import` styles**, using [postcss-import](https://github.com/postcss/postcss-import).
 
   You can use the CSS syntax you want:
 
   ```css
-  @import "file.css"; /* imported */
-  @import url(file.css); /* imported */
+  @import "file.css";
+  @import url(file.css);
   @import url("http://foo.com/bar.css"); /* not imported */
-  @import url("file.css") screen and (max-width: 35em); /* not imported */
+  @import url("file.css") screen and (max-width: 35em); /* imported in media-queries */
   ```
 
-  Note that you can set the "root" folder for imported files, even if this is not the root of your project (default is `process.cwd()`). For example, if you compile `css/foo.css` that containing an `@import`, set options like this:
+  Note that you can set the "root" folder for imported files with `path` option, even if this is not the root of your project (default is `process.cwd()`). For example, if you compile `css/foo.css` that containing an `@import`, set options like this:
 
   ```javascript
   // .pleeeaserc file (remove comment)
   {
-      "optimizers": {
-          "import": "css"
-      }
+      "import": {"path": "css"}
   }
   ```
 
-  ###optimizers.minifier
+  You can [read more about options](https://github.com/postcss/postcss-import#postcss-import-) on GitHub.
 
-  Adds support for [CSS Wring](https://github.com/hail2u/node-csswring), **a CSS minifier**. There are no options.
+  ###minifier
 
-  ###optimizers.mqpacker
+  <div class="note">
+  Type: `Object` | Default: `{preserveHacks: true, removeAllComments: true}`
+  </div>
 
-  Adds support for [MQ Packer](https://github.com/hail2u/node-css-mqpacker) that **pack same CSS media query rules into one media query rule**. There are no options.
+  **Minifies**, using [CSS Wring](https://github.com/hail2u/node-csswring). See [full options](https://github.com/hail2u/node-csswring#optionsg).
+
+  ###mqpacker
+
+  **Packs same CSS media-queries into one media-query rule**, using [MQ Packer](https://github.com/hail2u/node-css-mqpacker). There are no options.
 
   Mqpacker can convert multiple files like this:
 
@@ -286,7 +284,7 @@
 
   ###Sourcemaps
 
-  *Pleeease* supports sourcemaps from CSS (disabled by default). Enabled them in `.pleeeaserc` file:
+  Pleeease supports sourcemaps (disabled by default). Enabled them in `.pleeeaserc` file:
 
   ```javascript
   // .pleeeaserc file (remove comment)
@@ -295,4 +293,4 @@
   }
   ```
 
-  <div class="note">You can also use [sourcemaps from a preprocessor like Sass](workflow.html#with-gulp) (a bit hacky for now).</div>
+  <div class="note">You can also use [sourcemaps from a preprocessor like Sass](/workflow/#with-gulp) (a bit hacky for now).</div>

@@ -42,6 +42,7 @@ footer {
 }
 header {
 	float: left;
+	position: fixed;
 }
 .title {
 	min-width: 18em;
@@ -109,6 +110,7 @@ nav a.play {
 	/*color: var(--color-light);*/
 	background: rgba(0,0,0,.1);
 }
+
 @media (min-width: 70em) {
 	nav li:not(.version) a::before {
 		content: '';
@@ -124,6 +126,16 @@ nav a.play {
 		transform: translateX(1em);
 	}
 }
+ul ul {
+	font-size: .9em;
+	padding: .5em;
+}
+ul ul a {
+	color: #666;
+}
+ul ul a::before {
+	display: none;
+}
 @media (max-width: 70em) {
 	nav {
 		text-align: center;
@@ -138,6 +150,7 @@ section {
 	overflow: hidden;
 	/*border-top: 5px solid var(--color-dark);*/
 	padding: 0 5em;
+	margin-left: 18em;
 	color: var(--color-dark);
 	line-height: 1.8;
 }
@@ -177,16 +190,22 @@ article a:focus {
 	}
 }
 
+article h1,
 article h2,
 article h3 {
 	font-size: 2em;
+	color: var(--color-dark);
+	padding: 0 0 1em;
+	margin: 0;
+}
+article h2 {
 	color: #FF2000;
-	margin: 0 0 2em;
+	font-size: 1.8em;
 }
 article h3 {
 	color: var(--color-dark);
 	font-size: 1.6em;
-	margin: 2em 0 1em;
+	padding: 1em 0 0;
 }
 .note {
 	font-size: .8em;
@@ -201,6 +220,9 @@ article h3 {
 .note a:hover,
 .note a:focus {
 	color: var(--color-primary);
+}
+.note code {
+	color: var(--color-dark);
 }
 .doge {
 	text-align: center;
@@ -272,9 +294,11 @@ textarea,
 	}
 	header {
 		float: none;
+		position: static;
 	}
 	section {
 		padding: 0 2%;
+		margin-left: 0;
 	}
 	article {
 		margin: auto;

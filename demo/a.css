@@ -1,0 +1,8 @@
+a {
+	color: #FFF;
+}
+@media screen {
+	a {
+		color: #FFF;
+	}
+}

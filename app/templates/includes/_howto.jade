@@ -1,43 +1,47 @@
 :markdown
 
-  ##How it works
+  ##How it (simply) works
 
-  *Pleeease* **does not** modifiy your code. It simply creates another file that **increases browser support**. What you have to do is to configure the input and output files.
+  Pleeease **does not** modifiy your code. It simply creates another file that **increases browser support**. What you have to do is to configure the input and output files.
 
-  For example, let's say you have `"styles.css"` that you want to compile to `"styles.fixed.css"`, execute:
+  For example, let's say you have `"styles.css"` that you want to compile to `"styles.fixed.css"`, create a new [configuration file](/docs/#configuration-file) with:
 
   ```javascript
-  $ pleeease compile styles.css to styles.fixed.css
+  {
+    "in": "style.css",
+    "out": "styles.fixed.css"
+  }
+  ```
+
+  And run Pleeease
+
+  ```javascript
+  $ pleeease compile
   ```
 
   If `"styles.css"` is:
 
   ```css
   @import url("bar.css");
-  *,
-  *::after,
-  *::before {
+
+  *, *::after, *::before {
     box-sizing: border-box;
   }
-  :root {
-    --color-primary: red;
-    --color-secondary: blue;
-  }
-  .elem {
+
+  .a {
     font-size: 2rem;
-    color: red;
-    background: var(--color-primary);
     width: calc(100% - 50px);
-    filter: blur(4px);
   }
-  @media screen and (min-width: 36em) {
-    .elem {
-    color: var(--color-secondary);
+
+  @media (min-width: 36em) {
+    .a {
+      color: red;
     }
   }
-  @media screen and (min-width: 36em) {
-    .class {
-    background: linear-gradient(green, blue);
+
+  @media (min-width: 36em) {
+    .b {
+      color: blue;
     }
   }
   ```
@@ -48,39 +52,30 @@
   .bar {
     /* imported styles */
   }
-  *,
-  *:after,
-  *:before {
+
+  *, *:after, *:before {
     -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
   }
-  :root {
-    --color-primary: red;
-    --color-secondary: blue;
-  }
-  .elem {
+
+  .a {
     font-size: 32px;
     font-size: 2rem;
-    background: red;
     width: -webkit-calc(100% - 50px);
     width: calc(100% - 50px);
-    filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="4" /></filter></svg>#filter');
-    -webkit-filter: blur(4px);
-            filter: blur(4px);
   }
-  @media screen and (min-width: 36em) {
-    .elem {
-      color: blue;
+
+  @media (min-width: 36em) {
+    .a {
+      color: red;
     }
-    .class {
-      background: -webkit-gradient(linear, left top, left bottom, from(green), to(blue));
-      background: -webkit-linear-gradient(green, blue);
-      background: linear-gradient(green, blue);
+    .b {
+      color: blue;
     }
   }
   ```
 
   Pretty cool, isn't it?
-  
-  [Learn more about the tool](tool.html) or [see full options](options.html)
+
+  If you're ready to use it, you now need to learn how to [create a configuration file](docs/#configuration-file), and then [see full features support](docs/#features)!
