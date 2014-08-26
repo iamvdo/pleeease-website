@@ -33,7 +33,7 @@
   Type: `Object` | Default: `{preserve: false}`
   </div>
 
-  **Transforms CSS custom properties** into more compatible CSS. Basically, it's a **["not-so-bad-CSS-variables" polyfill](https://github.com/postcss/postcss-custom-properties)**.
+  **Transforms CSS custom properties** into more compatible CSS. Custom properties are basically CSS variables.
 
   CSS variables begins with `--` and have to be declared in a `:root` rule (this is a limitation from real CSS spec). Then, they can be used with the `var(--variable)` notation.
 
@@ -57,6 +57,8 @@
   ```
 
   You can also keep var-declarations with `{preserve: true}`.
+
+  See [postcss-custom-properties in GitHub](https://github.com/postcss/postcss-custom-properties)
 
   ###customMedia
 

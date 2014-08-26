@@ -266,7 +266,7 @@ Type: <code>Object</code> | Default: <code>{preserveHacks: true, removeAllCommen
 Type: <code>Object</code> | Default: <code>{preserve: false}</code>
 </div>
 
-<p><strong>Transforms CSS custom properties</strong> into more compatible CSS. Basically, it&#39;s a <strong><a href="https://github.com/postcss/postcss-custom-properties">&quot;not-so-bad-CSS-variables&quot; polyfill</a></strong>.</p>
+<p><strong>Transforms CSS custom properties</strong> into more compatible CSS. Custom properties are basically CSS variables.</p>
 <p>CSS variables begins with <code>--</code> and have to be declared in a <code>:root</code> rule (this is a limitation from real CSS spec). Then, they can be used with the <code>var(--variable)</code> notation.</p>
 <p>It converts this file:</p>
 <pre class="language-css"><code class="language-css"><span class="token selector" >:root </span><span class="token punctuation" >{</span>
@@ -282,6 +282,7 @@ Type: <code>Object</code> | Default: <code>{preserve: false}</code>
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>You can also keep var-declarations with <code>{preserve: true}</code>.</p>
+<p>See <a href="https://github.com/postcss/postcss-custom-properties">postcss-custom-properties in GitHub</a></p>
 <h3 id="custommedia">customMedia</h3>
 <div class="note">
 There are no options.
