@@ -3,7 +3,7 @@ document.createElement('nav');
 document.createElement('section');
 document.createElement('article');
 document.createElement('footer');
-</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="/" title="Get started">Get started</a></li><li><a href="/docs" title="Documentation">Documentation</a></li><li><a href="/workflow" title="Improve your workflow" class="selected">Improve your workflow</a></li><li><a href="/play" class="play">Interactive demo</a></li><li class="version"><a href="https://github.com/iamvdo/pleeease/releases">Version <strong>1.0.x</strong></a></li><li class="version"><a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a></li></ul></nav></header><section><article class="workflow"><div class="block"><h2 id="workflow">Workflow</h2>
+</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="/" title="Get started">Get started</a></li><li><a href="/docs" title="Documentation">Documentation</a></li><li><a href="/workflow" title="Improve your workflow" class="selected">Improve your workflow</a></li><li><a href="/play" class="play">Interactive demo</a></li><li class="version"><a href="https://github.com/iamvdo/pleeease/releases">Version <strong>1.1.x</strong></a></li><li class="version"><a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a></li></ul></nav></header><section><article class="workflow"><div class="block"><h2 id="workflow">Workflow</h2>
 <h3 id="node-js">Node.js</h3>
 <p>You can use the <code>process</code> function with 2 parameters:</p>
 <ul>
@@ -15,8 +15,8 @@ document.createElement('footer');
     fs       <span class="token operator" >=</span> <span class="token function" >require<span class="token punctuation" >(</span></span><span class="token string" >'fs'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
 
 <span class="token keyword" >var</span> css <span class="token operator" >=</span> fs<span class="token punctuation" >.</span><span class="token function" >readFileSync<span class="token punctuation" >(</span></span><span class="token string" >'app.css'</span><span class="token punctuation" >,</span> <span class="token string" >'utf8'</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
-
-<span class="token comment" spellcheck="true">// define options here
+<span class="token comment" spellcheck="true">
+// define options here
 </span><span class="token keyword" >var</span> options <span class="token operator" >=</span> <span class="token punctuation" >{</span><span class="token punctuation" >}</span><span class="token punctuation" >;</span>
 
 <span class="token keyword" >var</span> fixed <span class="token operator" >=</span> pleeease<span class="token punctuation" >.</span><span class="token function" >process<span class="token punctuation" >(</span></span>css<span class="token punctuation" >,</span> options<span class="token punctuation" >)</span><span class="token punctuation" >;</span>
@@ -71,8 +71,8 @@ plugins<span class="token punctuation" >:</span>
 <span class="token keyword" >var</span> SassOptions <span class="token operator" >=</span> <span class="token punctuation" >{</span>
     sourcemap<span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
     style<span class="token punctuation" >:</span> <span class="token string" >"compact"</span>
-<span class="token punctuation" >}</span><span class="token punctuation" >;</span>
-<span class="token comment" spellcheck="true">// set minifier to false to keep Sass sourcemaps support
+<span class="token punctuation" >}</span><span class="token punctuation" >;</span><span class="token comment" spellcheck="true">
+// set minifier to false to keep Sass sourcemaps support
 </span><span class="token keyword" >var</span> PleeeaseOptions <span class="token operator" >=</span> <span class="token punctuation" >{</span>
     optimizers<span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
         minifier<span class="token punctuation" >:</span> <span class="token keyword" >false</span>

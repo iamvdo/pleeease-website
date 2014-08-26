@@ -3,7 +3,7 @@ document.createElement('nav');
 document.createElement('section');
 document.createElement('article');
 document.createElement('footer');
-</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="/" title="Get started">Get started</a></li><li><a href="/docs" title="Documentation" class="selected">Documentation</a><ul><li><a href="#configuration-file">Configuration file</a></li><li><a href="#features">Features</a></li><li><a href="#cli">CLI</a></li></ul></li><li><a href="/workflow" title="Improve your workflow">Improve your workflow</a></li><li><a href="/play" class="play">Interactive demo</a></li><li class="version"><a href="https://github.com/iamvdo/pleeease/releases">Version <strong>1.0.x</strong></a></li><li class="version"><a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a></li></ul></nav></header><section><article class="docs"><div class="block"><h1 id="documentation">Documentation</h1>
+</script></head><body><header><div class="title"><h1><a href="/">pleeease</a></h1><p class="subtitle">Postprocess CSS with ease</p></div><nav><ul><li><a href="/" title="Get started">Get started</a></li><li><a href="/docs" title="Documentation" class="selected">Documentation</a><ul><li><a href="#configuration-file">Configuration file</a></li><li><a href="#features">Features</a></li><li><a href="#cli">CLI</a></li></ul></li><li><a href="/workflow" title="Improve your workflow">Improve your workflow</a></li><li><a href="/play" class="play">Interactive demo</a></li><li class="version"><a href="https://github.com/iamvdo/pleeease/releases">Version <strong>1.1.x</strong></a></li><li class="version"><a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a></li></ul></nav></header><section><article class="docs"><div class="block"><h1 id="documentation">Documentation</h1>
 <p>Learn <a href="#configuration-file">how to configure</a> Pleeease, which <a href="#features">features you can use</a> and <a href="#cli">how to use CLI</a>.</p>
 </div><div class="block"><h2 id="configuration-file">Configuration file</h2>
 <p>When using CLI, Pleeease&#39;s options have to be set in a file called <code>.pleeeaserc</code> (JSON-like). For example:</p>
@@ -25,7 +25,7 @@ document.createElement('footer');
 <p>Features can be disabled with the <code>false</code> keyword or modified using each postprocessor options. See each features:</p>
 <ul>
 <li><a href="#in">in</a>, <a href="#out">out</a></li>
-<li><a href="#autoprefixer">autoprefixer</a>, <a href="#filters">filters</a>, <a href="#rem">rem</a>, <a href="#pseudoelements">pseudoElements</a></li>
+<li><a href="#autoprefixer">autoprefixer</a>, <a href="#filters">filters</a>, <a href="#rem">rem</a>, <a href="#pseudoelements">pseudoElements</a>, <a href="#opacity">opacity</a></li>
 <li><a href="#import">import</a>, <a href="#minifier">minifier</a>, <a href="#mqpacker">mqpacker</a></li>
 <li><a href="#pleeease-next">Pleeease.NEXT</a></li>
 <li><a href="#sourcemaps">sourcemaps</a></li>
@@ -38,13 +38,14 @@ document.createElement('footer');
   <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
   <span class="token string" >"filters"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
   <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
-  <span class="token string" >"pseudoElements"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+  <span class="token string" >"pseudoElements"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+  <span class="token string" >"opacity"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
 
   <span class="token string" >"import"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
   <span class="token string" >"minifier"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
-  <span class="token string" >"mqpacker"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+  <span class="token string" >"mqpacker"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
 
-  <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span>
+  <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span><span class="token punctuation" >,</span>
 
   <span class="token string" >"next"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span>
 <span class="token punctuation" >}</span>
@@ -184,6 +185,19 @@ Type: <code>Array</code> | Default: <code>[&quot;16px&quot;, {replace: false}]</
 <p>To this one:</p>
 <pre class="language-css"><code class="language-css"><span class="token selector" >.element:after </span><span class="token punctuation" >{</span>
   <span class="token property" >content</span><span class="token punctuation" >:</span> <span class="token string" >''</span><span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<h3 id="opacity">opacity</h3>
+<p><strong>Adds opacity filter for IE8</strong> when using <code>opacity</code> property.</p>
+<p>Converts this file:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.element </span><span class="token punctuation" >{</span>
+  <span class="token property" >opacity</span><span class="token punctuation" >:</span> .5<span class="token punctuation" >;</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>To this one:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >.element </span><span class="token punctuation" >{</span>
+  <span class="token property" >opacity</span><span class="token punctuation" >:</span> .5<span class="token punctuation" >;</span>
+  <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token function" >alpha</span>(opacity=50)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <h3 id="import">import</h3>
