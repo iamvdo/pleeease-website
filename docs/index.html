@@ -22,6 +22,14 @@ document.createElement('footer');
 
 <p>Then, you can override <a href="#options">all postprocess options</a> the same way.</p>
 </div><div class="block"><h2 id="features">Features</h2>
+<p>Features can be disabled with the <code>false</code> keyword or modified using each postprocessor options. See each features:</p>
+<ul>
+<li><a href="#in">in</a>, <a href="#out">out</a></li>
+<li><a href="#autoprefixer">autoprefixer</a>, <a href="#filters">filters</a>, <a href="#rem">rem</a>, <a href="#pseudoelements">pseudoElements</a></li>
+<li><a href="#import">import</a>, <a href="#minifier">minifier</a>, <a href="#mqpacker">mqpacker</a></li>
+<li><a href="#pleeease-next">Pleeease.NEXT</a></li>
+<li><a href="#sourcemaps">sourcemaps</a></li>
+</ul>
 <p>The default <code>.pleeeaserc</code> file is:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
   <span class="token string" >"in"</span><span class="token punctuation" >:</span> <span class="token string" >"*.css"</span><span class="token punctuation" >,</span>
@@ -41,14 +49,6 @@ document.createElement('footer');
   <span class="token string" >"next"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span>
 <span class="token punctuation" >}</span>
 </code></pre>
-<p>All features can be disabled with the <code>false</code> keyword or modified using each postprocessor options. See each features:</p>
-<ul>
-<li><a href="#in">in</a>, <a href="#out">out</a></li>
-<li><a href="#autoprefixer">autoprefixer</a>, <a href="#filters">filters</a>, <a href="#rem">rem</a>, <a href="#pseudoelements">pseudoElements</a></li>
-<li><a href="#import">import</a>, <a href="#minifier">minifier</a>, <a href="#mqpacker">mqpacker</a></li>
-<li><a href="#pleeease-next">Pleeease.NEXT</a></li>
-<li><a href="#sourcemaps">sourcemaps</a></li>
-</ul>
 <h3 id="in">in</h3>
 <div class="note">
 Type: <code>String</code>, <code>Array</code> | Default: <code>&quot;*.css&quot;</code>
