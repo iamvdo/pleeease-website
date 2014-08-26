@@ -10,7 +10,7 @@ document.createElement('footer');
 <pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
   <span class="token string" >"in"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"foo.css"</span><span class="token punctuation" >,</span> <span class="token string" >"bar.css"</span><span class="token punctuation" >]</span><span class="token punctuation" >,</span>
   <span class="token string" >"out"</span><span class="token punctuation" >:</span> <span class="token string" >"baz.css"</span><span class="token punctuation" >,</span>
-  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"last 3 versions"</span><span class="token punctuation" >,</span> <span class="token string" >"Android 2.3"</span><span class="token punctuation" >]</span>
+  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span><span class="token string" >"browsers"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"last 3 versions"</span><span class="token punctuation" >,</span> <span class="token string" >"Android 2.3"</span><span class="token punctuation" >]</span><span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <ul>
@@ -108,7 +108,7 @@ Type: <code>Object</code> | Default: <code>{browsers: [&quot;&gt; 1%&quot;, &quo
 <p>You can also disable visual cascade for CSS prefixes:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
 </span><span class="token punctuation" >{</span>
-  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>cascade<span class="token punctuation" >:</span> <span class="token keyword" >false</span><span class="token punctuation" >}</span>
+  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span><span class="token string" >"cascade"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span><span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>See <a href="https://github.com/ai/autoprefixer">Autoprefixer on GitHub</a>.</p>
@@ -266,7 +266,7 @@ Type: <code>Object</code> | Default: <code>{preserveHacks: true, removeAllCommen
 Type: <code>Object</code> | Default: <code>{preserve: false}</code>
 </div>
 
-<p><strong>Transforms CSS custom properties</strong> into more compatible CSS. Basically, it&#39;s a <strong>&quot;not so bad&quot; <a href="https://github.com/iamvdo/postcss-vars">CSS variables polyfill</a></strong>.</p>
+<p><strong>Transforms CSS custom properties</strong> into more compatible CSS. Basically, it&#39;s a <strong><a href="https://github.com/postcss/postcss-custom-properties">&quot;not-so-bad-CSS-variables&quot; polyfill</a></strong>.</p>
 <p>CSS variables begins with <code>--</code> and have to be declared in a <code>:root</code> rule (this is a limitation from real CSS spec). Then, they can be used with the <code>var(--variable)</code> notation.</p>
 <p>It converts this file:</p>
 <pre class="language-css"><code class="language-css"><span class="token selector" >:root </span><span class="token punctuation" >{</span>
