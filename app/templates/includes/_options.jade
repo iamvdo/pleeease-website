@@ -247,6 +247,8 @@
   }
   ```
 
+  **Important note:** In edge cases, this processor may cause unloaded files by browsers. Always check generated CSS and open issue if you encounter problems.
+
   See [postcss-import on GitHub](https://github.com/postcss/postcss-import#postcss-import-).
 
   ###minifier
@@ -290,6 +292,8 @@
     }
   }
   ```
+
+  **Important note:** In edge cases, this processor can [produce unsafe grouping](https://github.com/hail2u/node-css-mqpacker/issues/16). Always check generated CSS and open issue if you encounter problems.
 
   ###Sourcemaps
 
