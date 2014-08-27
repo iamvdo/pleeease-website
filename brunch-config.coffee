@@ -8,7 +8,11 @@ exports.config =
         'play/playground.js': /^app(\/|\\)playground/
         'play/pleeease.js'  : /^app(\/|\\)pleeease/
       order:
-        before: ['app/playground/prism.js']
+        before: [
+          'app/playground/codemirror.js',
+          'app/playground/codemirror-css.js'
+          'app/playground/prism.js'
+        ]
     stylesheets:
       joinTo: 'app.min.css'
       order:

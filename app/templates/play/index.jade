@@ -1,35 +1,54 @@
-extends ../_layout
+extends ../_layout-play
 
 block link
   -var selected = 'playground';
 
 block content
 
-  .block.block--playground
+  .textareas
 
-      h2 Playground
-      p Test the awesomeness!
-
-      .textareas
-
-        .textarea
-          h3 Source
-          p Write or paste code here (rem, unprefixed CSS, variables, etc.).
-          textarea#input.
-            div {
-              display: flex;
-              background: linear-gradient(red, blue);
-            }
+    .textarea
+      h3.textarea-title Source
+        span.textarea-subtitle Write stuff here...
+      textarea#input.
+        div {
+          display: flex;
+          background: linear-gradient(red, blue);
+        }
+      .play-options
+        h3 Options
+        form
+          fieldset
+            legend Features
+            input(id='optsAutoprefixer',name='autoprefixer',type='checkbox',checked='checked')
+            label(for='optsAutoprefixer') Autoprefixer
+            input(id='optsRem',name='rem',type='checkbox',checked='checked')
+            label(for='optsRem') rem
+            input(id='optsPseudos',name='pseudoElements',type='checkbox',checked='checked')
+            label(for='optsPseudos') Pseudo-elements
+            input(id='optsFilters',name='filters',type='checkbox',checked='checked')
+            label(for='optsFilters') CSS Filters
+          fieldset
+            legend Pleeease.NEXT
+            input(id='optsVars',name='next.customProperties',type='checkbox',checked='checked')
+            label(for='optsVars') CSS Variables
+            input(id='optsCalc',name='next.calc',type='checkbox',checked='checked')
+            label(for='optsCalc') Calc()
+            input(id='optsCustomMedia',name='next.customMedia',type='checkbox',checked='checked')
+            label(for='optsCustomMedia') Custom media-queries
+            input(id='optsColors',name='next.colors',type='checkbox',checked='checked')
+            label(for='optsColors') CSS4 Colors
+          fieldset
+            legend Other
+            input(id='optsMin',name='minifier',type='checkbox')
+            label(for='optsMin') Minify
           p
-            a(href='/#how-it-simply-works') See what Pleeease can do.
+            a(href='/docs/#features',class='play-link') Learn more...
 
-        .textarea
-          h3 Result
-          p
-            strong See the result
-            |  with 
-            a(href='/docs') default options
-          #output(class="textarea-area")
+    .textarea
+      h3.textarea-title Result
+        span.textarea-subtitle See awesomeness...
+      #output(class="textarea-area")
 
   script(src='pleeease.js')
   script(src='playground.js')
