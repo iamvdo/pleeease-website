@@ -118,11 +118,14 @@ div.CodeMirror-overwrite div.CodeMirror-cursor {}
 .cm-s-default .cm-operator {color: orangered;}
 .cm-s-default .cm-number,
 .cm-s-default .cm-keyword,
-.cm-s-default .cm-string {color: black}
+.cm-s-default .cm-string,
+.cm-s-default .cm-atom {color: black}
 .cm-s-default .cm-tag,
 .cm-s-default .cm-qualifier,
 .cm-s-default .cm-builtin,
-.cm-s-default .cm-variable-3 {color: darkcyan;}
+.cm-s-default .cm-variable-3,
+.cm-s-default .cm-def,
+.cm-s-default .cm-attribute {color: darkcyan;}
 .cm-s-default .cm-variable,
 .cm-s-default .cm-variable-2 {color: #000;}
 

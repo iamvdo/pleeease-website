@@ -95,7 +95,8 @@ pre[class*="language-"] {
 
 .token.selector,
 .token.attr-name,
-.token.builtin {
+.token.builtin,
+.token.atrule {
 	color: darkcyan;
 }
 
@@ -109,7 +110,7 @@ pre[class*="language-"] {
 	color: #000;
 }
 
-.token.atrule,
+
 .token.attr-value,
 .token.keyword {
 	color: #07a;

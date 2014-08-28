@@ -306,25 +306,25 @@ article h3 {
 .play body {
   height: 100%;
 }
-.play header {
+.play-header {
   float: none;
   height: 3em;
   top: 0; left: 0; right: 0;
   z-index: 500;
 }
-.play .title {
+.play-title {
   height: 100%;
   display: block;
   box-shadow: 0 1px 2px rgba(0,0,0,.9);
 }
-.play .title h1 {
+.play-title h1 {
   display: inline-block;
   vertical-align: text-top;
   font-size: 2em;
   text-align: left;
   text-indent: 0.25em;
 }
-.play .subtitle {
+.play-subtitle {
   display: inline-block;
   vertical-align: text-top;
   padding: .1em .3em;
@@ -337,12 +337,7 @@ article h3 {
 .play nav {
   position: absolute;top: 0; right: 0;
 }
-.play h3 {
-  color: #FFF;
-  padding: .2em 1em;
-  margin: 0;
-  font-size: 1em;
-}
+
 .play-link {
   color: #999;
   font-size: .9em;
@@ -378,6 +373,10 @@ article h3 {
   background: #eee;
 }
 .play-block-title {
+  color: #FFF;
+  padding: .2em 1em;
+  margin: 0;
+  font-size: 1em;
   position: absolute;
   top: 3rem; left: 0; right: 0;
   z-index: 499;
