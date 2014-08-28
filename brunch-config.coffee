@@ -10,7 +10,8 @@ exports.config =
       order:
         before: [
           'app/playground/codemirror.js',
-          'app/playground/codemirror-css.js'
+          'app/playground/codemirror-css.js',
+          'app/playground/emmet.js',
           'app/playground/prism.js'
         ]
     stylesheets:

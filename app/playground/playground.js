@@ -100,7 +100,8 @@ if(location.search !== '') {
 }
 var editor = CodeMirror.fromTextArea(document.getElementById("input"), {
   mode: "text/css",
-  lineWrapping: true
+  lineWrapping: true,
+  profile: 'html'
 });
 var output = CodeMirror.fromTextArea(document.getElementById("output"), {
   mode: "text/css",
