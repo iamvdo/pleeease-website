@@ -334,15 +334,22 @@ article h3 {
   border-radius: 2px;
   box-shadow: 0 1px 1px rgba(0,0,0,.3)
 }
-.play nav {
-  position: absolute;top: 0; right: 0;
-}
-
 .play-link {
   color: #999;
   font-size: .9em;
 }
-.textareas {
+.play-header-link {
+  position: absolute;
+  top: 0; right: 1em;
+  color: #000;
+  line-height: 3em;
+  text-decoration: none;
+}
+.play-header-link:hover {
+  color: #FFF;
+  text-decoration: underline;
+}
+.play-textareas {
   width: 100%;
   overflow: hidden;
   height: 100%;
@@ -361,10 +368,9 @@ article h3 {
 }
 .play-block-textarea {
   height: 100%;
-  padding: 1em;
+  padding: 1em .5em;
   background: #FFF;
-  border: 1px solid #888;
-  font: 1.4em Consolas, Monaco, monospace;
+  font: 1.2em Consolas, Monaco, monospace;
   resize: vertical;
   white-space: pre-wrap;
   overflow: scroll;

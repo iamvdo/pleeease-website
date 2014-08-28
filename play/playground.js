@@ -9196,6 +9196,11 @@ var editor = CodeMirror.fromTextArea(document.getElementById("input"), {
   mode: "text/css",
   lineWrapping: true
 });
+var output = CodeMirror.fromTextArea(document.getElementById("output"), {
+  mode: "text/css",
+  lineWrapping: true,
+  readOnly: true
+});
 
 function htmlEntities (str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -9206,7 +9211,8 @@ var doPleeease = function () {
   try {
     compiled = pleeease.process(source, options);
   } catch (err) {}
-  output.innerHTML = Prism.highlight(compiled, Prism.languages.css);
+  //output.innerHTML = Prism.highlight(compiled, Prism.languages.css);
+  output.setValue(compiled);
 };
 //input.addEventListener('keyup', doPleeease);
 
