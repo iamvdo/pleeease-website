@@ -9134,15 +9134,155 @@ Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(f
 
 })();
 
-var input = document.querySelector('#input');
-var output = document.querySelector('#output');
-var elts = document.querySelectorAll('.play-block--options input');
+(function() {
+  var WebSocket = window.WebSocket || window.MozWebSocket;
+  var br = window.brunch = (window.brunch || {});
+  var ar = br['auto-reload'] = (br['auto-reload'] || {});
+  if (!WebSocket || ar.disabled) return;
 
+  var cacheBuster = function(url){
+    var date = Math.round(Date.now() / 1000).toString();
+    url = url.replace(/(\&|\\?)cacheBuster=\d*/, '');
+    return url + (url.indexOf('?') >= 0 ? '&' : '?') +'cacheBuster=' + date;
+  };
+
+  var reloaders = {
+    page: function(){
+      window.location.reload(true);
+    },
+
+    stylesheet: function(){
+      [].slice
+        .call(document.querySelectorAll('link[rel="stylesheet"]'))
+        .filter(function(link){
+          return (link != null && link.href != null);
+        })
+        .forEach(function(link) {
+          link.href = cacheBuster(link.href);
+        });
+    }
+  };
+  var port = ar.port || 9485;
+  var host = br.server || window.location.hostname;
+
+  var connect = function(){
+    var connection = new WebSocket('ws://' + host + ':' + port);
+    connection.onmessage = function(event){
+      if (ar.disabled) return;
+      var message = event.data;
+      var reloader = reloaders[message] || reloaders.page;
+      reloader();
+    };
+    connection.onerror = function(){
+      if (connection.readyState) connection.close();
+    };
+    connection.onclose = function(){
+      window.setTimeout(connect, 1000);
+    };
+  };
+  connect();
+})();
+
+// options
+var options = {
+  "minifier": false,
+  "next": {}
+};
+function htmlEntities (str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function doPleeease () {
+  var source = editor.getValue();
+  var compiled = source;
+  try {
+    //console.log(options);
+    compiled = pleeease.process(source, options);
+  } catch (err) {
+    console.log(err);
+  }
+  output.setValue(compiled);
+}
+function updateOptionAdvanced (checked, name) {
+  var opts = {
+    'autoprefixer': [function (value) {
+      return {browsers:[value]};
+    }, 'text'],
+    'rem': [function (value) {
+      return [value];
+    }, 'text'],
+    'filters': [function (value) {
+      return {oldIE: true};
+    }, 'check'],
+    'next.customProperties': [function (value) {
+      return {preserve: true};
+    }, 'check']
+  };
+
+  if (opts[name]) {
+    var type = opts[name][1];
+    var value = document.getElementsByName(name + 'Opts').item(0);
+    if (type === 'check') {
+      value = value.checked;
+    } else {
+      value = value.value;
+    }
+    if ((type === 'text' && value !== '') || (type === 'check' && value)) {
+      checked = opts[name][0](value);
+    }
+  }
+
+  return checked;
+
+}
+function updateOption (checkbox, refresh) {
+
+  var checked = !!checkbox.checked;
+
+  if (checked && checkbox.getAttribute('value')) {
+    checked = JSON.parse(checkbox.getAttribute('value'));
+  }
+
+  if (checked) {
+    checked = updateOptionAdvanced(checked, checkbox.name);
+  }
+
+  if (checkbox.name.indexOf('next') !== -1) {
+    var name = checkbox.name.replace('next.', '');
+    options['next'][name] = checked;
+  } else {
+    options[checkbox.name] = checked;
+  }
+
+  refresh = typeof refresh !== 'undefined' ? refresh : true;
+  if (refresh) {
+    doPleeease();
+  }
+}
+function doOptions () {
+
+  for (var i = 0; i < checkboxes.length; i++) {
+    var checkbox = checkboxes[i];
+
+    updateOption(checkbox, false);
+
+    checkbox.addEventListener('change', updateOption.bind(this, checkbox));
+
+    var checkboxOpt = document.getElementsByName(checkbox.name + 'Opts');
+    if (checkboxOpt.length !== 0) {
+      checkboxOpt.item(0).addEventListener('keyup', updateOption.bind(this, checkbox));
+      checkboxOpt.item(0).addEventListener('change', updateOption.bind(this, checkbox));
+    }
+  };
+
+  doPleeease();
+
+}
+
+var input = document.querySelector('#input');
 if(location.search !== '') {
   var q = location.search.substring(1);
   input.value = decodeURI(q);
 }
-
 var editor = CodeMirror.fromTextArea(document.getElementById("input"), {
   mode: "text/css",
   lineWrapping: true
@@ -9152,49 +9292,13 @@ var output = CodeMirror.fromTextArea(document.getElementById("output"), {
   lineWrapping: true,
   readOnly: true
 });
-
-function htmlEntities (str) {
-    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
-var doPleeease = function () {
-  var source = editor.getValue();
-  var compiled = source;
-  try {
-    compiled = pleeease.process(source, options);
-  } catch (err) {}
-  //output.innerHTML = Prism.highlight(compiled, Prism.languages.css);
-  output.setValue(compiled);
-};
-//input.addEventListener('keyup', doPleeease);
-
-// options
-var options = {
-  "autoprefixer": false,
-  "minifier": false,
-  "next": {}
-};
-
-function doOptions () {
-  for (var i = 0; i < elts.length; i++) {
-    var e = elts[i];
-    var checked = !!e.checked;
-
-    if (e.name.indexOf('next') !== -1) {
-      var name = e.name.replace('next.', '');
-      options['next'][name] = checked;
-    } else {
-      options[e.name] = checked;
-    }
-  }
-  doPleeease();
-}
-doOptions();
-for (var i = 0; i < elts.length; i++) {
-  elts[i].addEventListener('change', doOptions);
-}
-
-
 editor.on('change', doPleeease);
+
+
+var checkboxes = document.querySelectorAll('.play-block--options input[type=checkbox]');
+
+/*start*/
+doOptions();
 !function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.jade=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 'use strict';
 
