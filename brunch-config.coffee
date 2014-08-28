@@ -16,7 +16,10 @@ exports.config =
     stylesheets:
       joinTo: 'app.min.css'
       order:
-        before: ['app/app.css']
+        before: [
+          'app/playground/codemirror.css',
+          'app/app.css'
+        ]
   optimize: true
   modules:
     wrapper: false

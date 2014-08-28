@@ -9185,7 +9185,7 @@ Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(f
 
 var input = document.querySelector('#input');
 var output = document.querySelector('#output');
-var elts = document.querySelectorAll('.play-options input');
+var elts = document.querySelectorAll('.play-block--options input');
 
 if(location.search !== '') {
   var q = location.search.substring(1);

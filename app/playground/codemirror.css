@@ -3,7 +3,7 @@
 .CodeMirror {
   color: #999;
   text-shadow: 0 1px white;
-  font: 1.4em Consolas, Monaco, 'Andale Mono', monospace;
+  font: 1.4em Consolas, Monaco, monospace;
   direction: ltr;
   text-align: left;
   white-space: pre-wrap;
@@ -23,8 +23,8 @@
   border: 1px solid #888;
   width: 100%;
   height: 100%;
-  padding: 4em 1em;
-  resize: vertical;
+  padding: 1em;
+  resize: none;
   overflow: scroll;
 }
 .CodeMirror-scroll {
@@ -113,22 +113,19 @@ div.CodeMirror-overwrite div.CodeMirror-cursor {}
 }
 
 /* DEFAULT THEME */
-
-
-.cm-s-default .cm-atom {color: #219;}
-.cm-s-default .cm-variable,
-.cm-s-default .cm-variable-2,
-.cm-s-default .cm-variable-3 {color: #000;}
 .cm-s-default .cm-punctuation,
 .cm-s-default .cm-property,
-.cm-s-default .cm-operator {color: #905;}
-.cm-s-default .cm-comment {color: #a50;}
-
+.cm-s-default .cm-operator {color: orangered;}
+.cm-s-default .cm-number,
+.cm-s-default .cm-keyword,
+.cm-s-default .cm-string {color: black}
 .cm-s-default .cm-tag,
 .cm-s-default .cm-qualifier,
-.cm-s-default .cm-builtin {color: #690;}
-.cm-s-default .cm-number,
-.cm-s-default .cm-keyword {color: orangered}
+.cm-s-default .cm-builtin,
+.cm-s-default .cm-variable-3 {color: darkcyan;}
+.cm-s-default .cm-variable,
+.cm-s-default .cm-variable-2 {color: #000;}
+
 
 .cm-negative {color: #d44;}
 .cm-positive {color: #292;}

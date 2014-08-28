@@ -73,7 +73,7 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: slategray;
+	color: #999;
 }
 
 .token.punctuation {
@@ -90,24 +90,23 @@ pre[class*="language-"] {
 .token.number,
 .token.constant,
 .token.symbol {
-	color: #905;
+	color: orangered;
 }
 
 .token.selector,
 .token.attr-name,
-.token.string,
 .token.builtin {
-	color: #690;
+	color: darkcyan;
 }
 
+.token.string,
 .token.operator,
 .token.entity,
 .token.url,
 .language-css .token.string,
 .style .token.string,
 .token.variable {
-	color: #a67f59;
-	background: hsla(0,0%,100%,.5);
+	color: #000;
 }
 
 .token.atrule,
