@@ -3,7 +3,7 @@
 .CodeMirror {
   color: #999;
   text-shadow: 0 1px white;
-  font: 1.4em Consolas, Monaco, monospace;
+  font: bold 1.2em Consolas, Monaco, monospace;
   direction: ltr;
   text-align: left;
   white-space: pre-wrap;
@@ -22,7 +22,7 @@
   background: #FFF;
   width: 100%;
   height: 100%;
-  padding: 1em .5em;
+  padding: .5em;
   resize: none;
   overflow: scroll;
 }
@@ -117,14 +117,14 @@ div.CodeMirror-overwrite div.CodeMirror-cursor {}
 .cm-s-default .cm-operator {color: orangered;}
 .cm-s-default .cm-number,
 .cm-s-default .cm-keyword,
-.cm-s-default .cm-string,
 .cm-s-default .cm-atom {color: black}
 .cm-s-default .cm-tag,
 .cm-s-default .cm-qualifier,
 .cm-s-default .cm-builtin,
 .cm-s-default .cm-variable-3,
 .cm-s-default .cm-def,
-.cm-s-default .cm-attribute {color: darkcyan;}
+.cm-s-default .cm-attribute,
+.cm-s-default .cm-string {color: darkcyan;}
 .cm-s-default .cm-variable,
 .cm-s-default .cm-variable-2 {color: #000;}
 

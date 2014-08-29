@@ -3,6 +3,14 @@ var options = {
   "minifier": false,
   "next": {}
 };
+var samples = {
+  'autoprefixer': ".a {\n  display: flex;\n  background: linear-gradient(red, green);\n}",
+  'rem': ".rem {\n  width: 2rem;\n}",
+  'pseudoElements': ".a::after {\n  content: 'foo!';\n}",
+  'opacity': "a {\n  opacity: .5\n}",
+  'filters': "a {\n  filter: blur(2px);\n}",
+  'next': "/* CSS variables */\n:root {\n  --color-primary: red;\n  --height: 2em;\n}\n.a {\n  background: var(--color-primary);\n}\n\n/* CSS resolve calc */\n.b {\n  width: calc(100% - 2em);\n  height: calc(4em * var(--height));\n}\n\n/* custom media */\n@custom-media --small-viewport (max-width: 25em);\n@media (--small-viewport) {\n  /*stuff here*/\n}\n\n/* colors */\n.c {\n  color: color(orangered a(.5));\n  color: #F00A;\n}"
+};
 function htmlEntities (str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
@@ -53,12 +61,22 @@ function updateOption (checkbox, refresh) {
 
   var checked = !!checkbox.checked;
 
-  if (checked && checkbox.getAttribute('value')) {
-    checked = JSON.parse(checkbox.getAttribute('value'));
-  }
-
   if (checked) {
+    console.log(checkbox.name);
+    if (checkbox.getAttribute('value')) {
+      checked = JSON.parse(checkbox.getAttribute('value'));
+    }
     checked = updateOptionAdvanced(checked, checkbox.name);
+    if (checkbox.name === 'wrap') {
+      editor.setOption('lineWrapping', true);
+      output.setOption('lineWrapping', true);
+    }
+  } else {
+    if (checkbox.name === 'wrap') {
+      console.log('false');
+      editor.setOption('lineWrapping', false);
+      output.setOption('lineWrapping', false);
+    }
   }
 
   if (checkbox.name.indexOf('next') !== -1) {
@@ -73,7 +91,13 @@ function updateOption (checkbox, refresh) {
     doPleeease();
   }
 }
+function updateSample (sample) {
+  var sample = sample.getAttribute('data-sample');
+  editor.setValue(samples[sample]);
+}
 function doOptions () {
+
+  var checkboxes = document.querySelectorAll('.play-block--options input[type=checkbox]');
 
   for (var i = 0; i < checkboxes.length; i++) {
     var checkbox = checkboxes[i];
@@ -92,26 +116,38 @@ function doOptions () {
   doPleeease();
 
 }
+function doSamples () {
 
-var input = document.querySelector('#input');
-if(location.search !== '') {
-  var q = location.search.substring(1);
-  input.value = decodeURI(q);
+  var samples = document.querySelectorAll('.samples-item');
+
+
+  for (var i = 0; i < samples.length; i++) {
+    var sample = samples[i];
+
+    sample.addEventListener('click', function (e) { updateSample(this); e.preventDefault(); });
+  }
+
 }
+
 var editor = CodeMirror.fromTextArea(document.getElementById("input"), {
   mode: "text/css",
-  lineWrapping: true,
   profile: 'html'
 });
+if(location.search !== '') {
+  var q = location.search.substring(1);
+  editor.setValue(decodeURI(q));
+} else {
+  editor.setValue(samples['autoprefixer']);
+}
+
 var output = CodeMirror.fromTextArea(document.getElementById("output"), {
   mode: "text/css",
-  lineWrapping: true,
+  theme: 'default output',
+  lineWrapping: false,
   readOnly: true
 });
+
 editor.on('change', doPleeease);
-
-
-var checkboxes = document.querySelectorAll('.play-block--options input[type=checkbox]');
-
 /*start*/
 doOptions();
+doSamples();

@@ -108,7 +108,10 @@ nav a.selected {
 }
 nav a.play {
   /*color: var(--color-light);*/
-  background: rgba(0,0,0,.1);
+  background: rgba(0,0,0,.9);
+  color: #FFF;
+  border-radius: 2px;
+  margin-left: 0.2em;
 }
 
 @media (min-width: 70em) {
@@ -357,7 +360,7 @@ article h3 {
 .play-block {
   position: relative;
   float: left;
-  padding: 4em 0 0 0;
+  padding: 6.5em 0 0 0;
   height: 100%;
 }
 .play-block--textarea {
@@ -367,16 +370,17 @@ article h3 {
   width: 20%;
 }
 .play-block-textarea {
+  /*
   height: 100%;
-  padding: 1em .5em;
   background: #FFF;
   font: 1.2em Consolas, Monaco, monospace;
   resize: vertical;
   white-space: pre-wrap;
   overflow: scroll;
+  */
 }
-#output {
-  background: #eee;
+.cm-s-output {
+  border-left: 1px solid rgba(0,0,0,.3);
 }
 .play-block-title {
   color: #FFF;
@@ -386,10 +390,11 @@ article h3 {
   position: absolute;
   top: 3rem; left: 0; right: 0;
   z-index: 499;
-  background: rgba(0,0,0,.9);
+  cursor: default;
 }
 .play-block-title--2 {
-  background: transparent;
+  background: rgba(0,0,0,.9);
+  height: 3.5em;
 }
 .play-block-subtitle {
   font-size: .9em;
@@ -403,7 +408,7 @@ article h3 {
   color: #FFF;
 }
 .play-block--options form {
-  padding: 1em;
+  padding: 0 1em;
 }
 .play-block .input .input {
   font-size: .8em;
@@ -494,14 +499,50 @@ article h3 {
   border-color: orangered;
 }
 .play-block--options fieldset {
-  margin: 1em 0 0 0;
+  margin: 0 0 1em 0;
   padding: 0;
   border: none;
 }
 .play-block--options legend {
   color: orangered;
 }
-
-
+/*
+.samples {
+  display: inline-block;
+  vertical-align: text-top;
+  height: 3em;
+  margin: 0 2em;
+  padding: 0;
+  list-style: none;
+}
+.samples-title {
+  line-height: 3em;
+}
+.samples ul {
+  display: none;
+  position: absolute;
+  background: rgba(0,0,0,.95);
+  color: #FFF;
+  list-style: none;
+  min-width: 15em;
+  box-shadow: 0 2px 3px rgba(0,0,0,.8);
+}
+.samples:hover ul {
+  display: block;
+}
+*/
+.samples-item {
+  margin: 0 .25em;
+  padding: 0 .4em;
+  color: orangered;
+  text-decoration: none;
+  background: black;
+  border-radius: 10px;
+  transition: color .1s;
+}
+.samples-item:focus,
+.samples-item:hover {
+  color: #FFF;
+}
 
 

@@ -8,15 +8,22 @@ block content
   .play-textareas
 
     .play-block.play-block--textarea
-      h3.play-block-title Source
-        span.play-block-subtitle Write stuff below...
-      textarea.play-block-textarea#input.
-        div {
-          display: flex;
-          background: linear-gradient(red, blue);
-        }
+      h3.play-block-title.play-block-title--2 Source
+        span.play-block-subtitle Write stuff below or start with samples:
+          a.samples-item(href='#',data-sample='autoprefixer') Prefixes 
+          a.samples-item(href='#',data-sample='rem') rem 
+          a.samples-item(href='#',data-sample='pseudoElements') Pseudo&#8209;elements 
+          a.samples-item(href='#',data-sample='opacity') Opacity 
+          a.samples-item(href='#',data-sample='filters') CSS filters 
+          a.samples-item(href='#',data-sample='next') pleeease.NEXT 
+      textarea.play-block-textarea#input
+    .play-block.play-block--textarea
+      h3.play-block-title.play-block-title--2 Result
+        span.play-block-subtitle See awesomeness...
+      textarea.play-block-textarea#output
+
     .play-block.play-block--options
-      h3.play-block-title.play-block-title--2 Options
+      h3.play-block-title Options
       form
         fieldset
           legend Features
@@ -67,13 +74,11 @@ block content
           .input
             input(id='optsMin',name='minifier',type='checkbox')
             label(for='optsMin') Minify
+          .input
+            input(id='optsWrap',name='wrap',type='checkbox')
+            label(for='optsWrap') Wrap lines
         p
-          a(href='/docs/#features',class='play-link') Learn more...
-
-    .play-block.play-block--textarea
-      h3.play-block-title Result
-        span.play-block-subtitle See awesomeness...
-      textarea.play-block-textarea#output(class="textarea-area")
+          a(href='/docs/#features',class='play-link') Learn more about options...
 
   script(src='pleeease.js')
   script(src='playground.js')
