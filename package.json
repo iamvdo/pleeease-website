@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "pleeease-brunch": "0.3.x",
+    "brunch-pleeease": "^1.0.0",
     "javascript-brunch": "~1.7.1",
     "auto-reload-brunch": "~1.7.3",
     "marked": "https://github.com/iamvdo/marked/tarball/master",

@@ -29,14 +29,31 @@ html.play
 
   body
 
-    header.play-header
+    header.header
 
-      .title.play-title
-        h1
-          a(href='/') pleeease
-        p.subtitle.play-subtitle Play
+      h1.header-title
+        a(href='/') pleeease
+      p.header-subtitle.header-subtitle--play Play
 
-      a.play-header-link.play-link(href='/') Go back to pleeease.io
+    -var menu = { 'index': 'Get started', 'docs': 'Docs', 'workflow': 'Workflow'};
+    -var docs = ['Configuration file', 'Features', 'CLI'];
+    nav
+      ul
+        each val, key in menu
+          if key === 'index'
+            -var url='/';
+          else
+            -var url='/'+key;
+          li
+            if selected === key
+              a.selected(href=url, title=val)= val
+            else
+              a(href=url, title=val)= val
+        li
+          a.play(href='/play') Play
+        li.version
+          a(href='https://github.com/iamvdo/pleeease/releases') Version <strong>1.1.x</strong>
+        li.version <a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a>
 
     block content
 

@@ -27,14 +27,10 @@ exports.config =
     definition: false
   plugins:
     pleeease:
-      fallbacks:
-        autoprefixer: true
-        variables: true
-        rem: false
-      optimizers:
-        import: false
-        minifier: false
-        mqpacker: false
+      import: false
+      minifier: false
+      mqpacker: false
+      next: true
     jaded:
       staticPatterns: /^app(\/|\\)templates(\/|\\)(.+)\.jade$/
 
@@ -43,6 +39,5 @@ exports.config =
       sourceMaps: false
       plugins:
         pleeease:
-          optimizers:
-            minifier: true
-            mqpacker: true
+          minifier: true
+          mqpacker: true

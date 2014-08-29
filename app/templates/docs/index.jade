@@ -2,10 +2,12 @@ extends ../_layout
 
 block link
   -var selected = 'docs';
+  -var title = 'Documentation';
+  -var subtitle = 'Features, configuration, CLI';
 
 block content
 
-  .block
+  .block.block--first
     include ../includes/_docs
 
   .block
