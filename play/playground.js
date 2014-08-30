@@ -57829,7 +57829,11 @@ function doPleeease () {
 function updateOptionAdvanced (checked, name) {
   var opts = {
     'autoprefixer': [function (value) {
-      return {browsers:[value]};
+      var values = value.split(',');
+      values = values.map(function (val) {
+        return val.trim();
+      });
+      return {browsers: values};
     }, 'text'],
     'rem': [function (value) {
       return [value];

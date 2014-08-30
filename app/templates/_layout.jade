@@ -3,8 +3,6 @@ html
 
   block link
     -var selected = 'index'; //default
-    -var title    = 'Get started';
-    -var subtitle    = '';
 
   head
     meta(charset='utf-8')
@@ -35,33 +33,14 @@ html
   body
 
     header.header
+      .header-titles
+        h1.header-title
+          a(href='/') pleeease
+        p.header-version
+          a(href='https://github.com/iamvdo/pleeease/releases',title='See changelog on GitHub') 1.1.x
+      h2.header-subtitle Postprocess CSS with ease
 
-      h1.header-title
-        a(href='/') pleeease
-      p.header-subtitle Postprocess CSS with ease
-
-        h2.play-block-title.play-block-title--2=title
-          span.play-block-subtitle=subtitle
-
-    -var menu = { 'index': 'Get started', 'docs': 'Docs', 'workflow': 'Workflow'};
-    -var docs = ['Configuration file', 'Features', 'CLI'];
-    nav
-      ul
-        each val, key in menu
-          if key === 'index'
-            -var url='/';
-          else
-            -var url='/'+key;
-          li
-            if selected === key
-              a.selected(href=url, title=val)= val
-            else
-              a(href=url, title=val)= val
-        li
-          a.play(href='/play') Play
-        li.version
-          a(href='https://github.com/iamvdo/pleeease/releases') Version <strong>1.1.x</strong>
-        li.version <a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a>
+    include includes/_menu
 
     section
 
@@ -71,7 +50,7 @@ html
 
     footer.footer
 
-      p ©2014. Postprocess with <a href="/">Pleeease</a> by <a href="http://twitter.com/iamvdo">@iamvdo</a>. View sources on <a href="https://github.com/iamvdo/pleeease/">GitHub</a>.
+      p ©2014. Postprocess with <a href="/">Pleeease</a> by <a href="http://twitter.com/iamvdo">@iamvdo</a>. View sources on <a href="https://github.com/iamvdo/pleeease/">GitHub</a>. Follow <a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a> for updates.
       p.note Thanks to <a href="http://twitter.com/andreysitnik">@andreysitnik</a> for PostCSS and Autoprefixer, <a href="http://twitter.com/moox">@MoOx</a> for some PostCSS plugins and <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.
 
     script.

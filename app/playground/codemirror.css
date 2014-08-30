@@ -25,6 +25,7 @@
   padding: .5em;
   resize: none;
   overflow: scroll;
+  line-height: 1.3;
 }
 .CodeMirror-scroll {
   /* Set scrolling behaviour here */
@@ -151,11 +152,9 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
    the editor. You probably shouldn't touch them. */
 
 .CodeMirror {
-  line-height: 1;
   position: relative;
   overflow: hidden;
   background: white;
-  
 }
 
 .CodeMirror-scroll {

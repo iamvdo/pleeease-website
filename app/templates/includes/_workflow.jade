@@ -1,8 +1,8 @@
 :markdown
 
-  ##Workflow
+  #Workflow
 
-  ###Node.js
+  ##Node.js
 
   You can use the `process` function with 2 parameters:
 
@@ -30,7 +30,7 @@
   });
   ```
 
-  ###With Brunch
+  ##With Brunch
 
   If you're using [Brunch](http://brunch.io) (good point), you may want to use [brunch-pleeease](https://github.com/iamvdo/brunch-pleeease).
 
@@ -39,7 +39,7 @@
   ```javascript
   {
     "dependencies": {
-      "brunch-pleeease": "0.4.x"
+      "brunch-pleeease": "^1.0.0"
     }
   }
   ```
@@ -55,15 +55,13 @@
   ```javascript
   plugins:
     pleeease:
-      fallbacks:
-        autoprefixer: true
-        variables: true
-        rem: false
-        pseudoElements: false
-      optimizers:
-        import: true
-        minifier: true
-        mqpacker: true
+      autoprefixer: true
+      rem: false
+      pseudoElements: false
+      import: true
+      minifier: true
+      mqpacker: true
+      next: true
   ```
 
   Note that brunch-pleeease is an optimizer plugin, so it only works when `optimize: true` is set. The `--production` environment activates optimizers.
@@ -81,7 +79,7 @@
 
   You can also use the [pre-configured Pleeease skeleton](https://github.com/iamvdo/brunch-with-pleeease).
 
-  ###With Gulp
+  ##With Gulp
 
   You can use [gulp-pleeease](https://github.com/danielhusar/gulp-pleeease). Here is a `Gulpfile.js` example, with Sass and sourcemaps support:
 
@@ -111,6 +109,6 @@
 
   Note: This is based on [@ddprrt's article](http://fettblog.eu/blog/2014/04/10/gulp-sass-autoprefixer-sourcemaps/) for sourcemaps support. You can also use [gulp-sass](https://github.com/dlmanning/gulp-sass) (based on libsass) if you don't need sourcemaps.
 
-  ###With Grunt
+  ##With Grunt
 
   You can use [grunt-pleeease](https://github.com/danielhusar/grunt-pleeease).

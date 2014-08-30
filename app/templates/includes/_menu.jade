@@ -1,0 +1,22 @@
+-var menu = { 'index': 'Get started', 'docs': 'Docs', 'workflow': 'Workflow', 'play': 'Play'};
+-var docs = ['Configuration file', 'Features', 'CLI'];
+nav.nav
+  ul.nav-items
+    each val, key in menu
+      if selected === 'index'
+        if key === 'index'
+          -var url = '#'
+        else
+          -var url=key;
+      else
+        if key === 'index'
+          -var url = '../'
+        else
+          -var url='../' + key;
+      
+        
+      li.nav-item
+        if selected === key
+          a.nav-link.nav-link--selected(href=url, title=val, class='nav-link--'+key)= val
+        else
+          a.nav-link(href=url, title=val, class='nav-link--'+key)= val

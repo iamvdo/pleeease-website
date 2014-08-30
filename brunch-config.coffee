@@ -25,6 +25,7 @@ exports.config =
   modules:
     wrapper: false
     definition: false
+  sourceMaps: true
   plugins:
     pleeease:
       import: false
@@ -40,4 +41,4 @@ exports.config =
       plugins:
         pleeease:
           minifier: true
-          mqpacker: true
+          mqpacker: false
