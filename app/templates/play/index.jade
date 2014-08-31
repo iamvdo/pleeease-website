@@ -7,17 +7,18 @@ block content
 
   .play-textareas
 
-    .play-block.play-block--textarea
+    .play-block.play-block--textarea.play-block--input
       h3.play-block-title Source
-        span.play-block-subtitle Write stuff below or start with samples:
-          a.samples-item(href='#',data-sample='autoprefixer') Prefixes 
-          a.samples-item(href='#',data-sample='rem') rem 
-          a.samples-item(href='#',data-sample='pseudoElements') Pseudo&#8209;elements 
-          a.samples-item(href='#',data-sample='opacity') Opacity 
-          a.samples-item(href='#',data-sample='filters') CSS filters 
-          a.samples-item(href='#',data-sample='next') pleeease.NEXT 
+        span.play-block-subtitle Write stuff below or start with samples: 
+          span.samples
+            a.samples-item(href='#',data-sample='autoprefixer') Prefixes 
+            a.samples-item(href='#',data-sample='rem') rem 
+            a.samples-item(href='#',data-sample='pseudoElements') Pseudo&#8209;elements 
+            a.samples-item(href='#',data-sample='opacity') Opacity 
+            a.samples-item(href='#',data-sample='filters') CSS filters 
+            a.samples-item(href='#',data-sample='next') pleeease.NEXT 
       textarea.play-block-textarea#input
-    .play-block.play-block--textarea
+    .play-block.play-block--textarea.play-block--output
       h3.play-block-title.play-block-title--2 Result
         span.play-block-subtitle See awesomeness...
       textarea.play-block-textarea#output
