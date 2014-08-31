@@ -127,6 +127,12 @@ a {
   text-align: center;
   color: var(--color-primary);
 }
+  @media (--breakpoint1) {
+    .intro {
+      padding: 1.5em 0;
+    }
+  }
+
 .intro::after {
   content: close-quote;
 }
