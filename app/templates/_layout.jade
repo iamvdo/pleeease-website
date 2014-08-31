@@ -4,31 +4,7 @@ html
   block link
     -var selected = 'index'; //default
 
-  head
-    meta(charset='utf-8')
-    meta(name='viewport',content='initial-scale=1')
-    title Pleeease &middot; Postprocess CSS with ease
-    meta(name='description',content='Write DRY, future-proof CSS and let Pleeease do the job')
-    link(rel='stylesheet',href='http://fonts.googleapis.com/css?family=Damion')
-    link(rel='stylesheet',href='http://fonts.googleapis.com/css?family=Open+Sans:400,700')
-    if selected === 'index'
-      link(rel='stylesheet',href='app.min.css')
-      link(rel='icon', href='images/favicon.png')
-    else
-      link(rel='stylesheet',href='../app.min.css')
-      link(rel='icon', href='../images/favicon.png')
-
-    <!--[if IE]>
-    style.
-      .title { padding-top: 5em; }
-    <![endif]-->
-
-    script.
-      document.createElement('header');
-      document.createElement('nav');
-      document.createElement('section');
-      document.createElement('article');
-      document.createElement('footer');
+  include includes/_head
 
   body
 

@@ -16,7 +16,7 @@
   box-sizing: border-box;
 }
 html {
-  font: 1em Open Sans, sans-serif;
+  font: 300 1em Open Sans, sans-serif;
   min-height: 100%;
   text-size-adjust: none;
   background: radial-gradient(60em at top center, white, var(--color-light));
@@ -122,8 +122,8 @@ a {
 }
 .intro {
   display: block;
-  font: 2em Damion, sans-serif;
-  margin: 3em 0;
+  font: 2.3em Damion, sans-serif;
+  padding: 3em 0;
   text-align: center;
   color: var(--color-primary);
 }
@@ -163,6 +163,15 @@ a {
   top: 0; right: 1em;
   z-index: 500;
 }
+  @media (--breakpoint1) {
+    .nav {
+      position: static;
+      margin: 1em;
+      text-align: center;
+      font-size: 1.2em;
+    }
+  }
+
 .nav-items {
   list-style: none;
   margin: 0; padding: 0;
@@ -185,6 +194,15 @@ a {
   color: #FFF;
   text-shadow: 0 1px 2px rgba(0,0,0,.5);
 }
+  @media (--breakpoint1) {
+    .nav-link:hover,
+    .nav-link:focus,
+    .nav-link--selected {
+      color: var(--color-primary);
+      text-shadow: none;
+    }
+  }
+
 .nav-link--play {
   border-radius: 2px;
   border: 1px solid rgba(0,0,0,.9);
@@ -196,18 +214,6 @@ a {
 }
 
   @media (--breakpoint1) {
-    .nav {
-      position: static;
-      margin-top: 2em;
-      text-align: center;
-      font-size: 1.2em;
-    }
-    .nav-link:hover,
-    .nav-link:focus,
-    .nav-link--selected {
-      color: var(--color-primary);
-      text-shadow: none;
-    }
     .nav-link--play:hover,
     .nav-link--play:focus,
     .nav-link--play.nav-link--selected {
@@ -220,18 +226,19 @@ a {
  */
 section {
   overflow: hidden;
-  padding: 5em 1em 1em 1em;
+  padding: 6em 1em 1em 1em;
   color: var(--color-dark);
+  background: #ddd;
   line-height: 1.8;
 }
   @media (--breakpoint2) {
     section {
-      padding: 5em 2%;
+      padding: 6em 2% 1em;
     }
   }
   @media (--breakpoint1) {
     section {
-      padding: 2%;
+      padding: 0;
     }
   }
 
@@ -245,9 +252,17 @@ section {
   padding-top: 4em;
 }
 article {
-  max-width: 50em;
+  background: #FFF;
+  max-width: 54em;
   margin: auto;
+  padding: 0 2em;
 }
+  @media (--breakpoint2) {
+    article {
+      padding: 0 1%;
+    }
+  }
+
 article a {
   color: var(--color-dark);
   padding: 2px;
@@ -275,19 +290,23 @@ article a:focus {
 article h1,
 article h2,
 article h3 {
-  font-size: 2em;
+  font-weight: 600;
+  font-size: 2.4em;
   color: var(--color-dark);
   margin: 0 0 1em;
 }
 article h2 {
   color: var(--color-primary);
-  font-size: 1.8em;
+  font-size: 2em;
   margin-top: 2em;
+  padding-bottom: .5em;
+  border-bottom: 1px solid;
 }
 article h3 {
-  color: var(--color-dark);
+  /*font-weight: 700;*/
+  color: var(--color-primary);
   font-size: 1.6em;
-  margin: 1em 0 0;
+  margin-top: 2em;
 }
 article h2:target,
 article h3:target {
@@ -433,6 +452,9 @@ textarea {
 }
 .play-block--options form {
   padding: 0 1em;
+}
+.play-block .input {
+  white-space: nowrap;
 }
 .play-block .input .input {
   font-size: .8em;
