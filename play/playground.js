@@ -57867,9 +57867,10 @@ function updateOption (checkbox, refresh) {
   var checked = !!checkbox.checked;
 
   if (checked) {
-    console.log(checkbox.name);
     if (checkbox.getAttribute('value')) {
+
       checked = JSON.parse(checkbox.getAttribute('value'));
+            console.log(checked);
     }
     checked = updateOptionAdvanced(checked, checkbox.name);
     if (checkbox.name === 'wrap') {
@@ -57878,7 +57879,6 @@ function updateOption (checkbox, refresh) {
     }
   } else {
     if (checkbox.name === 'wrap') {
-      console.log('false');
       editor.setOption('lineWrapping', false);
       output.setOption('lineWrapping', false);
     }

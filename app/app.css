@@ -312,6 +312,9 @@ article h2:target,
 article h3:target {
   padding-top: 4em;
 }
+article strong {
+  font-weight: 600;
+}
 .note {
   font-size: .8em;
   color: #888;
@@ -435,6 +438,10 @@ textarea {
   color: #999;
   font-size: .9em;
 }
+.play-link:focus,
+.play-link:hover {
+  border-bottom: 1px solid;
+}
 .play-header-link {
   position: absolute;
   top: 0; right: 1em;
@@ -471,14 +478,15 @@ textarea {
   border-radius: 2px;
   border: none;
   vertical-align: -.125em;
-  color: white;
+  font-style: italic;
+  color: #aaa;
   background: rgba(0,0,0,.45);
   box-shadow: inset 0 1px 0 rgba(0,0,0,.2), 0 1px 0 rgba(255,255,255,.1),0 0 0 1px transparent;
   transition: box-shadow .2s;
 }
-.play-block--options input[type=text]::placeholder {
-  font-style: italic;
-  color: #aaa;
+.play-block--options input[type=text]:focus {
+  color: #FFF;
+  font-style: normal;
 }
 .play-block--options input[type=text]::selection {
   background: var(--color-primary);
@@ -523,7 +531,7 @@ textarea {
   border: 3px solid var(--color-primary);
   border-top: none;
   border-right: none;
-  transform: rotate(-45deg) translateZ(0);
+  transform: rotate(-45deg);
   transition: opacity .1s, border-color .1s;
 }
 .play-block--options label:hover::after,
