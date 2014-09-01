@@ -13,8 +13,6 @@ nav.nav
           -var url = '../'
         else
           -var url='../' + key;
-      
-        
       li.nav-item
         if selected === key
           a.nav-link.nav-link--selected(href=url, title=val, class='nav-link--'+key)= val
