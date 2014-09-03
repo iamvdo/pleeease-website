@@ -57824,7 +57824,10 @@ function doPleeease () {
   } catch (err) {
     console.log(err);
   }
+  var scrollTop = output.doc.scrollTop;
   output.setValue(compiled);
+  //doScroll(output, 'output');
+  output.scrollTo(0, scrollTop);
 }
 function updateOptionAdvanced (checked, name) {
   var opts = {
@@ -57933,6 +57936,27 @@ function doSamples () {
   }
 
 }
+function doScroll (e, type) {
+/*
+  if (type === 'editor') {
+    output.removeEventListener('scroll');
+  } else {
+    editor.removeEventListener('scroll');
+  }
+*/
+  var height = e.doc.height;
+  var scrollTop = e.doc.scrollTop;
+
+  var heightOther = (type === 'editor') ? output.doc.height : editor.doc.height;
+  var scrollTopOther = (scrollTop * heightOther) / height;
+  if (type === 'editor') {
+    output.scrollTo(0, scrollTopOther);
+  } else {
+    //console.log(editor);
+    editor.scrollTo(0, scrollTopOther);
+  }
+
+}
 
 var editor = CodeMirror.fromTextArea(document.getElementById("input"), {
   mode: "text/css",
@@ -57948,14 +57972,38 @@ if(location.search !== '') {
 var output = CodeMirror.fromTextArea(document.getElementById("output"), {
   mode: "text/css",
   theme: 'default output',
-  lineWrapping: false,
   readOnly: true
 });
 
 editor.on('change', doPleeease);
+
 /*start*/
 doOptions();
 doSamples();
+
+function handleScrollInput (e) {
+  doScroll(e,'editor');
+}
+function handleScrollOutput (e) {
+  doScroll(e,'output');
+}
+
+var cms = document.querySelectorAll('.CodeMirror');
+
+for (var i = 0; i < cms.length; i++) {
+  cms[i].addEventListener('mouseenter', function (e) {
+    if (e.target.parentNode.classList.contains('play-block--input')) {
+      output.off('scroll', handleScrollOutput);
+      editor.off('scroll', handleScrollInput);
+      editor.on('scroll', handleScrollInput);
+    } else {
+      editor.off('scroll', handleScrollInput);
+      output.off('scroll', handleScrollOutput);
+      output.on('scroll', handleScrollOutput);
+    }
+  });
+};
+
 !function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.jade=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 'use strict';
 
