@@ -191,7 +191,8 @@ var cms = document.querySelectorAll('.CodeMirror');
 
 for (var i = 0; i < cms.length; i++) {
   cms[i].addEventListener('mouseenter', function (e) {
-    if (e.target.parentNode.classList.contains('play-block--input')) {
+    var input = e.target.parentNode.className.indexOf('play-block--input') !== -1;
+    if (input) {
       output.off('scroll', handleScrollOutput);
       editor.off('scroll', handleScrollInput);
       editor.on('scroll', handleScrollInput);
