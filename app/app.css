@@ -235,6 +235,7 @@ section {
   padding: 6em 1em 1em 1em;
   color: var(--color-dark);
   background: #ddd;
+  background: linear-gradient(to bottom right, #eee, #aaa);
   line-height: 1.8;
 }
   @media (--breakpoint2) {
@@ -262,6 +263,7 @@ article {
   max-width: 54em;
   margin: auto;
   padding: 0 2em;
+  box-shadow: 0 2px 2px 1px rgba(0,0,0,.1);
 }
   @media (--breakpoint2) {
     article {
