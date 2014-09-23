@@ -6,7 +6,19 @@ html
 
   include includes/_head
 
+  if selected === 'index'
+    title Pleeease &middot; Postprocess CSS with ease
+    meta(name='description',content='All the annoying CSS stuff we don\'t want to do in 1 tool!')
+  else if selected === 'docs'
+    title Pleeease &middot; Documentation
+    meta(name='description',content='Configure Pleeease and learn how to use it.')
+  else if selected === 'workflow'
+    title Pleeease &middot; Workflow
+    meta(name='description',content='Optimize your workflow to save time and effort.')
+
   body
+
+    p test
 
     header.header
       .header-titles
