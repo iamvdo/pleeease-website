@@ -163,7 +163,7 @@ var editor = CodeMirror.fromTextArea(document.getElementById("input"), {
 });
 if(location.search !== '') {
   var q = location.search.substring(1);
-  editor.setValue(decodeURI(q));
+  editor.setValue(decodeURIComponent(q));
 } else {
   editor.setValue(samples['autoprefixer']);
 }
