@@ -5,7 +5,7 @@ var options = {
 };
 var samples = {
   'autoprefixer': ".a {\n  display: flex;\n  background: linear-gradient(red, green);\n}",
-  'rem': ".rem {\n  width: 2rem;\n}",
+  'rem': ".rem {\n  width: 2rem;\n}\n\n.rem {\n  /* no conversion */\n  width: calc(100% - 2rem);\n}",
   'pseudoElements': ".a::after {\n  content: 'foo!';\n}",
   'opacity': "a {\n  opacity: .5\n}",
   'filters': "a {\n  filter: blur(2px);\n}",
