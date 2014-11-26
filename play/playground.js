@@ -57819,7 +57819,6 @@ function doPleeease () {
   var source = editor.getValue();
   var compiled = source;
   try {
-    //console.log(options);
     compiled = pleeease.process(source, options);
   } catch (err) {
     console.log(err);
@@ -58185,7 +58184,7 @@ exports.rethrow = function rethrow(err, filename, lineno, str){
     throw err;
   }
   try {
-    str =  str || _dereq_('fs').readFileSync(filename, 'utf8')
+    str = str || _dereq_('fs').readFileSync(filename, 'utf8')
   } catch (ex) {
     rethrow(err, null, lineno)
   }

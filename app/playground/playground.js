@@ -18,7 +18,6 @@ function doPleeease () {
   var source = editor.getValue();
   var compiled = source;
   try {
-    //console.log(options);
     compiled = pleeease.process(source, options);
   } catch (err) {
     console.log(err);
