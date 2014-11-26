@@ -4,6 +4,7 @@
   Features can be disabled with the `false` keyword or modified using each postprocessor options. See each features:
 
   * [in](#in), [out](#out)
+  * [browsers](#browsers)
   * [autoprefixer](#autoprefixer), [filters](#filters), [rem](#rem), [pseudoElements](#pseudoelements), [opacity](#opacity)
   * [import](#import), [minifier](#minifier), [mqpacker](#mqpacker)
   * [Pleeease.NEXT](#pleeease-next)
@@ -47,6 +48,33 @@
   </div>
 
   **Defines output file**.
+
+  ###browsers
+
+  <div class="note">
+  Type: `Array`
+  </div>
+
+  **Allows you to override many options in one go**. Accept same value as `autoprefixer.browsers` and override it, based on CanIUse database (exactly as Autoprefixer)
+
+  For example, if you set:
+
+  ```javascript
+  {
+    "browsers": ["ie 9"]
+  }
+  ```
+
+  You will automatically have:
+
+  ```javascript
+  {
+    "autoprefixer": { "browsers": ["ie 9"] },
+    "rem": false,
+    "opacity": false,
+    "pseudoElements": false
+  }
+  ```
 
   ###autoprefixer
 
@@ -168,18 +196,20 @@
   ###rem
 
   <div class="note">
-  Type: `Array` | Default: `["16px", {replace: false}]`
+  Type: `Array` | Default: `["16px", {replace: false, atrules: false}]`
   </div>
 
-  **Generates pixel fallbacks for `rem` units**, using [pixrem](https://github.com/iamvdo/node-pixrem). Add options as an array:
+  **Generates pixel fallbacks for `rem` units**, using [pixrem](https://github.com/robwierzbowski/node-pixrem). Add options as an array:
 
   * first parameter is the root font-size (default `16px`)
-  * second parameter is an object with `replace` key set to `true` if you want to replace value. (default `false`)
+  * second parameter is an object with:
+    * `replace` if you want to replace value (default `false`)
+    * `atrules` if you want to replace rem even in at-rules (default `false`)
 
   ```javascript
   // .pleeeaserc file (remove comment)
   {
-    "rem": ["16px", {"replace": true}]
+    "rem": ["16px"]
   }
   ```
 
@@ -191,7 +221,7 @@
   }
   ```
 
-  To this one (with default options):
+  To this one:
 
   ```css
   .element {
@@ -200,7 +230,23 @@
   }
   ```
 
-  See [pixrem on GitHub](https://github.com/iamvdo/node-pixrem).
+  **Pixrem don't generates `rem` fallbacks when browsers without `rem` support don't understand the property/value** (eg in media-queries (all at-rules actually), in properties like `transform`, `border-radius`, etc. and in values like `calc()` or `linear-gradient()`)
+
+  **Pixrem also tries to read root font-size value from CSS**, if defined. This means that:
+
+  ```css
+  html { font-size: 20px; }
+  .a { font-size: 2rem; }
+  ```
+
+  gives
+
+  ```css
+  html { font-size: 20px; }
+  .a { font-size: 40px; font-size: 2rem; }
+  ```
+
+  See [pixrem on GitHub](https://github.com/robwierzbowski/node-pixrem).
 
   ###pseudoElements
 

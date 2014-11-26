@@ -2,7 +2,7 @@
 document.createElement('nav');
 document.createElement('section');
 document.createElement('article');
-document.createElement('footer');</script></head><title>Pleeease &middot; Documentation</title><meta name="description" content="Configure Pleeease and learn how to use it."><body><header class="header"><div class="header-titles"><h1 class="header-title"><a href="/">pleeease</a></h1><p class="header-version"><a href="https://github.com/iamvdo/pleeease/releases" title="See changelog on GitHub">1.1.x</a></p></div><h2 class="header-subtitle">Postprocess CSS with ease</h2></header><nav class="nav"><ul class="nav-items"><li class="nav-item"><a href="../" title="Get started" class="nav-link nav-link--index">Get started</a></li><li class="nav-item"><a href="../docs" title="Docs" class="nav-link nav-link--selected nav-link--docs">Docs</a></li><li class="nav-item"><a href="../workflow" title="Workflow" class="nav-link nav-link--workflow">Workflow</a></li><li class="nav-item"><a href="../play" title="Play" class="nav-link nav-link--play">Play</a></li></ul></nav><section><article class="docs"><div class="block block--first"><h1 id="documentation">Documentation</h1>
+document.createElement('footer');</script></head><title>Pleeease &middot; Documentation</title><meta name="description" content="Configure Pleeease and learn how to use it."><body><header class="header"><div class="header-titles"><h1 class="header-title"><a href="/">pleeease</a></h1><p class="header-version"><a href="https://github.com/iamvdo/pleeease/releases" title="See changelog on GitHub">2.0.x</a></p></div><h2 class="header-subtitle">Postprocess CSS with ease</h2></header><nav class="nav"><ul class="nav-items"><li class="nav-item"><a href="../" title="Get started" class="nav-link nav-link--index">Get started</a></li><li class="nav-item"><a href="../docs" title="Docs" class="nav-link nav-link--selected nav-link--docs">Docs</a></li><li class="nav-item"><a href="../workflow" title="Workflow" class="nav-link nav-link--workflow">Workflow</a></li><li class="nav-item"><a href="../play" title="Play" class="nav-link nav-link--play">Play</a></li></ul></nav><section><article class="docs"><div class="block block--first"><h1 id="documentation">Documentation</h1>
 <p>Learn <a href="#configuration-file">how to configure</a> Pleeease, which <a href="#features">features you can use</a> and <a href="#cli">how to use CLI</a>.</p>
 </div><div class="block"><h2 id="configuration-file">Configuration file</h2>
 <p>When using CLI, Pleeease&#39;s options have to be set in a file called <code>.pleeeaserc</code> (JSON-like). For example:</p>
@@ -19,11 +19,12 @@ document.createElement('footer');</script></head><title>Pleeease &middot; Docume
 </ul>
 <div class="note">Note: In previous version (<0.4), options were `input` and `output`</div>
 
-<p>Then, you can override <a href="#options">all postprocess options</a> the same way.</p>
+<p>Then, you can override <a href="#features">all postprocess options</a> the same way.</p>
 </div><div class="block"><h2 id="features">Features</h2>
 <p>Features can be disabled with the <code>false</code> keyword or modified using each postprocessor options. See each features:</p>
 <ul>
 <li><a href="#in">in</a>, <a href="#out">out</a></li>
+<li><a href="#browsers">browsers</a></li>
 <li><a href="#autoprefixer">autoprefixer</a>, <a href="#filters">filters</a>, <a href="#rem">rem</a>, <a href="#pseudoelements">pseudoElements</a>, <a href="#opacity">opacity</a></li>
 <li><a href="#import">import</a>, <a href="#minifier">minifier</a>, <a href="#mqpacker">mqpacker</a></li>
 <li><a href="#pleeease-next">Pleeease.NEXT</a></li>
@@ -61,6 +62,25 @@ Type: <code>String</code> | Default: <code>&quot;app.min.css&quot;</code>
 </div>
 
 <p><strong>Defines output file</strong>.</p>
+<h3 id="browsers">browsers</h3>
+<div class="note">
+Type: <code>Array</code>
+</div>
+
+<p><strong>Allows you to override many options in one go</strong>. Accept same value as <code>autoprefixer.browsers</code> and override it, based on CanIUse database (exactly as Autoprefixer)</p>
+<p>For example, if you set:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
+  <span class="token string" >"browsers"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"ie 9"</span><span class="token punctuation" >]</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>You will automatically have:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
+  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span> <span class="token string" >"browsers"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"ie 9"</span><span class="token punctuation" >]</span> <span class="token punctuation" >}</span><span class="token punctuation" >,</span>
+  <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span><span class="token punctuation" >,</span>
+  <span class="token string" >"opacity"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span><span class="token punctuation" >,</span>
+  <span class="token string" >"pseudoElements"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span>
+<span class="token punctuation" >}</span>
+</code></pre>
 <h3 id="autoprefixer">autoprefixer</h3>
 <div class="note">
 Type: <code>Object</code> | Default: <code>{browsers: [&quot;&gt; 1%&quot;, &quot;last 2 versions&quot;, &quot;Firefox ESR&quot;, &quot;Opera 12.1&quot;], cascade: true}</code>
@@ -149,17 +169,21 @@ Type: <code>Object</code> | Default: <code>{oldIE: false}</code>
 <p><strong>Be careful</strong>, not all browsers support CSS or SVG filters. For your information, latest WebKit browsers support CSS shorthand, Firefox support SVG filters and IE9- support IE filters (limited and slightly degraded). <strong>It means that IE10+, Opera Mini and Android browsers have no support at all</strong>. Moreover, IE filters shouldn&#39;t be used.</p>
 <h3 id="rem">rem</h3>
 <div class="note">
-Type: <code>Array</code> | Default: <code>[&quot;16px&quot;, {replace: false}]</code>
+Type: <code>Array</code> | Default: <code>[&quot;16px&quot;, {replace: false, atrules: false}]</code>
 </div>
 
-<p><strong>Generates pixel fallbacks for <code>rem</code> units</strong>, using <a href="https://github.com/iamvdo/node-pixrem">pixrem</a>. Add options as an array:</p>
+<p><strong>Generates pixel fallbacks for <code>rem</code> units</strong>, using <a href="https://github.com/robwierzbowski/node-pixrem">pixrem</a>. Add options as an array:</p>
 <ul>
 <li>first parameter is the root font-size (default <code>16px</code>)</li>
-<li>second parameter is an object with <code>replace</code> key set to <code>true</code> if you want to replace value. (default <code>false</code>)</li>
+<li>second parameter is an object with:<ul>
+<li><code>replace</code> if you want to replace value (default <code>false</code>)</li>
+<li><code>atrules</code> if you want to replace rem even in at-rules (default <code>false</code>)</li>
+</ul>
+</li>
 </ul>
 <pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
 </span><span class="token punctuation" >{</span>
-  <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"16px"</span><span class="token punctuation" >,</span> <span class="token punctuation" >{</span><span class="token string" >"replace"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >}</span><span class="token punctuation" >]</span>
+  <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"16px"</span><span class="token punctuation" >]</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>Pixrem converts this file:</p>
@@ -167,13 +191,22 @@ Type: <code>Array</code> | Default: <code>[&quot;16px&quot;, {replace: false}]</
   <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
-<p>To this one (with default options):</p>
+<p>To this one:</p>
 <pre class="language-css"><code class="language-css"><span class="token selector" >.element </span><span class="token punctuation" >{</span>
   <span class="token property" >font-size</span><span class="token punctuation" >:</span> 32px<span class="token punctuation" >;</span>
   <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
-<p>See <a href="https://github.com/iamvdo/node-pixrem">pixrem on GitHub</a>.</p>
+<p><strong>Pixrem don&#39;t generates <code>rem</code> fallbacks when browsers without <code>rem</code> support don&#39;t understand the property/value</strong> (eg in media-queries (all at-rules actually), in properties like <code>transform</code>, <code>border-radius</code>, etc. and in values like <code>calc()</code> or <code>linear-gradient()</code>)</p>
+<p><strong>Pixrem also tries to read root font-size value from CSS</strong>, if defined. This means that:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >html </span><span class="token punctuation" >{</span> <span class="token property" >font-size</span><span class="token punctuation" >:</span> 20px<span class="token punctuation" >;</span> <span class="token punctuation" >}</span>
+<span class="token selector" >.a </span><span class="token punctuation" >{</span> <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span> <span class="token punctuation" >}</span>
+</code></pre>
+<p>gives</p>
+<pre class="language-css"><code class="language-css"><span class="token selector" >html </span><span class="token punctuation" >{</span> <span class="token property" >font-size</span><span class="token punctuation" >:</span> 20px<span class="token punctuation" >;</span> <span class="token punctuation" >}</span>
+<span class="token selector" >.a </span><span class="token punctuation" >{</span> <span class="token property" >font-size</span><span class="token punctuation" >:</span> 40px<span class="token punctuation" >;</span> <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span> <span class="token punctuation" >}</span>
+</code></pre>
+<p>See <a href="https://github.com/robwierzbowski/node-pixrem">pixrem on GitHub</a>.</p>
 <h3 id="pseudoelements">pseudoElements</h3>
 <p><strong>Converts pseudo-elements using CSS3 syntax</strong> (two-colons notation like <code>::after</code>, <code>::before</code>, <code>::first-line</code> and <code>::first-letter</code>) with the old one, using only one colon (useful for IE8 support). There are no options.</p>
 <p>Converts this file:</p>
