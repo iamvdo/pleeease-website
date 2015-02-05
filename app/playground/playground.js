@@ -1,6 +1,7 @@
 // options
 var options = {
   "minifier": false,
+  "import": false,
   "next": {}
 };
 var samples = {

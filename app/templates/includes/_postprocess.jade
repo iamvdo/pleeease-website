@@ -1,10 +1,8 @@
 :markdown
-  ##Features
+  ##Postprocessors
 
   Features can be disabled with the `false` keyword or modified using each postprocessor options. See each features:
 
-  * [in](#in), [out](#out)
-  * [browsers](#browsers)
   * [autoprefixer](#autoprefixer), [filters](#filters), [rem](#rem), [pseudoElements](#pseudoelements), [opacity](#opacity)
   * [import](#import), [minifier](#minifier), [mqpacker](#mqpacker)
   * [Pleeease.NEXT](#pleeease-next)
@@ -30,49 +28,6 @@
     "sourcemaps": false,
 
     "next": false
-  }
-  ```
-
-  ###in
-
-  <div class="note">
-  Type: `String`, `Array` | Default: `"*.css"`
-  </div>
-
-  **Defines input file(s)**.
-
-  ###out
-
-  <div class="note">
-  Type: `String` | Default: `"app.min.css"`
-  </div>
-
-  **Defines output file**.
-
-  ###browsers
-
-  <div class="note">
-  Type: `Array`
-  </div>
-
-  **Allows you to override many options in one go**. Accept same value as `autoprefixer.browsers` and override it, based on CanIUse database (exactly as Autoprefixer)
-
-  For example, if you set:
-
-  ```javascript
-  {
-    "browsers": ["ie 9"]
-  }
-  ```
-
-  You will automatically have:
-
-  ```javascript
-  {
-    "autoprefixer": { "browsers": ["ie 9"] },
-    "rem": false,
-    "opacity": false,
-    "pseudoElements": false
   }
   ```
 
@@ -293,7 +248,7 @@
   Type: `Object` | Default: `{path: process.cwd(), encoding: "utf8", transform: null}`
   </div>
 
-  **Inlines `@import` styles**, using [postcss-import](https://github.com/postcss/postcss-import).
+  **Inlines `@import` styles**, using [postcss-import](https://github.com/postcss/postcss-import) and rebases URLs if needed.
 
   You can use the CSS syntax you want:
 
@@ -371,5 +326,3 @@
       "sourcemaps": true
   }
   ```
-
-  <div class="note">You can also use [sourcemaps from a preprocessor like Sass](/workflow/#with-gulp) (a bit hacky for now).</div>

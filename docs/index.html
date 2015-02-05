@@ -2,52 +2,14 @@
 document.createElement('nav');
 document.createElement('section');
 document.createElement('article');
-document.createElement('footer');</script></head><title>Pleeease &middot; Documentation</title><meta name="description" content="Configure Pleeease and learn how to use it."><body><header class="header"><div class="header-titles"><h1 class="header-title"><a href="/">pleeease</a></h1><p class="header-version"><a href="https://github.com/iamvdo/pleeease/releases" title="See changelog on GitHub">2.0.x</a></p></div><h2 class="header-subtitle">Postprocess CSS with ease</h2></header><nav class="nav"><ul class="nav-items"><li class="nav-item"><a href="../" title="Get started" class="nav-link nav-link--index">Get started</a></li><li class="nav-item"><a href="../docs" title="Docs" class="nav-link nav-link--selected nav-link--docs">Docs</a></li><li class="nav-item"><a href="../workflow" title="Workflow" class="nav-link nav-link--workflow">Workflow</a></li><li class="nav-item"><a href="../play" title="Play" class="nav-link nav-link--play">Play</a></li></ul></nav><section><article class="docs"><div class="block block--first"><h1 id="documentation">Documentation</h1>
+document.createElement('footer');</script></head><title>Pleeease &middot; Documentation</title><meta name="description" content="Configure Pleeease and learn how to use it."><body><header class="header"><div class="header-titles"><h1 class="header-title"><a href="/">pleeease</a></h1><p class="header-version"><a href="https://github.com/iamvdo/pleeease/releases" title="See changelog on GitHub">3.0.x</a></p></div><h2 class="header-subtitle">Process CSS with ease</h2></header><nav class="nav"><ul class="nav-items"><li class="nav-item"><a href="../" title="Get started" class="nav-link nav-link--index">Get started</a></li><li class="nav-item"><a href="../docs" title="Docs" class="nav-link nav-link--selected nav-link--docs">Docs</a></li><li class="nav-item"><a href="../workflow" title="Workflow" class="nav-link nav-link--workflow">Workflow</a></li><li class="nav-item"><a href="../play" title="Play" class="nav-link nav-link--play">Play</a></li></ul></nav><section><article class="docs"><div class="block block--first"><h1 id="documentation">Documentation</h1>
 <p>Learn <a href="#configuration-file">how to configure</a> Pleeease, which <a href="#features">features you can use</a> and <a href="#cli">how to use CLI</a>.</p>
 </div><div class="block"><h2 id="configuration-file">Configuration file</h2>
 <p>When using CLI, Pleeease&#39;s options have to be set in a file called <code>.pleeeaserc</code> (JSON-like). For example:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
   <span class="token string" >"in"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"foo.css"</span><span class="token punctuation" >,</span> <span class="token string" >"bar.css"</span><span class="token punctuation" >]</span><span class="token punctuation" >,</span>
   <span class="token string" >"out"</span><span class="token punctuation" >:</span> <span class="token string" >"baz.css"</span><span class="token punctuation" >,</span>
-  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span><span class="token string" >"browsers"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"last 3 versions"</span><span class="token punctuation" >,</span> <span class="token string" >"Android 2.3"</span><span class="token punctuation" >]</span><span class="token punctuation" >}</span>
-<span class="token punctuation" >}</span>
-</code></pre>
-<ul>
-<li><code>in</code> defines that <code>foo.css</code> and <code>bar.css</code> are input files</li>
-<li><code>out</code> defines that <code>baz.css</code> is the output file (the file that will be created)</li>
-<li><code>autoprefixer</code> adds CSS prefixes for the last 3 versions of each browsers and support Android 2.3</li>
-</ul>
-<div class="note">Note: In previous version (<0.4), options were `input` and `output`</div>
-
-<p>Then, you can override <a href="#features">all postprocess options</a> the same way.</p>
-</div><div class="block"><h2 id="features">Features</h2>
-<p>Features can be disabled with the <code>false</code> keyword or modified using each postprocessor options. See each features:</p>
-<ul>
-<li><a href="#in">in</a>, <a href="#out">out</a></li>
-<li><a href="#browsers">browsers</a></li>
-<li><a href="#autoprefixer">autoprefixer</a>, <a href="#filters">filters</a>, <a href="#rem">rem</a>, <a href="#pseudoelements">pseudoElements</a>, <a href="#opacity">opacity</a></li>
-<li><a href="#import">import</a>, <a href="#minifier">minifier</a>, <a href="#mqpacker">mqpacker</a></li>
-<li><a href="#pleeease-next">Pleeease.NEXT</a></li>
-<li><a href="#sourcemaps">sourcemaps</a></li>
-</ul>
-<p>The default <code>.pleeeaserc</code> file is:</p>
-<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
-  <span class="token string" >"in"</span><span class="token punctuation" >:</span> <span class="token string" >"*.css"</span><span class="token punctuation" >,</span>
-  <span class="token string" >"out"</span><span class="token punctuation" >:</span> <span class="token string" >"app.min.css"</span><span class="token punctuation" >,</span>
-
-  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
-  <span class="token string" >"filters"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
-  <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
-  <span class="token string" >"pseudoElements"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
-  <span class="token string" >"opacity"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
-
-  <span class="token string" >"import"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
-  <span class="token string" >"minifier"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
-  <span class="token string" >"mqpacker"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
-
-  <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span><span class="token punctuation" >,</span>
-
-  <span class="token string" >"next"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span>
+  <span class="token string" >"browsers"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"last 3 versions"</span><span class="token punctuation" >,</span> <span class="token string" >"Android 2.3"</span><span class="token punctuation" >]</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <h3 id="in">in</h3>
@@ -79,6 +41,60 @@ Type: <code>Array</code>
   <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span><span class="token punctuation" >,</span>
   <span class="token string" >"opacity"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span><span class="token punctuation" >,</span>
   <span class="token string" >"pseudoElements"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>Then, you can override <a href="#features">all postprocess options</a> the same way.</p>
+</div><div class="block"><h2 id="preprocessors">Preprocessors</h2>
+<p>This in an <strong>experimental feature</strong>. Pleeease includes most famous CSS preprocessors.</p>
+<ul>
+<li><a href="#sass">sass</a></li>
+<li><a href="#less">less</a></li>
+<li><a href="#stylus">stylus</a></li>
+</ul>
+<h3 id="sass">sass</h3>
+<div class="note">
+Type: <code>Object</code> | Default: <code>false</code>
+</div>
+
+<p><strong>Preprocesses your CSS</strong> using Sass. It uses libsass.</p>
+<h3 id="less">less</h3>
+<div class="note">
+Type: <code>Object</code> | Default: <code>false</code>
+</div>
+
+<p><strong>Preprocesses your CSS</strong> using LESS.</p>
+<h3 id="stylus">stylus</h3>
+<div class="note">
+Type: <code>Object</code> | Default: <code>false</code>
+</div>
+
+<p><strong>Preprocesses your CSS</strong> using Stylus.</p>
+</div><div class="block"><h2 id="postprocessors">Postprocessors</h2>
+<p>Features can be disabled with the <code>false</code> keyword or modified using each postprocessor options. See each features:</p>
+<ul>
+<li><a href="#autoprefixer">autoprefixer</a>, <a href="#filters">filters</a>, <a href="#rem">rem</a>, <a href="#pseudoelements">pseudoElements</a>, <a href="#opacity">opacity</a></li>
+<li><a href="#import">import</a>, <a href="#minifier">minifier</a>, <a href="#mqpacker">mqpacker</a></li>
+<li><a href="#pleeease-next">Pleeease.NEXT</a></li>
+<li><a href="#sourcemaps">sourcemaps</a></li>
+</ul>
+<p>The default <code>.pleeeaserc</code> file is:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
+  <span class="token string" >"in"</span><span class="token punctuation" >:</span> <span class="token string" >"*.css"</span><span class="token punctuation" >,</span>
+  <span class="token string" >"out"</span><span class="token punctuation" >:</span> <span class="token string" >"app.min.css"</span><span class="token punctuation" >,</span>
+
+  <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+  <span class="token string" >"filters"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+  <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+  <span class="token string" >"pseudoElements"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+  <span class="token string" >"opacity"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+
+  <span class="token string" >"import"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+  <span class="token string" >"minifier"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+  <span class="token string" >"mqpacker"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+
+  <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span><span class="token punctuation" >,</span>
+
+  <span class="token string" >"next"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span>
 <span class="token punctuation" >}</span>
 </code></pre>
 <h3 id="autoprefixer">autoprefixer</h3>
@@ -237,7 +253,7 @@ Type: <code>Array</code> | Default: <code>[&quot;16px&quot;, {replace: false, at
 Type: <code>Object</code> | Default: <code>{path: process.cwd(), encoding: &quot;utf8&quot;, transform: null}</code>
 </div>
 
-<p><strong>Inlines <code>@import</code> styles</strong>, using <a href="https://github.com/postcss/postcss-import">postcss-import</a>.</p>
+<p><strong>Inlines <code>@import</code> styles</strong>, using <a href="https://github.com/postcss/postcss-import">postcss-import</a> and rebases URLs if needed.</p>
 <p>You can use the CSS syntax you want:</p>
 <pre class="language-css"><code class="language-css"><span class="token atrule" >@import "file.css"<span class="token punctuation" >;</span></span>
 <span class="token atrule" >@import url(file.css)<span class="token punctuation" >;</span></span>
@@ -291,7 +307,7 @@ Type: <code>Object</code> | Default: <code>{preserveHacks: true, removeAllCommen
     <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
 <span class="token punctuation" >}</span>
 </code></pre>
-<div class="note">You can also use <a href="/workflow/#with-gulp">sourcemaps from a preprocessor like Sass</a> (a bit hacky for now).</div></div><div class="block"><h2 id="pleeease-next">Pleeease.NEXT</h2>
+</div><div class="block"><h2 id="pleeease-next">Pleeease.NEXT</h2>
 <p>Pleeease<strong>.NEXT</strong> goes even further and allows you to use some of the future CSS&#39;s features today.</p>
 <p><strong>Be careful!</strong> All these features are at-risk. You can read <a href="http://blog.rodneyrehm.de/archives/30-CSS-Polyfill-Preprocessor-Its-A-Myth.html">these great advices from Rodney Rehm</a> about Myth. Same conclusion goes here with Pleeease.NEXT. <strong>Make responsible use of it</strong>.</p>
 <p>Each property can be enable in <code>next</code> option:</p>
@@ -394,7 +410,9 @@ Type: <code>Object</code> | Default: <code>{color: true, hexAlpha: true, hwb: tr
 <span class="token punctuation" >}</span>
 </code></pre>
 </div><div class="block"><h2 id="cli">CLI</h2>
-<p>You can compile files or watch them! The two commands work with a <a href="#configuration-file">configuration file</a>.</p>
+<div class="note"><strong>Note :</strong> From 3.0.0, CLI tool has is own package, and Pleeease no longer contains CLI tool.</div>
+
+<p>With the <code>pleeease-cli</code> package, you can compile files or watch them! The two commands work with a <a href="#configuration-file">configuration file</a>.</p>
 <h3 id="compile">compile</h3>
 <pre class="language-javascript"><code class="language-javascript">$ pleeease compile
 </code></pre>
@@ -405,7 +423,7 @@ Type: <code>Object</code> | Default: <code>{color: true, hexAlpha: true, hwb: tr
 <h3 id="help">help</h3>
 <pre class="language-javascript"><code class="language-javascript">$ pleeease
 </code></pre>
-</div></article></section><footer class="footer"><p>©2014. Postprocess with <a href="/">Pleeease</a> by <a href="http://twitter.com/iamvdo">@iamvdo</a>. View sources on <a href="https://github.com/iamvdo/pleeease/">GitHub</a>. Follow <a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a> for updates.</p><p class="note">Thanks to <a href="http://twitter.com/andreysitnik">@andreysitnik</a> for PostCSS and Autoprefixer, <a href="http://twitter.com/moox">@MoOx</a> for some PostCSS plugins and <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.</p></footer><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+</div></article></section><footer class="footer"><p>©2014. Processed with <a href="/">Pleeease</a> by <a href="http://twitter.com/iamvdo">@iamvdo</a>. View sources on <a href="https://github.com/iamvdo/pleeease/">GitHub</a>. Follow <a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a> for updates.</p><p class="note">Thanks to <a href="http://twitter.com/andreysitnik">@andreysitnik</a> for PostCSS and Autoprefixer, <a href="http://twitter.com/moox">@MoOx</a> for some PostCSS plugins and <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.</p></footer><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');

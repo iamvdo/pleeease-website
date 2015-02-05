@@ -7,14 +7,51 @@
   {
     "in": ["foo.css", "bar.css"],
     "out": "baz.css",
-    "autoprefixer": {"browsers": ["last 3 versions", "Android 2.3"]}
+    "browsers": ["last 3 versions", "Android 2.3"]
   }
   ```
 
-  * `in` defines that `foo.css` and `bar.css` are input files
-  * `out` defines that `baz.css` is the output file (the file that will be created)
-  * `autoprefixer` adds CSS prefixes for the last 3 versions of each browsers and support Android 2.3
+  ###in
 
-  <div class="note">Note: In previous version (<0.4), options were `input` and `output`</div>
+  <div class="note">
+  Type: `String`, `Array` | Default: `"*.css"`
+  </div>
+
+  **Defines input file(s)**.
+
+  ###out
+
+  <div class="note">
+  Type: `String` | Default: `"app.min.css"`
+  </div>
+
+  **Defines output file**.
+
+  ###browsers
+
+  <div class="note">
+  Type: `Array`
+  </div>
+
+  **Allows you to override many options in one go**. Accept same value as `autoprefixer.browsers` and override it, based on CanIUse database (exactly as Autoprefixer)
+
+  For example, if you set:
+
+  ```javascript
+  {
+    "browsers": ["ie 9"]
+  }
+  ```
+
+  You will automatically have:
+
+  ```javascript
+  {
+    "autoprefixer": { "browsers": ["ie 9"] },
+    "rem": false,
+    "opacity": false,
+    "pseudoElements": false
+  }
+  ```
 
   Then, you can override [all postprocess options](#features) the same way.
