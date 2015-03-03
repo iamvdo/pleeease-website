@@ -2,20 +2,21 @@
 document.createElement('nav');
 document.createElement('section');
 document.createElement('article');
-document.createElement('footer');</script></head><title>Pleeease &middot; Process CSS with ease</title><meta name="description" content="All the annoying CSS stuff we don't want to do in 1 tool!"><body><header class="header"><div class="header-titles"><h1 class="header-title"><a href="/">pleeease</a></h1><p class="header-version"><a href="https://github.com/iamvdo/pleeease/releases" title="See changelog on GitHub">3.2.x</a></p></div><h2 class="header-subtitle">Process CSS with ease</h2></header><nav class="nav"><ul class="nav-items"><li class="nav-item"><a href="#" title="Get started" class="nav-link nav-link--selected nav-link--index">Get started</a></li><li class="nav-item"><a href="docs" title="Docs" class="nav-link nav-link--docs">Docs</a></li><li class="nav-item"><a href="workflow" title="Workflow" class="nav-link nav-link--workflow">Workflow</a></li><li class="nav-item"><a href="play" title="Play" class="nav-link nav-link--play">Play</a></li></ul></nav><section><article class="index"><div class="block"><cite class="intro">All the annoying CSS stuff we don't want to do in 1 tool!</cite><p>Pleeease is a Node.js application that easily process your CSS. <strong>It simplifies the use of preprocessors and combines them with best postprocessors</strong>. It helps create clean stylesheets, support older browsers and offers better maintenability. This means no more Compass for prefixes, no more <code>rem</code> mixins, and so on. Everything is getting simpler now and almost magic*.</p>
-<p>Choose your CSS preprocessor (<strong>Sass</strong>, <strong>LESS</strong> or <strong>Stylus</strong>) or write CSS as you usually do and let Pleeease do its job:</p>
+document.createElement('footer');</script></head><title>Pleeease &middot; Process CSS with ease</title><meta name="description" content="All the annoying CSS stuff we don't want to do in 1 tool!"><body><header class="header"><div class="header-titles"><h1 class="header-title"><a href="/">pleeease</a></h1><p class="header-version"><a href="https://github.com/iamvdo/pleeease/releases" title="See changelog on GitHub">3.2.1</a></p></div><h2 class="header-subtitle">Process CSS with ease</h2></header><nav class="nav"><ul class="nav-items"><li class="nav-item"><a href="#" title="Get started" class="nav-link nav-link--selected nav-link--index">Get started</a></li><li class="nav-item"><a href="docs" title="Docs" class="nav-link nav-link--docs">Docs</a></li><li class="nav-item"><a href="workflow" title="Workflow" class="nav-link nav-link--workflow">Workflow</a></li><li class="nav-item"><a href="play" title="Play" class="nav-link nav-link--play">Play</a></li></ul></nav><section><article class="index"><div class="block"><cite class="intro">All the annoying CSS stuff we don't want to do in 1 tool!</cite><p><strong>Pleeease is a Node.js application that easily process your CSS</strong>. It simplifies the use of preprocessors and combines them with best postprocessors. It helps create clean stylesheets, support older browsers and offers better maintenability. This means no more Compass for prefixes, no more <code>rem</code> mixins, and so on. Everything is getting simpler now and almost magic*.</p>
+<p><strong>Write plain CSS</strong> or <strong>choose your favorite CSS preprocessor</strong> (<strong>Sass</strong>, <strong>LESS</strong> or <strong>Stylus</strong>) and let Pleeease do its job:</p>
 <ul>
-<li><strong>preprocess CSS</strong> (experimental)</li>
+<li><strong><a href="/docs/#preprocessors">preprocess CSS</a></strong> (experimental)</li>
 <li>adds <strong>prefixes</strong>, based on <a href="https://github.com/ai/autoprefixer">Autoprefixer</a></li>
 <li>provides fallbacks for <strong><code>rem</code></strong> unit, CSS3 <strong>pseudo-elements</strong> notation</li>
 <li>adds <strong>opacity filter</strong> for IE8</li>
 <li>converts <strong>CSS shorthand filters</strong> to SVG equivalent</li>
 <li><strong>packs same media-query</strong> in one <code>@media</code> rule</li>
 <li><strong>inlines <code>@import</code></strong> styles</li>
-<li><strong>minifies the result</strong></li>
+<li><strong>minifies</strong> the result</li>
+<li><strong><a href="/docs/#sourcemaps">generates sourcemaps</a></strong> from pre- to postprocessors</li>
 </ul>
 <p><strong>Pleeease is the easy way to combine preprocessors and postprocessors</strong>.</p>
-<p>Pleeease<strong>.NEXT</strong> goes even further and allows you to use some of the future CSS&#39;s features today:</p>
+<p><a href="/docs/#pleeease-next">Pleeease<strong>.NEXT</strong></a> goes even further and allows you to use some of the future CSS&#39;s features today:</p>
 <ul>
 <li>provides fallbacks for <strong>CSS custom properties (aka CSS variables)</strong> and <strong>custom media-queries</strong></li>
 <li>reduces <strong><code>calc()</code></strong> whenever possible</li>
@@ -95,7 +96,7 @@ document.createElement('footer');</script></head><title>Pleeease &middot; Proces
 </code></pre>
 <p>Pretty cool, isn&#39;t it?</p>
 <p>If you&#39;re ready to use it, you now need to learn how to <a href="docs/#configuration-file">create a configuration file</a>, and then <a href="docs/#features">see full features support</a>!</p>
-</div></article></section><footer class="footer"><p>©2014. Processed with <a href="/">Pleeease</a> by <a href="http://twitter.com/iamvdo">@iamvdo</a>. View sources on <a href="https://github.com/iamvdo/pleeease/">GitHub</a>. Follow <a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a> for updates.</p><p class="note">Thanks to <a href="http://twitter.com/andreysitnik">@andreysitnik</a> for PostCSS and Autoprefixer, <a href="http://twitter.com/moox">@MoOx</a> for some PostCSS plugins and <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.</p></footer><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+</div></article></section><footer class="footer"><p>©2014-2015. Processed with <a href="/">Pleeease</a> by <a href="http://twitter.com/iamvdo">@iamvdo</a>. View sources on <a href="https://github.com/iamvdo/pleeease/">GitHub</a>. Follow <a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a> for updates.</p><p class="note">Thanks to <a href="http://twitter.com/andreysitnik">@andreysitnik</a> for PostCSS and Autoprefixer, <a href="http://twitter.com/moox">@MoOx</a> for some PostCSS plugins and <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.</p></footer><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');

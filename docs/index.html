@@ -2,8 +2,8 @@
 document.createElement('nav');
 document.createElement('section');
 document.createElement('article');
-document.createElement('footer');</script></head><title>Pleeease &middot; Documentation</title><meta name="description" content="Configure Pleeease and learn how to use it."><body><header class="header"><div class="header-titles"><h1 class="header-title"><a href="/">pleeease</a></h1><p class="header-version"><a href="https://github.com/iamvdo/pleeease/releases" title="See changelog on GitHub">3.2.x</a></p></div><h2 class="header-subtitle">Process CSS with ease</h2></header><nav class="nav"><ul class="nav-items"><li class="nav-item"><a href="../" title="Get started" class="nav-link nav-link--index">Get started</a></li><li class="nav-item"><a href="../docs" title="Docs" class="nav-link nav-link--selected nav-link--docs">Docs</a></li><li class="nav-item"><a href="../workflow" title="Workflow" class="nav-link nav-link--workflow">Workflow</a></li><li class="nav-item"><a href="../play" title="Play" class="nav-link nav-link--play">Play</a></li></ul></nav><section><article class="docs"><div class="block block--first"><h1 id="documentation">Documentation</h1>
-<p>Learn <a href="#configuration-file">how to configure</a> Pleeease, which <a href="#postprocessors">features you can use</a> and <a href="#cli">how to use CLI</a>.</p>
+document.createElement('footer');</script></head><title>Pleeease &middot; Documentation</title><meta name="description" content="Configure Pleeease and learn how to use it."><body><header class="header"><div class="header-titles"><h1 class="header-title"><a href="/">pleeease</a></h1><p class="header-version"><a href="https://github.com/iamvdo/pleeease/releases" title="See changelog on GitHub">3.2.1</a></p></div><h2 class="header-subtitle">Process CSS with ease</h2></header><nav class="nav"><ul class="nav-items"><li class="nav-item"><a href="../" title="Get started" class="nav-link nav-link--index">Get started</a></li><li class="nav-item"><a href="../docs" title="Docs" class="nav-link nav-link--selected nav-link--docs">Docs</a></li><li class="nav-item"><a href="../workflow" title="Workflow" class="nav-link nav-link--workflow">Workflow</a></li><li class="nav-item"><a href="../play" title="Play" class="nav-link nav-link--play">Play</a></li></ul></nav><section><article class="docs"><div class="block block--first"><h1 id="documentation">Documentation</h1>
+<p>Learn <a href="#configuration-file">how to configure</a> Pleeease, which <a href="#features">features you can use</a> and <a href="#cli">how to use CLI</a>.</p>
 </div><div class="block"><h2 id="configuration-file">Configuration file</h2>
 <p>When using CLI, Pleeease&#39;s options have to be set in a file called <code>.pleeeaserc</code> (JSON-like). For example:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
@@ -43,7 +43,7 @@ Type: <code>Array</code>
   <span class="token string" >"pseudoElements"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span>
 <span class="token punctuation" >}</span>
 </code></pre>
-<p>Then, you can override <a href="#postprocessors">all postprocess options</a> the same way.</p>
+<p>Then, you can override <a href="#features">all postprocess options</a> the same way.</p>
 </div><div class="block"><h2 id="preprocessors">Preprocessors</h2>
 <p>This in an <strong>experimental feature</strong>. Pleeease includes most famous CSS preprocessors.</p>
 <ul>
@@ -89,11 +89,8 @@ Type: <code>Object</code> | Default: <code>false</code>
 <li><a href="#pleeease-next">Pleeease.NEXT</a></li>
 <li><a href="#sourcemaps">sourcemaps</a></li>
 </ul>
-<p>The default <code>.pleeeaserc</code> file is:</p>
+<p>The default options are:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
-  <span class="token string" >"in"</span><span class="token punctuation" >:</span> <span class="token string" >"*.css"</span><span class="token punctuation" >,</span>
-  <span class="token string" >"out"</span><span class="token punctuation" >:</span> <span class="token string" >"app.min.css"</span><span class="token punctuation" >,</span>
-
   <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
   <span class="token string" >"filters"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
   <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
@@ -102,7 +99,7 @@ Type: <code>Object</code> | Default: <code>false</code>
 
   <span class="token string" >"import"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
   <span class="token string" >"minifier"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
-  <span class="token string" >"mqpacker"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
+  <span class="token string" >"mqpacker"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span><span class="token punctuation" >,</span>
 
   <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span><span class="token punctuation" >,</span>
 
@@ -125,8 +122,7 @@ Type: <code>Object</code> | Default: <code>{browsers: [&quot;&gt; 1%&quot;, &quo
 <li><code>none</code> clean CSS from any vendor prefixes.</li>
 </ul>
 <p>For example:</p>
-<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
-</span><span class="token punctuation" >{</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
   <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span><span class="token string" >"browsers"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"last 4 versions"</span><span class="token punctuation" >,</span> <span class="token string" >"ios 6"</span><span class="token punctuation" >]</span><span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
@@ -154,8 +150,7 @@ Type: <code>Object</code> | Default: <code>{browsers: [&quot;&gt; 1%&quot;, &quo
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>You can also disable visual cascade for CSS prefixes:</p>
-<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
-</span><span class="token punctuation" >{</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
   <span class="token string" >"autoprefixer"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span><span class="token string" >"cascade"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span><span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
@@ -180,8 +175,7 @@ Type: <code>Object</code> | Default: <code>{oldIE: false}</code>
 </code></pre>
 <p>Great combo with Autoprefixer!</p>
 <p>You can also force IE filters with an option:</p>
-<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
-</span><span class="token punctuation" >{</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
   <span class="token string" >"filters"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span> <span class="token string" >"oldIE"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span> <span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
@@ -209,8 +203,7 @@ Type: <code>Array</code> | Default: <code>[&quot;16px&quot;, {replace: false, at
 </ul>
 </li>
 </ul>
-<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
-</span><span class="token punctuation" >{</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
   <span class="token string" >"rem"</span><span class="token punctuation" >:</span> <span class="token punctuation" >[</span><span class="token string" >"16px"</span><span class="token punctuation" >]</span>
 <span class="token punctuation" >}</span>
 </code></pre>
@@ -260,6 +253,7 @@ Type: <code>Array</code> | Default: <code>[&quot;16px&quot;, {replace: false, at
   <span class="token property" >filter</span><span class="token punctuation" >:</span> <span class="token function" >alpha</span>(opacity=50)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
+<p>See <a href="https://github.com/iamvdo/postcss-opacity">postcss-opacity on GitHub</a>.</p>
 <h3 id="import">import</h3>
 <div class="note">
 Type: <code>Object</code> | Default: <code>{path: process.cwd(), encoding: &quot;utf8&quot;, transform: null}</code>
@@ -273,8 +267,7 @@ Type: <code>Object</code> | Default: <code>{path: process.cwd(), encoding: &quot
 <span class="token atrule" >@import url("file.css") screen and (max-width<span class="token punctuation" >:</span> 35em)<span class="token punctuation" >;</span></span> <span class="token comment" spellcheck="true">/* imported in media-queries */</span>
 </code></pre>
 <p>Note that you can set the &quot;root&quot; folder for imported files with <code>path</code> option, even if this is not the root of your project (default is <code>process.cwd()</code>). For example, if you compile <code>css/foo.css</code> that containing an <code>@import</code>, set options like this:</p>
-<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
-</span><span class="token punctuation" >{</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
     <span class="token string" >"import"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span><span class="token string" >"path"</span><span class="token punctuation" >:</span> <span class="token string" >"css"</span><span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
@@ -312,19 +305,11 @@ Type: <code>Object</code> | Default: <code>{preserveHacks: true, removeAllCommen
 <span class="token punctuation" >}</span>
 </code></pre>
 <p><strong>Important note:</strong> In edge cases, this processor can <a href="https://github.com/hail2u/node-css-mqpacker/issues/16">produce unsafe grouping</a>. Always check generated CSS and open issue if you encounter problems.</p>
-<h3 id="sourcemaps">Sourcemaps</h3>
-<p>Pleeease supports sourcemaps (disabled by default). Enabled them in <code>.pleeeaserc</code> file:</p>
-<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
-</span><span class="token punctuation" >{</span>
-    <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
-<span class="token punctuation" >}</span>
-</code></pre>
 </div><div class="block"><h2 id="pleeease-next">Pleeease.NEXT</h2>
 <p>Pleeease<strong>.NEXT</strong> goes even further and allows you to use some of the future CSS&#39;s features today.</p>
 <p><strong>Be careful!</strong> All these features are at-risk. You can read <a href="http://blog.rodneyrehm.de/archives/30-CSS-Polyfill-Preprocessor-Its-A-Myth.html">these great advices from Rodney Rehm</a> about Myth. Same conclusion goes here with Pleeease.NEXT. <strong>Make responsible use of it</strong>.</p>
 <p>Each property can be enable in <code>next</code> option:</p>
-<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
-</span><span class="token punctuation" >{</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
     <span class="token string" >"next"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
       <span class="token string" >"customProperties"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span><span class="token punctuation" >,</span>
       <span class="token string" >"colors"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
@@ -332,8 +317,7 @@ Type: <code>Object</code> | Default: <code>{preserveHacks: true, removeAllCommen
 <span class="token punctuation" >}</span>
 </code></pre>
 <p>Or enable all properties:</p>
-<pre class="language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .pleeeaserc file (remove comment)
-</span><span class="token punctuation" >{</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
     <span class="token string" >"next"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
 <span class="token punctuation" >}</span>
 </code></pre>
@@ -421,6 +405,47 @@ Type: <code>Object</code> | Default: <code>{color: true, hexAlpha: true, hwb: tr
   <span class="token property" >background</span><span class="token punctuation" >:</span> <span class="token function" >rgba</span>(0, 0, 0, .5)<span class="token punctuation" >;</span>
 <span class="token punctuation" >}</span>
 </code></pre>
+</div><div class="block"><h2 id="sourcemaps">Sourcemaps</h2>
+<p><strong>Pleeease generates sourcemaps</strong> (disabled by default). Enable them in options:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
+    <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>If you want to have correct sourcemaps, you should always specify <code>in</code> and <code>out</code> files:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
+    <span class="token string" >"in"</span><span class="token punctuation" >:</span> <span class="token string" >"input.css"</span><span class="token punctuation" >,</span>
+    <span class="token string" >"out"</span><span class="token punctuation" >:</span> <span class="token string" >"output.css"</span><span class="token punctuation" >,</span>
+    <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token keyword" >true</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>By default, sourcemaps will be inlined in CSS. If you want separate sourcemaps, you need to set <code>sourcemaps</code> option based on <a href="https://github.com/postcss/postcss#source-maps">PostCSS documentation</a>:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
+    <span class="token string" >"in"</span><span class="token punctuation" >:</span> <span class="token string" >"input.css"</span><span class="token punctuation" >,</span>
+    <span class="token string" >"out"</span><span class="token punctuation" >:</span> <span class="token string" >"output.css"</span><span class="token punctuation" >,</span>
+    <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
+        <span class="token string" >"map"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
+            <span class="token string" >"inline"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span>
+        <span class="token punctuation" >}</span>
+    <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span>
+</code></pre>
+<p>If you&#39;re using <a href="#cli">CLI tool</a>, two files will be written on disk. With programmatic usage, Pleeease will return an object with <code>css</code> and <code>map</code> properties.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword" >var</span> opts <span class="token operator" >=</span> <span class="token punctuation" >{</span>
+    <span class="token string" >"in"</span><span class="token punctuation" >:</span> <span class="token string" >"input.css"</span><span class="token punctuation" >,</span>
+    <span class="token string" >"out"</span><span class="token punctuation" >:</span> <span class="token string" >"output.css"</span><span class="token punctuation" >,</span>
+    <span class="token string" >"sourcemaps"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
+        <span class="token string" >"map"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span>
+            <span class="token string" >"inline"</span><span class="token punctuation" >:</span> <span class="token keyword" >false</span>
+        <span class="token punctuation" >}</span>
+    <span class="token punctuation" >}</span>
+<span class="token punctuation" >}</span><span class="token punctuation" >;</span>
+
+<span class="token keyword" >var</span> fixed <span class="token operator" >=</span> pleeease<span class="token punctuation" >.</span><span class="token function" >process<span class="token punctuation" >(</span></span><span class="token string" >'a{a:a}'</span><span class="token punctuation" >,</span> opts<span class="token punctuation" >)</span><span class="token punctuation" >;</span>
+
+<span class="token comment" spellcheck="true">// fixed.css
+</span><span class="token comment" spellcheck="true">// fixed.map</span>
+</code></pre>
+<p>If <a href="#preprocessors">you&#39;ve activated a preprocessor</a>, no need for more options. You will get sourcemaps from preprocessor.</p>
 </div><div class="block"><h2 id="cli">CLI</h2>
 <div class="note"><strong>Note :</strong> From 3.0.0, CLI tool has is own package, and Pleeease no longer contains CLI tool.</div>
 
@@ -435,7 +460,7 @@ Type: <code>Object</code> | Default: <code>{color: true, hexAlpha: true, hwb: tr
 <h3 id="help">help</h3>
 <pre class="language-javascript"><code class="language-javascript">$ pleeease
 </code></pre>
-</div></article></section><footer class="footer"><p>©2014. Processed with <a href="/">Pleeease</a> by <a href="http://twitter.com/iamvdo">@iamvdo</a>. View sources on <a href="https://github.com/iamvdo/pleeease/">GitHub</a>. Follow <a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a> for updates.</p><p class="note">Thanks to <a href="http://twitter.com/andreysitnik">@andreysitnik</a> for PostCSS and Autoprefixer, <a href="http://twitter.com/moox">@MoOx</a> for some PostCSS plugins and <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.</p></footer><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+</div></article></section><footer class="footer"><p>©2014-2015. Processed with <a href="/">Pleeease</a> by <a href="http://twitter.com/iamvdo">@iamvdo</a>. View sources on <a href="https://github.com/iamvdo/pleeease/">GitHub</a>. Follow <a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a> for updates.</p><p class="note">Thanks to <a href="http://twitter.com/andreysitnik">@andreysitnik</a> for PostCSS and Autoprefixer, <a href="http://twitter.com/moox">@MoOx</a> for some PostCSS plugins and <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.</p></footer><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');

@@ -6,19 +6,16 @@ block link
 block content
 
   .block.block--first
-    include ../includes/_docs
-
+    include:markdown ../content/docs-intro.md
   .block
-    include ../includes/_configuration-file
-
+    include:markdown ../content/docs-configuration-file.md
   .block
-    include ../includes/_preprocess
-
+    include:markdown ../content/docs-preprocess.md
   .block
-    include ../includes/_postprocess
-
+    include:markdown ../content/docs-postprocess.md
   .block
-    include ../includes/_next
-
+    include:markdown ../content/docs-next.md
   .block
-    include ../includes/_cli
+    include:markdown ../content/docs-sourcemaps.md
+  .block
+    include:markdown ../content/docs-cli.md

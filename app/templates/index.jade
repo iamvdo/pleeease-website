@@ -3,8 +3,9 @@ extends _layout
 block content
 
   .block
-    include includes/_intro
+    cite.intro All the annoying CSS stuff we don't want to do in 1 tool!
+    include:markdown content/index-intro.md
   .block
-    include includes/_started
+    include:markdown content/index-started.md
   .block
-    include includes/_howto
+    include:markdown content/index-howto.md
