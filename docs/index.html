@@ -271,6 +271,11 @@ Type: <code>Object</code> | Default: <code>{path: process.cwd(), encoding: &quot
     <span class="token string" >"import"</span><span class="token punctuation" >:</span> <span class="token punctuation" >{</span><span class="token string" >"path"</span><span class="token punctuation" >:</span> <span class="token string" >"css"</span><span class="token punctuation" >}</span>
 <span class="token punctuation" >}</span>
 </code></pre>
+<p>URLs are rebased according to destination file. Configure this by setting <code>out</code> option:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
+    <span class="token string" >"out"</span><span class="token punctuation" >:</span> <span class="token string" >"path/to/destination/file.css"</span>
+<span class="token punctuation" >}</span>
+</code></pre>
 <p><strong>Important note:</strong> In edge cases, this processor may cause unloaded files by browsers. Always check generated CSS and open issue if you encounter problems.</p>
 <p>See <a href="https://github.com/postcss/postcss-import#postcss-import-">postcss-import on GitHub</a>.</p>
 <h3 id="minifier">minifier</h3>
