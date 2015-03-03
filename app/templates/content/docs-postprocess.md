@@ -261,6 +261,14 @@ Note that you can set the "root" folder for imported files with `path` option, e
 }
 ```
 
+URLs are rebased according to destination file. Configure this by setting `out` option:
+
+```javascript
+{
+    "out": "path/to/destination/file.css"
+}
+```
+
 **Important note:** In edge cases, this processor may cause unloaded files by browsers. Always check generated CSS and open issue if you encounter problems.
 
 See [postcss-import on GitHub](https://github.com/postcss/postcss-import#postcss-import-).
