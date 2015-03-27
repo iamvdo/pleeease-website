@@ -6,6 +6,7 @@ exports.config =
     javascripts:
       joinTo:
         'play/playground.js': /^app(\/|\\)playground/
+        'play/pleeease.js'  : /^app(\/|\\)pleeease/
       order:
         before: [
           'app/playground/codemirror.js',
