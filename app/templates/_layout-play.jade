@@ -10,18 +10,18 @@ html.play
 
   body
 
-    include includes/_version
     header.header
       .header-titles
         h1.header-title
           a(href='/') pleeease
         p.header-version
-          a(href='https://github.com/iamvdo/pleeease/releases',title='See changelog on GitHub')= version
+          a(id='version',href='https://github.com/iamvdo/pleeease/releases',title='See changelog on GitHub') 3.x.x
 
     include includes/_menu
 
     block content
 
+    include includes/_version
     script.
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

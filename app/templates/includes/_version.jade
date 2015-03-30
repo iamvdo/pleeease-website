@@ -1,1 +1,12 @@
-- var version = '3.2.4'
+script.
+  try {
+    var ajax = new XMLHttpRequest();
+    ajax.open("GET", "http://cdn.rawgit.com/iamvdo/pleeease/master/package.json", true);
+    ajax.onload = function () {
+      var version = JSON.parse(ajax.responseText).version;
+      document.getElementById('version').innerHTML = version;
+    };
+    ajax.send();
+  } catch (err) {
+    console.log(err);
+  }
