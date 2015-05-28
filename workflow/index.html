@@ -98,7 +98,7 @@ gulp<span class="token punctuation" >.</span><span class="token function" >task<
 <p>You can use <a href="https://github.com/danielhusar/grunt-pleeease">grunt-pleeease</a>.</p>
 </div></article></section><footer class="footer"><p>©2014-2015. Processed with <a href="/">Pleeease</a> by <a href="http://twitter.com/iamvdo">@iamvdo</a>. View sources on <a href="https://github.com/iamvdo/pleeease/">GitHub</a>. Follow <a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a> for updates.</p><p class="note">Thanks to <a href="http://twitter.com/andreysitnik">@andreysitnik</a> for PostCSS and Autoprefixer, <a href="http://twitter.com/moox">@MoOx</a> for some PostCSS plugins and <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.</p></footer><script>try {
   var ajax = new XMLHttpRequest();
-  ajax.open("GET", "http://cdn.rawgit.com/iamvdo/pleeease/master/package.json", true);
+  ajax.open("GET", "http://lab.iamvdo.me/pleeease-version.php", true);
   ajax.onload = function () {
     var version = JSON.parse(ajax.responseText).version;
     document.getElementById('version').innerHTML = version;

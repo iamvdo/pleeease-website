@@ -1,7 +1,7 @@
 script.
   try {
     var ajax = new XMLHttpRequest();
-    ajax.open("GET", "http://cdn.rawgit.com/iamvdo/pleeease/master/package.json", true);
+    ajax.open("GET", "http://lab.iamvdo.me/pleeease-version.php", true);
     ajax.onload = function () {
       var version = JSON.parse(ajax.responseText).version;
       document.getElementById('version').innerHTML = version;
