@@ -85,7 +85,7 @@ Type: <code>Object</code> | Default: <code>false</code>
 <p>Features can be disabled with the <code>false</code> keyword or modified using each postprocessor options. See each features:</p>
 <ul>
 <li><a href="#autoprefixer">autoprefixer</a>, <a href="#filters">filters</a>, <a href="#rem">rem</a>, <a href="#pseudoelements">pseudoElements</a>, <a href="#opacity">opacity</a></li>
-<li><a href="#import">import</a>, <a href="#minifier">minifier</a>, <a href="#mqpacker">mqpacker</a></li>
+<li><a href="#import">import</a>, <a href="#rebaseUrls">rebaseUrls</a>, <a href="#minifier">minifier</a>, <a href="#mqpacker">mqpacker</a></li>
 <li><a href="#pleeease-next">Pleeease.NEXT</a></li>
 <li><a href="#sourcemaps">sourcemaps</a></li>
 </ul>
@@ -276,8 +276,11 @@ Type: <code>Object</code> | Default: <code>{path: process.cwd(), encoding: &quot
     <span class="token string" >"out"</span><span class="token punctuation" >:</span> <span class="token string" >"path/to/destination/file.css"</span>
 <span class="token punctuation" >}</span>
 </code></pre>
+<p>You can also <a href="#rebaseUrls">disable URLs rebase</a>.</p>
 <p><strong>Important note:</strong> In edge cases, this processor may cause unloaded files by browsers. Always check generated CSS and open issue if you encounter problems.</p>
 <p>See <a href="https://github.com/postcss/postcss-import#postcss-import-">postcss-import on GitHub</a>.</p>
+<h3 id="rebaseurls">rebaseUrls</h3>
+<p><strong>Rebases URLs on <code>@import</code>ed files</strong>, using <a href="https://github.com/postcss/postcss-url">postcss-url</a>. Set to <code>false</code> to disable.</p>
 <h3 id="minifier">minifier</h3>
 <div class="note">
 Type: <code>Object</code> | Default: <code>{preserveHacks: true, removeAllComments: false}</code>

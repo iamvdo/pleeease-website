@@ -3,7 +3,7 @@
 Features can be disabled with the `false` keyword or modified using each postprocessor options. See each features:
 
 * [autoprefixer](#autoprefixer), [filters](#filters), [rem](#rem), [pseudoElements](#pseudoelements), [opacity](#opacity)
-* [import](#import), [minifier](#minifier), [mqpacker](#mqpacker)
+* [import](#import), [rebaseUrls](#rebaseUrls), [minifier](#minifier), [mqpacker](#mqpacker)
 * [Pleeease.NEXT](#pleeease-next)
 * [sourcemaps](#sourcemaps)
 
@@ -269,9 +269,15 @@ URLs are rebased according to destination file. Configure this by setting `out` 
 }
 ```
 
+You can also [disable URLs rebase](#rebaseUrls).
+
 **Important note:** In edge cases, this processor may cause unloaded files by browsers. Always check generated CSS and open issue if you encounter problems.
 
 See [postcss-import on GitHub](https://github.com/postcss/postcss-import#postcss-import-).
+
+###rebaseUrls
+
+**Rebases URLs on `@import`ed files**, using [postcss-url](https://github.com/postcss/postcss-url). Set to `false` to disable.
 
 ###minifier
 
