@@ -25,6 +25,8 @@ exports.config =
   modules:
     wrapper: false
     definition: false
+  npm:
+    enabled: false
   sourceMaps: true
   plugins:
     pleeease:
