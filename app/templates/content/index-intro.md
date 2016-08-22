@@ -14,12 +14,4 @@
 
 **Pleeease is the easy way to combine preprocessors and postprocessors**.
 
-[Pleeease**.NEXT**](/docs/#pleeease-next) goes even further and allows you to use some of the future CSS's features today:
-
-* provides fallbacks for **CSS custom properties (aka CSS variables)** and **custom media-queries**
-* reduces **`calc()`** whenever possible
-* adds some features from CSS4 colors module: **`color()`, `hwb()`, `#RRGGBBAA` notation** and more
-
-**Note:** be careful that Pleeease.NEXT's features are at risk. [Learn more](/docs/#pleeease-next).
-
 <div class="note">* not real magic though</div>

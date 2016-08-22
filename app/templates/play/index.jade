@@ -15,8 +15,7 @@ block content
             a.samples-item(href='#',data-sample='rem') rem 
             a.samples-item(href='#',data-sample='pseudoElements') Pseudo&#8209;elements 
             a.samples-item(href='#',data-sample='opacity') Opacity 
-            a.samples-item(href='#',data-sample='filters') CSS filters 
-            a.samples-item(href='#',data-sample='next') pleeease.NEXT 
+            a.samples-item(href='#',data-sample='filters') CSS filters
       textarea.play-block-textarea#input
     .play-block.play-block--textarea.play-block--output
       h3.play-block-title.play-block-title--2 Result
@@ -31,13 +30,14 @@ block content
           .input
             input(id='optsAutoprefixer',name='autoprefixer',type='checkbox',checked='checked')
             label(for='optsAutoprefixer') Autoprefixer
+              small  - CSS prefixes
             .input
-              input(type='text',name='autoprefixerOpts',value='')
+              input(type='text',name='autoprefixerOpts')
           .input
             input(id='optsRem',name='rem',type='checkbox',checked='checked')
             label(for='optsRem') rem
             .input
-              input(type='text',name='remOpts',value='16px')
+              input(type='text',name='remOpts')
           .input
             input(id='optsPseudos',name='pseudoElements',type='checkbox',checked='checked')
             label(for='optsPseudos') Pseudo-elements
@@ -51,23 +51,6 @@ block content
               input(id='optsFiltersOpts',type='checkbox',name='filtersOpts')
               label(for='optsFiltersOpts') IE filters
         fieldset
-          legend Pleeease.NEXT
-          .input
-            input(id='optsVars',name='next.customProperties',type='checkbox',checked='checked')
-            label(for='optsVars') CSS Variables
-            .input
-              input(id='optsVarsOpts',type='checkbox',name='next.customPropertiesOpts')
-              label(for='optsVarsOpts') Preserve
-          .input
-            input(id='optsCalc',name='next.calc',type='checkbox',checked='checked')
-            label(for='optsCalc') calc()
-          .input
-            input(id='optsCustomMedia',name='next.customMedia',type='checkbox',checked='checked')
-            label(for='optsCustomMedia') Custom media-queries
-          .input
-            input(id='optsColors',name='next.colors',type='checkbox',checked='checked')
-            label(for='optsColors') CSS4 Colors
-        fieldset
           legend Other
           .input
             input(id='optsMQ',name='mqpacker',type='checkbox')
@@ -80,6 +63,7 @@ block content
             label(for='optsWrap') Wrap lines
         p
           a(href='/docs/#features',class='play-link') Learn more about options...
-
+  
+  script(src='https://www.promisejs.org/polyfills/promise-6.1.0.js')
   script(src='pleeease.js')
   script(src='playground.js')

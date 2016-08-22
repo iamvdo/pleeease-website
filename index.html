@@ -16,18 +16,11 @@ document.createElement('footer');</script></head><title>Pleeease &middot; Proces
 <li><strong><a href="/docs/#sourcemaps">generates sourcemaps</a></strong> from pre- to postprocessors</li>
 </ul>
 <p><strong>Pleeease is the easy way to combine preprocessors and postprocessors</strong>.</p>
-<p><a href="/docs/#pleeease-next">Pleeease<strong>.NEXT</strong></a> goes even further and allows you to use some of the future CSS&#39;s features today:</p>
-<ul>
-<li>provides fallbacks for <strong>CSS custom properties (aka CSS variables)</strong> and <strong>custom media-queries</strong></li>
-<li>reduces <strong><code>calc()</code></strong> whenever possible</li>
-<li>adds some features from CSS4 colors module: <strong><code>color()</code>, <code>hwb()</code>, <code>#RRGGBBAA</code> notation</strong> and more</li>
-</ul>
-<p><strong>Note:</strong> be careful that Pleeease.NEXT&#39;s features are at risk. <a href="/docs/#pleeease-next">Learn more</a>.</p>
 <div class="note">* not real magic though</div></div><div class="block"><h2 id="get-started">Get started</h2>
 <p>The simplest way to use Pleeease is to use <a href="/docs/#cli">CLI</a> (command-line interface) and a <a href="/docs/#configuration-file">configuration file</a>.</p>
 <p>Note that if you already have an advanced workflow, you can learn <a href="/workflow">how to improve it</a>.</p>
 <p><strong>To use CLI:</strong> First, you have to install <a href="http://nodejs.org">Node.js</a> that usually comes with <code>npm</code>, its module manager. Then, install <code>pleeease-cli</code> globally on your system:</p>
-<pre class="language-javascript"><code class="language-javascript">$ npm install <span class="token operator" >-</span>g pleeease<span class="token operator" >-</span>cli
+<pre class="language-javascript"><code class="language-javascript">$ npm install <span class="token operator">-</span>g pleeease<span class="token operator">-</span>cli
 </code></pre>
 <div class="note"><strong>Note:</strong> Pleeease &lt; 3.0.0 users, you have to uninstall <code>pleeeease</code> first, then install <code>pleeease-cli</code>.</div>
 
@@ -35,68 +28,68 @@ document.createElement('footer');</script></head><title>Pleeease &middot; Proces
 </div><div class="block"><h2 id="how-it-simply-works">How it (simply) works</h2>
 <p>Pleeease <strong>does not</strong> modifiy your code. It simply creates another file that <strong>increases browser support</strong>. What you have to do is to configure the input and output files.</p>
 <p>For example, let&#39;s say you have <code>&quot;styles.css&quot;</code> that you want to compile to <code>&quot;styles.fixed.css&quot;</code>, create a new <a href="/docs/#configuration-file">configuration file</a> with:</p>
-<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation" >{</span>
-  <span class="token string" >"in"</span><span class="token punctuation" >:</span> <span class="token string" >"style.css"</span><span class="token punctuation" >,</span>
-  <span class="token string" >"out"</span><span class="token punctuation" >:</span> <span class="token string" >"styles.fixed.css"</span>
-<span class="token punctuation" >}</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
+  <span class="token string">"in"</span><span class="token punctuation">:</span> <span class="token string">"style.css"</span><span class="token punctuation">,</span>
+  <span class="token string">"out"</span><span class="token punctuation">:</span> <span class="token string">"styles.fixed.css"</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>And run Pleeease</p>
 <pre class="language-javascript"><code class="language-javascript">$ pleeease compile
 </code></pre>
 <p>If <code>&quot;styles.css&quot;</code> is:</p>
-<pre class="language-css"><code class="language-css"><span class="token atrule" >@import url("bar.css")<span class="token punctuation" >;</span></span>
+<pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token url">url("bar.css")</span><span class="token punctuation">;</span></span>
 
-<span class="token selector" >*, *::after, *::before </span><span class="token punctuation" >{</span>
-  <span class="token property" >box-sizing</span><span class="token punctuation" >:</span> border-box<span class="token punctuation" >;</span>
-<span class="token punctuation" >}</span>
+<span class="token selector">*, *::after, *::before</span> <span class="token punctuation">{</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="token selector" >.a </span><span class="token punctuation" >{</span>
-  <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span>
-  <span class="token property" >width</span><span class="token punctuation" >:</span> <span class="token function" >calc</span>(100% - 50px)<span class="token punctuation" >;</span>
-<span class="token punctuation" >}</span>
+<span class="token selector">.a</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 2rem<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token function">calc</span><span class="token punctuation">(</span>100% - 50px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="token atrule" >@media (min-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
-  <span class="token selector" >.a </span><span class="token punctuation" >{</span>
-    <span class="token property" >color</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
-  <span class="token punctuation" >}</span>
-<span class="token punctuation" >}</span>
+<span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 36em<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+  <span class="token selector">.a</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-<span class="token atrule" >@media (min-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
-  <span class="token selector" >.b </span><span class="token punctuation" >{</span>
-    <span class="token property" >color</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
-  <span class="token punctuation" >}</span>
-<span class="token punctuation" >}</span>
+<span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 36em<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+  <span class="token selector">.b</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p><code>&quot;styles.fixed.css&quot;</code> will be:</p>
-<pre class="language-css"><code class="language-css"><span class="token selector" >.bar </span><span class="token punctuation" >{</span>
+<pre class="language-css"><code class="language-css"><span class="token selector">.bar</span> <span class="token punctuation">{</span>
   <span class="token comment" spellcheck="true">/* imported styles */</span>
-<span class="token punctuation" >}</span>
+<span class="token punctuation">}</span>
 
-<span class="token selector" >*, *:after, *:before </span><span class="token punctuation" >{</span>
-  <span class="token property" >-webkit-box-sizing</span><span class="token punctuation" >:</span> border-box<span class="token punctuation" >;</span>
-     <span class="token property" >-moz-box-sizing</span><span class="token punctuation" >:</span> border-box<span class="token punctuation" >;</span>
-          <span class="token property" >box-sizing</span><span class="token punctuation" >:</span> border-box<span class="token punctuation" >;</span>
-<span class="token punctuation" >}</span>
+<span class="token selector">*, *:after, *:before</span> <span class="token punctuation">{</span>
+  <span class="token property">-webkit-box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+     <span class="token property">-moz-box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+          <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="token selector" >.a </span><span class="token punctuation" >{</span>
-  <span class="token property" >font-size</span><span class="token punctuation" >:</span> 32px<span class="token punctuation" >;</span>
-  <span class="token property" >font-size</span><span class="token punctuation" >:</span> 2rem<span class="token punctuation" >;</span>
-  <span class="token property" >width</span><span class="token punctuation" >:</span> <span class="token function" >-webkit-calc</span>(100% - 50px)<span class="token punctuation" >;</span>
-  <span class="token property" >width</span><span class="token punctuation" >:</span> <span class="token function" >calc</span>(100% - 50px)<span class="token punctuation" >;</span>
-<span class="token punctuation" >}</span>
+<span class="token selector">.a</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 32px<span class="token punctuation">;</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 2rem<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token function">-webkit-calc</span><span class="token punctuation">(</span>100% - 50px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token function">calc</span><span class="token punctuation">(</span>100% - 50px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="token atrule" >@media (min-width<span class="token punctuation" >:</span> 36em)</span> <span class="token punctuation" >{</span>
-  <span class="token selector" >.a </span><span class="token punctuation" >{</span>
-    <span class="token property" >color</span><span class="token punctuation" >:</span> red<span class="token punctuation" >;</span>
-  <span class="token punctuation" >}</span>
-  <span class="token selector" >.b </span><span class="token punctuation" >{</span>
-    <span class="token property" >color</span><span class="token punctuation" >:</span> blue<span class="token punctuation" >;</span>
-  <span class="token punctuation" >}</span>
-<span class="token punctuation" >}</span>
+<span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 36em<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+  <span class="token selector">.a</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">.b</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Pretty cool, isn&#39;t it?</p>
 <p>If you&#39;re ready to use it, you now need to learn how to <a href="docs/#configuration-file">create a configuration file</a>, and then <a href="docs/#features">see full features support</a>!</p>
-</div></article></section><footer class="footer"><p>©2014-2015. Processed with <a href="/">Pleeease</a> by <a href="http://twitter.com/iamvdo">@iamvdo</a>. View sources on <a href="https://github.com/iamvdo/pleeease/">GitHub</a>. Follow <a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a> for updates.</p><p class="note">Thanks to <a href="http://twitter.com/andreysitnik">@andreysitnik</a> for PostCSS and Autoprefixer, <a href="http://twitter.com/moox">@MoOx</a> for some PostCSS plugins and <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.</p></footer><script>try {
+</div></article></section><footer class="footer"><p>©2014-2016. Processed with <a href="/">Pleeease</a> by <a href="http://twitter.com/iamvdo">@iamvdo</a>. View sources on <a href="https://github.com/iamvdo/pleeease/">GitHub</a>. Follow <a href="http://twitter.com/pleeeaseCSS">@pleeeaseCSS</a> for updates.</p><p class="note">Thanks to <a href="http://twitter.com/andreysitnik">@andreysitnik</a> for PostCSS and Autoprefixer, <a href="http://twitter.com/moox">@MoOx</a> for some PostCSS plugins and <a href="http://twitter.com/goetter">@goetter</a> for his contributions, feedback and testing.</p></footer><script>try {
   var ajax = new XMLHttpRequest();
   ajax.open("GET", "http://lab.iamvdo.me/pleeease-version.php", true);
   ajax.onload = function () {

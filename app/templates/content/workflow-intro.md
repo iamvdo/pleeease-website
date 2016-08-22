@@ -72,7 +72,6 @@ plugins:
     import: true
     minifier: true
     mqpacker: true
-    next: true
 ```
 
 Note that brunch-pleeease is an optimizer plugin, so it only works when `optimize: true` is set. The `--production` environment activates optimizers.

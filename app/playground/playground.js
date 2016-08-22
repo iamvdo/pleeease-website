@@ -1,16 +1,20 @@
 // options
 var options = {
+  "autoprefixer": {
+    "browsers": [">1%", "last 2 versions", "Firefox ESR"]
+  },
+  "rem": {
+    "rootValue": "16px"
+  },
   "minifier": false,
-  "import": false,
-  "next": {}
+  "import": false
 };
 var samples = {
   'autoprefixer': ".a {\n  display: flex;\n  background: linear-gradient(red, green);\n}",
   'rem': ".rem {\n  width: 2rem;\n}\n\n.rem {\n  /* no conversion */\n  width: calc(100% - 2rem);\n}",
   'pseudoElements': ".a::after {\n  content: 'foo!';\n}",
   'opacity': "a {\n  opacity: .5\n}",
-  'filters': "a {\n  filter: blur(2px);\n}",
-  'next': "/* CSS variables */\n:root {\n  --color-primary: red;\n  --height: 2em;\n}\n.a {\n  background: var(--color-primary);\n}\n\n/* CSS resolve calc */\n.b {\n  width: calc(100% - 2em);\n  height: calc(4em * var(--height));\n}\n\n/* custom media */\n@custom-media --small-viewport (max-width: 25em);\n@media (--small-viewport) {\n  /*stuff here*/\n}\n\n/* colors */\n.c {\n  color: color(orangered a(.5));\n  color: #F00A;\n}"
+  'filters': "a {\n  filter: blur(2px);\n}"
 };
 function htmlEntities (str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -18,15 +22,16 @@ function htmlEntities (str) {
 function doPleeease () {
   var source = editor.getValue();
   var compiled = source;
-  try {
-    compiled = pleeease.process(source, options);
-  } catch (err) {
+  console.log(options);
+  pleeease.process(source, options).then(function (result) {
+    compiled = result;
+    var scrollTop = output.doc.scrollTop;
+    output.setValue(compiled);
+    output.scrollTo(0, scrollTop);
+  }).catch(function (err) {
+    output.setValue(source);
     console.log(err);
-  }
-  var scrollTop = output.doc.scrollTop;
-  output.setValue(compiled);
-  //doScroll(output, 'output');
-  output.scrollTo(0, scrollTop);
+  });
 }
 function updateOptionAdvanced (checked, name) {
   var opts = {
@@ -38,13 +43,10 @@ function updateOptionAdvanced (checked, name) {
       return {browsers: values};
     }, 'text'],
     'rem': [function (value) {
-      return [value];
+      return {rootValue: value};
     }, 'text'],
     'filters': [function (value) {
       return {oldIE: true};
-    }, 'check'],
-    'next.customProperties': [function (value) {
-      return {preserve: true};
     }, 'check']
   };
 
@@ -56,7 +58,7 @@ function updateOptionAdvanced (checked, name) {
     } else {
       value = value.value;
     }
-    if ((type === 'text' && value !== '') || (type === 'check' && value)) {
+    if ((type === 'text') || (type === 'check' && value)) {
       checked = opts[name][0](value);
     }
   }
@@ -85,13 +87,8 @@ function updateOption (checkbox, refresh) {
       output.setOption('lineWrapping', false);
     }
   }
-
-  if (checkbox.name.indexOf('next') !== -1) {
-    var name = checkbox.name.replace('next.', '');
-    options['next'][name] = checked;
-  } else {
-    options[checkbox.name] = checked;
-  }
+  console.log(checkbox.name, checked);
+  options[checkbox.name] = checked;
 
   refresh = typeof refresh !== 'undefined' ? refresh : true;
   if (refresh) {
@@ -108,6 +105,13 @@ function doOptions () {
 
   for (var i = 0; i < checkboxes.length; i++) {
     var checkbox = checkboxes[i];
+
+    // init default values
+    var checkboxOpts = document.getElementsByName(checkbox.name + 'Opts').item(0);
+    if (checkboxOpts && checkboxOpts.type === 'text') {
+      var value = (options[checkbox.name].browsers) ? options[checkbox.name].browsers.join(',') : options[checkbox.name].rootValue;
+      checkboxOpts.value = value;
+    }
 
     updateOption(checkbox, false);
 

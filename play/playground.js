@@ -57801,17 +57801,21 @@ Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(f
 
 // options
 var options = {
+  "autoprefixer": {
+    "browsers": [">1%", "last 2 versions", "Firefox ESR"]
+  },
+  "rem": {
+    "rootValue": "16px"
+  },
   "minifier": false,
-  "import": false,
-  "next": {}
+  "import": false
 };
 var samples = {
   'autoprefixer': ".a {\n  display: flex;\n  background: linear-gradient(red, green);\n}",
   'rem': ".rem {\n  width: 2rem;\n}\n\n.rem {\n  /* no conversion */\n  width: calc(100% - 2rem);\n}",
   'pseudoElements': ".a::after {\n  content: 'foo!';\n}",
   'opacity': "a {\n  opacity: .5\n}",
-  'filters': "a {\n  filter: blur(2px);\n}",
-  'next': "/* CSS variables */\n:root {\n  --color-primary: red;\n  --height: 2em;\n}\n.a {\n  background: var(--color-primary);\n}\n\n/* CSS resolve calc */\n.b {\n  width: calc(100% - 2em);\n  height: calc(4em * var(--height));\n}\n\n/* custom media */\n@custom-media --small-viewport (max-width: 25em);\n@media (--small-viewport) {\n  /*stuff here*/\n}\n\n/* colors */\n.c {\n  color: color(orangered a(.5));\n  color: #F00A;\n}"
+  'filters': "a {\n  filter: blur(2px);\n}"
 };
 function htmlEntities (str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -57819,15 +57823,16 @@ function htmlEntities (str) {
 function doPleeease () {
   var source = editor.getValue();
   var compiled = source;
-  try {
-    compiled = pleeease.process(source, options);
-  } catch (err) {
+  console.log(options);
+  pleeease.process(source, options).then(function (result) {
+    compiled = result;
+    var scrollTop = output.doc.scrollTop;
+    output.setValue(compiled);
+    output.scrollTo(0, scrollTop);
+  }).catch(function (err) {
+    output.setValue(source);
     console.log(err);
-  }
-  var scrollTop = output.doc.scrollTop;
-  output.setValue(compiled);
-  //doScroll(output, 'output');
-  output.scrollTo(0, scrollTop);
+  });
 }
 function updateOptionAdvanced (checked, name) {
   var opts = {
@@ -57839,13 +57844,10 @@ function updateOptionAdvanced (checked, name) {
       return {browsers: values};
     }, 'text'],
     'rem': [function (value) {
-      return [value];
+      return {rootValue: value};
     }, 'text'],
     'filters': [function (value) {
       return {oldIE: true};
-    }, 'check'],
-    'next.customProperties': [function (value) {
-      return {preserve: true};
     }, 'check']
   };
 
@@ -57857,7 +57859,7 @@ function updateOptionAdvanced (checked, name) {
     } else {
       value = value.value;
     }
-    if ((type === 'text' && value !== '') || (type === 'check' && value)) {
+    if ((type === 'text') || (type === 'check' && value)) {
       checked = opts[name][0](value);
     }
   }
@@ -57886,13 +57888,8 @@ function updateOption (checkbox, refresh) {
       output.setOption('lineWrapping', false);
     }
   }
-
-  if (checkbox.name.indexOf('next') !== -1) {
-    var name = checkbox.name.replace('next.', '');
-    options['next'][name] = checked;
-  } else {
-    options[checkbox.name] = checked;
-  }
+  console.log(checkbox.name, checked);
+  options[checkbox.name] = checked;
 
   refresh = typeof refresh !== 'undefined' ? refresh : true;
   if (refresh) {
@@ -57909,6 +57906,13 @@ function doOptions () {
 
   for (var i = 0; i < checkboxes.length; i++) {
     var checkbox = checkboxes[i];
+
+    // init default values
+    var checkboxOpts = document.getElementsByName(checkbox.name + 'Opts').item(0);
+    if (checkboxOpts && checkboxOpts.type === 'text') {
+      var value = (options[checkbox.name].browsers) ? options[checkbox.name].browsers.join(',') : options[checkbox.name].rootValue;
+      checkboxOpts.value = value;
+    }
 
     updateOption(checkbox, false);
 
@@ -58005,7 +58009,7 @@ for (var i = 0; i < cms.length; i++) {
   });
 };
 
-!function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.jade=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.jade = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
 /**
@@ -58068,7 +58072,9 @@ function nulls(val) {
  */
 exports.joinClasses = joinClasses;
 function joinClasses(val) {
-  return Array.isArray(val) ? val.map(joinClasses).filter(nulls).join(' ') : val;
+  return (Array.isArray(val) ? val.map(joinClasses) :
+    (val && typeof val === 'object') ? Object.keys(val).filter(function (key) { return val[key]; }) :
+    [val]).filter(nulls).join(' ');
 }
 
 /**
@@ -58095,6 +58101,16 @@ exports.cls = function cls(classes, escaped) {
   }
 };
 
+
+exports.style = function (val) {
+  if (val && typeof val === 'object') {
+    return Object.keys(val).map(function (style) {
+      return style + ':' + val[style];
+    }).join(';');
+  } else {
+    return val;
+  }
+};
 /**
  * Render the given attribute.
  *
@@ -58105,6 +58121,9 @@ exports.cls = function cls(classes, escaped) {
  * @return {String}
  */
 exports.attr = function attr(key, val, escaped, terse) {
+  if (key === 'style') {
+    val = exports.style(val);
+  }
   if ('boolean' == typeof val || null == val) {
     if (val) {
       return ' ' + (terse ? key : key + '="' + key + '"');
@@ -58112,10 +58131,24 @@ exports.attr = function attr(key, val, escaped, terse) {
       return '';
     }
   } else if (0 == key.indexOf('data') && 'string' != typeof val) {
+    if (JSON.stringify(val).indexOf('&') !== -1) {
+      console.warn('Since Jade 2.0.0, ampersands (`&`) in data attributes ' +
+                   'will be escaped to `&amp;`');
+    };
+    if (val && typeof val.toISOString === 'function') {
+      console.warn('Jade will eliminate the double quotes around dates in ' +
+                   'ISO form after 2.0.0');
+    }
     return ' ' + key + "='" + JSON.stringify(val).replace(/'/g, '&apos;') + "'";
   } else if (escaped) {
+    if (val && typeof val.toISOString === 'function') {
+      console.warn('Jade will stringify dates in ISO form after 2.0.0');
+    }
     return ' ' + key + '="' + exports.escape(val) + '"';
   } else {
+    if (val && typeof val.toISOString === 'function') {
+      console.warn('Jade will stringify dates in ISO form after 2.0.0');
+    }
     return ' ' + key + '="' + val + '"';
   }
 };
@@ -58158,12 +58191,21 @@ exports.attrs = function attrs(obj, terse){
  * @api private
  */
 
-exports.escape = function escape(html){
-  var result = String(html)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+var jade_encode_html_rules = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;'
+};
+var jade_match_html = /[&<>"]/g;
+
+function jade_encode_char(c) {
+  return jade_encode_html_rules[c] || c;
+}
+
+exports.escape = jade_escape;
+function jade_escape(html){
+  var result = String(html).replace(jade_match_html, jade_encode_char);
   if (result === '' + html) return html;
   else return result;
 };
@@ -58185,7 +58227,7 @@ exports.rethrow = function rethrow(err, filename, lineno, str){
     throw err;
   }
   try {
-    str = str || _dereq_('fs').readFileSync(filename, 'utf8')
+    str = str || require('fs').readFileSync(filename, 'utf8')
   } catch (ex) {
     rethrow(err, null, lineno)
   }
@@ -58210,8 +58252,12 @@ exports.rethrow = function rethrow(err, filename, lineno, str){
   throw err;
 };
 
-},{"fs":2}],2:[function(_dereq_,module,exports){
+exports.DebugItem = function DebugItem(lineno, filename) {
+  this.lineno = lineno;
+  this.filename = filename;
+}
 
-},{}]},{},[1])
-(1)
+},{"fs":2}],2:[function(require,module,exports){
+
+},{}]},{},[1])(1)
 });

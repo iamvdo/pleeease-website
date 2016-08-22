@@ -4,7 +4,6 @@ Features can be disabled with the `false` keyword or modified using each postpro
 
 * [autoprefixer](#autoprefixer), [filters](#filters), [rem](#rem), [pseudoElements](#pseudoelements), [opacity](#opacity)
 * [import](#import), [rebaseUrls](#rebaseUrls), [minifier](#minifier), [mqpacker](#mqpacker)
-* [Pleeease.NEXT](#pleeease-next)
 * [sourcemaps](#sourcemaps)
 
 The default options are:
@@ -21,9 +20,7 @@ The default options are:
   "minifier": true,
   "mqpacker": false,
 
-  "sourcemaps": false,
-
-  "next": false
+  "sourcemaps": false
 }
 ```
 

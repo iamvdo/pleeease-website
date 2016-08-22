@@ -33,7 +33,7 @@ exports.config =
       import: false
       minifier: false
       mqpacker: false
-      next: true
+      stylus: true
     jaded:
       staticPatterns: /^app(\/|\\)templates(\/|\\)(.+)\.jade$/
 

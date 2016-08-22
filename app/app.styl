@@ -1,15 +1,16 @@
-:root {
-  --color-primary: #FF2000;
-  --color-secondary: deepskyblue;
-  --color-dark: #151515;
-  --color-light: #FAFAFA;
-}
+/**
+ * Vars
+ */
+__color-primary = #FF2000
+__color-secondary = deepskyblue
+__color-dark = #151515
+__color-light = #FAFAFA
 
 /**
  * Custom media
  */
-@custom-media --breakpoint1 (max-width: 40em);
-@custom-media --breakpoint2 (max-width: 70em);
+__breakpoint1 = 'max-width: 40em'
+__breakpoint2 = 'max-width: 70em'
 
 * {
   box-sizing: border-box;
@@ -18,9 +19,9 @@ html {
   font: 300 1em Open Sans, sans-serif;
   min-height: 100%;
   text-size-adjust: none;
-  background: radial-gradient(60em at top center, white, var(--color-light));
+  background: radial-gradient(60em at top center, white, __color-light);
 }
-  @media (--breakpoint1) {
+  @media ({__breakpoint1}) {
     html {
       font-size: .8em;
     }
@@ -41,7 +42,7 @@ a {
   text-decoration: none;
 }
 ::selection {
-  background: var(--color-dark);
+  background: __color-dark;
   color: #FFF;
 }
 
@@ -57,7 +58,7 @@ a {
   z-index: 500;
   box-shadow: 0 1px 2px rgba(0,0,0,.9);
 }
-  @media (--breakpoint1) {
+  @media ({__breakpoint1}) {
     .header {
       position: static;
     }
@@ -71,7 +72,7 @@ a {
 .header-title {
   height: 100%;
 }
-  @media (--breakpoint2) {
+  @media ({__breakpoint2}) {
     .header-title {
 
     }
@@ -87,7 +88,7 @@ a {
 }
 .header-title a {
   display: block; /* fix transform animation on FF */
-  color: var(--color-light);
+  color: __color-light;
   text-decoration: none;
   text-shadow: 0 2px 2px rgba(0,0,0,.3);
 }
@@ -112,7 +113,7 @@ a {
   padding: .2em 1em;
   margin: 0;
   font-size: 1em;
-  background: var(--color-dark);
+  background: __color-dark;
   /*
   position: absolute;
   top: 3rem; left: 0; right: 0;
@@ -125,9 +126,9 @@ a {
   font: 2.3em Damion, sans-serif;
   padding: 3em 0;
   text-align: center;
-  color: var(--color-primary);
+  color: __color-primary;
 }
-  @media (--breakpoint1) {
+  @media ({__breakpoint1}) {
     .intro {
       padding: 1.5em 0;
     }
@@ -144,20 +145,20 @@ a {
  * Footer
  */
 .footer {
-  background: var(--color-dark);
+  background: __color-dark;
   color: #FFF;
   font-size: .9em;
   padding: 1em;
 }
 .footer a {
-  color: var(--color-primary);
+  color: __color-primary;
   text-decoration: none;
-  border-bottom: 1px solid color(var(--color-primary) a(0));
+  border-bottom: 1px solid color(__color-primary a(0));
   transition: border-bottom-color .25s;
 }
 .footer a:focus,
 .footer a:hover {
-  border-bottom: 1px solid var(--color-primary);
+  border-bottom: 1px solid __color-primary;
 }
 
 /**
@@ -169,7 +170,7 @@ a {
   top: 0; right: 1em;
   z-index: 500;
 }
-  @media (--breakpoint1) {
+  @media ({__breakpoint1}) {
     .nav {
       position: static;
       margin: 1em;
@@ -188,7 +189,7 @@ a {
   line-height: 2em;
 }
 .nav-link {
-  color: var(--color-dark);
+  color: __color-dark;
   padding: .2em .3em;
   text-shadow: 0 1px 0 rgba(255,255,255,.2);
   transition-name: color, border-color;
@@ -200,11 +201,11 @@ a {
   color: #FFF;
   text-shadow: 0 1px 2px rgba(0,0,0,.5);
 }
-  @media (--breakpoint1) {
+  @media ({__breakpoint1}) {
     .nav-link:hover,
     .nav-link:focus,
     .nav-link--selected {
-      color: var(--color-primary);
+      color: __color-primary;
       text-shadow: none;
     }
   }
@@ -219,11 +220,11 @@ a {
   border-color: #FFF;
 }
 
-  @media (--breakpoint1) {
+  @media ({__breakpoint1}) {
     .nav-link--play:hover,
     .nav-link--play:focus,
     .nav-link--play.nav-link--selected {
-      border-color: var(--color-primary);
+      border-color: __color-primary;
     }
   }
 
@@ -233,17 +234,17 @@ a {
 section {
   overflow: hidden;
   padding: 6em 1em 1em 1em;
-  color: var(--color-dark);
+  color: __color-dark;
   background: #ddd;
   background: linear-gradient(to bottom right, #eee, #aaa);
   line-height: 1.8;
 }
-  @media (--breakpoint2) {
+  @media ({__breakpoint2}) {
     section {
       padding: 6em 2% 1em;
     }
   }
-  @media (--breakpoint1) {
+  @media ({__breakpoint1}) {
     section {
       padding: 0;
     }
@@ -265,32 +266,32 @@ article {
   padding: 0 2em;
   box-shadow: 0 2px 2px 1px rgba(0,0,0,.1);
 }
-  @media (--breakpoint2) {
+  @media ({__breakpoint2}) {
     article {
       padding: 0 1%;
     }
   }
 
 article a {
-  color: var(--color-dark);
+  color: __color-dark;
   padding: 2px;
   margin: 0 -2px;
   text-decoration: none;
-  border-bottom: 2px solid var(--color-primary);
+  border-bottom: 2px solid __color-primary;
 }
 article a:hover,
 article a:focus {
-  color: var(--color-primary);
+  color: __color-primary;
 }
   @supports (background-size: 100%) {
     article a {
       border: none;
-      background: linear-gradient(var(--color-primary), var(--color-primary)) no-repeat bottom;
+      background: linear-gradient(__color-primary, __color-primary) no-repeat bottom;
       background-size: 100% 2px;
       transition: background-size .2s, color .1s .1s;
     }
     article a:hover {
-      color: var(--color-light);
+      color: __color-light;
       background-size: 100% 100%;
     }
   }
@@ -300,11 +301,11 @@ article h2,
 article h3 {
   font-weight: 600;
   font-size: 2.4em;
-  color: var(--color-dark);
+  color: __color-dark;
   margin: 0 0 1em;
 }
 article h2 {
-  color: var(--color-primary);
+  color: __color-primary;
   font-size: 2em;
   margin-top: 2em;
   padding-bottom: .5em;
@@ -312,7 +313,7 @@ article h2 {
 }
 article h3 {
   /*font-weight: 700;*/
-  color: var(--color-primary);
+  color: __color-primary;
   font-size: 1.6em;
   margin-top: 2em;
 }
@@ -331,14 +332,14 @@ article strong {
   background: none;
   padding-bottom: 0;
   color: #888;
-  border-bottom: 1px solid var(--color-dark);
+  border-bottom: 1px solid __color-dark;
 }
 .note a:hover,
 .note a:focus {
-  color: var(--color-primary);
+  color: __color-primary;
 }
 .note code {
-  color: var(--color-dark);
+  color: __color-dark;
 }
 .buttons {
   text-align: center;
@@ -348,8 +349,8 @@ article strong {
   font-size: .9em;
   padding: .6em 1.1em;
   color: #fff;
-  background-color: var(--color-primary);
-  box-shadow: 0 0 0 -2px var(--color-light), 0 0 0 -1px var(--color-primary);
+  background-color: __color-primary;
+  box-shadow: 0 0 0 -2px __color-light, 0 0 0 -1px __color-primary;
   border-radius: 3px;
   border: none;
   margin: 10px;
@@ -359,22 +360,22 @@ article strong {
 }
 .button--download {
   background: gray;
-  box-shadow: 0 0 0 -2px var(--color-light), 0 0 0 -1px gray;
+  box-shadow: 0 0 0 -2px __color-light, 0 0 0 -1px gray;
 }
 .button:hover,
 .button:focus {
   transition-timing-function: cubic-bezier(.3,4,.5,.8);
-  box-shadow: 0 0 0 2px var(--color-light), 0 0 0 4px var(--color-primary);
+  box-shadow: 0 0 0 2px __color-light, 0 0 0 4px __color-primary;
   animation: jelly .5s 1;
 }
 .button--download:hover,
 .button--download:focus {
-  box-shadow: 0 0 0 2px var(--color-light), 0 0 0 4px gray;
+  box-shadow: 0 0 0 2px __color-light, 0 0 0 4px gray;
 }
 .button:active {
   transition-duration: 0s;
-  background: var(--color-secondary);
-  box-shadow: 0 0 0 2px var(--color-light), 0 0 0 4px var(--color-secondary);
+  background: __color-secondary;
+  box-shadow: 0 0 0 2px __color-light, 0 0 0 4px __color-secondary;
 }
 @keyframes jelly {
   from, to { transform: scale(1, 1) ; }
@@ -427,7 +428,7 @@ textarea {
   padding: .3em 1em;
   margin: 0;
   font-size: 1em;
-  background: var(--color-dark);
+  background: __color-dark;
   position: absolute;
   top: 3rem; left: 0; right: 0;
   z-index: 499;
@@ -469,7 +470,7 @@ textarea {
   text-decoration: underline;
 }
 .play-block--options {
-  background: var(--color-dark);
+  background: __color-dark;
   color: #FFF;
 }
 .play-block--options form {
@@ -504,11 +505,11 @@ textarea {
   font-style: normal;
 }
 .play-block--options input[type=text]::selection {
-  background: var(--color-primary);
+  background: __color-primary;
   color: #FFF;
 }
 .play-block--options input[type=text]:focus {
-  box-shadow: inset 0 1px 0 rgba(0,0,0,.2), 0 1px 0 rgba(255,255,255,.1),0 0 0 1px var(--color-primary);
+  box-shadow: inset 0 1px 0 rgba(0,0,0,.2), 0 1px 0 rgba(255,255,255,.1),0 0 0 1px __color-primary;
   outline: none;
 }
 .play-block--options input[type=checkbox] {
@@ -543,7 +544,7 @@ textarea {
   top: .15em; left: -1.25rem;
   width: .75em; height: .5em;
   background: transparent;
-  border: 3px solid var(--color-primary);
+  border: 3px solid __color-primary;
   border-top: none;
   border-right: none;
   transform: rotate(-45deg);
@@ -565,7 +566,7 @@ textarea {
 }
 .play-block--options input:checked + label:hover::after,
 .play-block--options input:checked + label:focus::after {
-  border-color: var(--color-primary);
+  border-color: __color-primary;
 }
 .play-block--options fieldset {
   margin: 0 0 1em 0;
@@ -573,12 +574,12 @@ textarea {
   border: none;
 }
 .play-block--options legend {
-  color: var(--color-primary);
+  color: __color-primary;
 }
 .samples-item {
   margin: 0 .25em;
   padding: 0 .4em;
-  color: var(--color-primary);
+  color: __color-primary;
   text-decoration: none;
   background: black;
   border-radius: 10px;
@@ -626,7 +627,7 @@ textarea {
     top: 2rem; left: 0; right: 0;
     height: 3rem;
     padding-left: .5em;
-    background: var(--color-dark);
+    background: __color-dark;
   }
   .play-block {
     padding-top: 2em;
