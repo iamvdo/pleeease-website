@@ -7,7 +7,8 @@ var options = {
     "rootValue": "16px"
   },
   "minifier": false,
-  "import": false
+  "import": false,
+  "rebaseUrls": false
 };
 var samples = {
   'autoprefixer': ".a {\n  display: flex;\n  background: linear-gradient(red, green);\n}",
