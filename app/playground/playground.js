@@ -23,7 +23,6 @@ function htmlEntities (str) {
 function doPleeease () {
   var source = editor.getValue();
   var compiled = source;
-  console.log(options);
   pleeease.process(source, options).then(function (result) {
     compiled = result;
     var scrollTop = output.doc.scrollTop;
@@ -73,9 +72,7 @@ function updateOption (checkbox, refresh) {
 
   if (checked) {
     if (checkbox.getAttribute('value')) {
-
       checked = JSON.parse(checkbox.getAttribute('value'));
-            console.log(checked);
     }
     checked = updateOptionAdvanced(checked, checkbox.name);
     if (checkbox.name === 'wrap') {
@@ -88,7 +85,6 @@ function updateOption (checkbox, refresh) {
       output.setOption('lineWrapping', false);
     }
   }
-  console.log(checkbox.name, checked);
   options[checkbox.name] = checked;
 
   refresh = typeof refresh !== 'undefined' ? refresh : true;
